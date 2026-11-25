@@ -6,7 +6,7 @@
 
 A modern, zero-dependency Lovelace shutter & blinds card for **Home Assistant**, built with crisp CSS/SVG graphics, full mobile touch-lock, quick presets, tilt control, open-window safety protection, multi-language & RTL support, Sections View sizing, and a built-in Visual Editor.
 
-![Modern Shutter Card Demo](modern-shutter-card.gif?v=2)
+![Modern Shutter Card Demo](modern-shutter-card.gif)
 
 ---
 
