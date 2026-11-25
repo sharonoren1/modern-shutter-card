@@ -5,7 +5,7 @@
  * License: MIT
  */
 
-const CARD_VERSION = '1.5.0';
+const CARD_VERSION = '1.5.1';
 const SUPPORT_SET_TILT_POSITION = 128;
 
 const DEFAULT_PRESETS = [
@@ -60,17 +60,18 @@ const TRANSLATIONS = {
     edColorSage: 'Sage Green',
     edColorBurgundy: 'Burgundy',
     edWindowBg: 'Window Background',
-    edBgSky: 'Sky (Default)',
+    edBgAuto: 'Auto (Day / Night)',
+    edBgSky: 'Sky',
     edBgSunny: 'Sunny Day',
     edBgSea: 'Sea View',
     edBgSunset: 'Sunset',
     edBgMountains: 'Mountains',
     edBgNight: 'Night',
-    edBgAuto: 'Auto (Day / Night)',
     edCompact: 'Compact Mode (Side-by-Side)',
     edShowPresets: 'Show Quick Presets',
     edShowButtons: 'Show Open / Stop / Close',
     edShowPct: 'Show Percentage Badge',
+    edShowWindowGrid: 'Show Window Dividers',
     edInvertGlobal: 'Invert Position (Global)',
     edHaptic: 'Haptic Feedback',
     edPresets: 'Quick Presets',
@@ -127,17 +128,18 @@ const TRANSLATIONS = {
     edColorSage: 'ירוק מרווה',
     edColorBurgundy: 'בורדו',
     edWindowBg: 'רקע חלון',
-    edBgSky: 'שמיים (ברירת מחדל)',
+    edBgAuto: 'אוטומטי (יום / לילה)',
+    edBgSky: 'שמיים',
     edBgSunny: 'יום שמשי',
     edBgSea: 'נוף לים',
     edBgSunset: 'שקיעה',
     edBgMountains: 'הרים וטבע',
     edBgNight: 'לילה',
-    edBgAuto: 'אוטומטי (יום / לילה)',
     edCompact: 'מצב קומפקטי (זה לצד זה)',
     edShowPresets: 'הצג כפתורי מצבים מהירים',
     edShowButtons: 'הצג כפתורי פתיחה / עצור / סגירה',
     edShowPct: 'הצג אחוז פתיחה',
+    edShowWindowGrid: 'הצג חלוקת חלון (צלב)',
     edInvertGlobal: 'היפוך כיוון (גלובלי)',
     edHaptic: 'רטט במגע (Haptic)',
     edPresets: 'מצבים מהירים (Presets)',
@@ -194,17 +196,18 @@ const TRANSLATIONS = {
     edColorSage: 'أخضر مريمية',
     edColorBurgundy: 'عنابي',
     edWindowBg: 'خلفية النافذة',
-    edBgSky: 'سماء (افتراضي)',
+    edBgAuto: 'تلقائي (نهار / ليل)',
+    edBgSky: 'سماء',
     edBgSunny: 'يوم مشمس',
     edBgSea: 'إطلالة بحرية',
     edBgSunset: 'غروب الشمس',
     edBgMountains: 'جبال وطبيعة',
     edBgNight: 'ليل',
-    edBgAuto: 'تلقائي (نهار / ليل)',
     edCompact: 'الوضع المدمج',
     edShowPresets: 'إظهار الأزرار السريعة',
     edShowButtons: 'إظهار أزرار الفتح / الإيقاف / الإغلاق',
     edShowPct: 'إظهار نسبة الفتح',
+    edShowWindowGrid: 'إظهار تقسيم النافذة',
     edInvertGlobal: 'عكس الاتجاه (عام)',
     edHaptic: 'اهتزاز اللمس',
     edPresets: 'الأزرار السريعة',
@@ -261,17 +264,18 @@ const TRANSLATIONS = {
     edColorSage: 'Шалфейный',
     edColorBurgundy: 'Бордовый',
     edWindowBg: 'Фон окна',
-    edBgSky: 'Небо (по умолчанию)',
+    edBgAuto: 'Авто (День / Ночь)',
+    edBgSky: 'Небо',
     edBgSunny: 'Солнечный день',
     edBgSea: 'Вид на море',
     edBgSunset: 'Закат',
     edBgMountains: 'Горы',
     edBgNight: 'Ночь',
-    edBgAuto: 'Авто (День / Ночь)',
     edCompact: 'Компактный режим',
     edShowPresets: 'Показать быстрые кнопки',
     edShowButtons: 'Показать Открыть / Стоп / Закрыть',
     edShowPct: 'Показать проценты',
+    edShowWindowGrid: 'Показать переплёт окна',
     edInvertGlobal: 'Инвертировать позицию',
     edHaptic: 'Виброотклик',
     edPresets: 'Быстрые кнопки',
@@ -328,17 +332,18 @@ const TRANSLATIONS = {
     edColorSage: 'Vert sauge',
     edColorBurgundy: 'Bordeaux',
     edWindowBg: 'Arrière-plan de fenêtre',
-    edBgSky: 'Ciel (Par défaut)',
+    edBgAuto: 'Auto (Jour / Nuit)',
+    edBgSky: 'Ciel',
     edBgSunny: 'Journée ensoleillée',
     edBgSea: 'Vue sur la mer',
     edBgSunset: 'Coucher de soleil',
     edBgMountains: 'Montagnes',
     edBgNight: 'Nuit',
-    edBgAuto: 'Auto (Jour / Nuit)',
     edCompact: 'Mode compact (côte à côte)',
     edShowPresets: 'Afficher les préréglages',
     edShowButtons: 'Afficher Ouvrir / Stop / Fermer',
     edShowPct: 'Afficher le pourcentage',
+    edShowWindowGrid: 'Afficher les croisillons',
     edInvertGlobal: 'Inverser la position (Global)',
     edHaptic: 'Retour haptique',
     edPresets: 'Préréglages rapides',
@@ -395,17 +400,18 @@ const TRANSLATIONS = {
     edColorSage: 'Salbeigrün',
     edColorBurgundy: 'Burgunderrot',
     edWindowBg: 'Fensterhintergrund',
-    edBgSky: 'Himmel (Standard)',
+    edBgAuto: 'Auto (Tag / Nacht)',
+    edBgSky: 'Himmel',
     edBgSunny: 'Sonniger Tag',
     edBgSea: 'Meerblick',
     edBgSunset: 'Sonnenuntergang',
     edBgMountains: 'Berge',
     edBgNight: 'Nacht',
-    edBgAuto: 'Auto (Tag / Nacht)',
     edCompact: 'Kompaktmodus (Nebeneinander)',
     edShowPresets: 'Schnellwahl-Buttons anzeigen',
     edShowButtons: 'Öffnen / Stopp / Schließen anzeigen',
     edShowPct: 'Prozentanzeige anzeigen',
+    edShowWindowGrid: 'Fensterkreuz anzeigen',
     edInvertGlobal: 'Position invertieren (Global)',
     edHaptic: 'Haptisches Feedback',
     edPresets: 'Schnellwahl-Buttons',
@@ -462,17 +468,18 @@ const TRANSLATIONS = {
     edColorSage: 'Verde salvia',
     edColorBurgundy: 'Burdeos',
     edWindowBg: 'Fondo de ventana',
-    edBgSky: 'Cielo (Por defecto)',
+    edBgAuto: 'Auto (Día / Noche)',
+    edBgSky: 'Cielo',
     edBgSunny: 'Día soleado',
     edBgSea: 'Vista al mar',
     edBgSunset: 'Atardecer',
     edBgMountains: 'Montañas',
     edBgNight: 'Noche',
-    edBgAuto: 'Auto (Día / Noche)',
     edCompact: 'Modo compacto',
     edShowPresets: 'Mostrar accesos rápidos',
     edShowButtons: 'Mostrar Abrir / Parar / Cerrar',
     edShowPct: 'Mostrar porcentaje',
+    edShowWindowGrid: 'Mostrar división de ventana',
     edInvertGlobal: 'Invertir posición (Global)',
     edHaptic: 'Respuesta háptica',
     edPresets: 'Accesos rápidos',
@@ -529,17 +536,18 @@ const TRANSLATIONS = {
     edColorSage: 'Verde salvia',
     edColorBurgundy: 'Bordeaux',
     edWindowBg: 'Sfondo finestra',
-    edBgSky: 'Cielo (Predefinito)',
+    edBgAuto: 'Auto (Giorno / Notte)',
+    edBgSky: 'Cielo',
     edBgSunny: 'Giornata di sole',
     edBgSea: 'Vista mare',
     edBgSunset: 'Tramonto',
     edBgMountains: 'Montagne',
     edBgNight: 'Notte',
-    edBgAuto: 'Auto (Giorno / Notte)',
     edCompact: 'Modalità compatta',
     edShowPresets: 'Mostra preset rapidi',
     edShowButtons: 'Mostra Apri / Stop / Chiudi',
     edShowPct: 'Mostra percentuale',
+    edShowWindowGrid: 'Mostra griglia finestra',
     edInvertGlobal: 'Inverti posizione (Globale)',
     edHaptic: 'Feedback aptico',
     edPresets: 'Preset rapidi',
@@ -596,17 +604,18 @@ const TRANSLATIONS = {
     edColorSage: 'Saliegroen',
     edColorBurgundy: 'Bordeaux',
     edWindowBg: 'Raamachtergrond',
-    edBgSky: 'Lucht (Standaard)',
+    edBgAuto: 'Auto (Dag / Nacht)',
+    edBgSky: 'Lucht',
     edBgSunny: 'Zonnige dag',
     edBgSea: 'Zeezicht',
     edBgSunset: 'Zonsondergang',
     edBgMountains: 'Bergen',
     edBgNight: 'Nacht',
-    edBgAuto: 'Auto (Dag / Nacht)',
     edCompact: 'Compacte weergave',
     edShowPresets: 'Snelle knoppen tonen',
     edShowButtons: 'Open / Stop / Dicht tonen',
     edShowPct: 'Percentage tonen',
+    edShowWindowGrid: 'Raamverdeling tonen',
     edInvertGlobal: 'Positie omkeren (Globaal)',
     edHaptic: 'Haptische feedback',
     edPresets: 'Snelle knoppen',
@@ -713,13 +722,13 @@ const TYPE_OPTIONS = [
 ];
 
 const BG_OPTIONS = [
+  { key: 'auto', labelKey: 'edBgAuto' },
   { key: 'sky', labelKey: 'edBgSky' },
   { key: 'sunny', labelKey: 'edBgSunny' },
   { key: 'sea', labelKey: 'edBgSea' },
   { key: 'sunset', labelKey: 'edBgSunset' },
   { key: 'mountains', labelKey: 'edBgMountains' },
   { key: 'night', labelKey: 'edBgNight' },
-  { key: 'auto', labelKey: 'edBgAuto' },
 ];
 
 const ICONS = {
@@ -934,7 +943,7 @@ function resolveCoverType(explicitType, cardType, stateObj) {
 }
 
 function resolveWindowBackground(entityBg, cardBg, hass) {
-  const raw = String(entityBg || cardBg || 'sky').trim();
+  const raw = String(entityBg || cardBg || 'auto').trim();
   const lower = raw.toLowerCase();
   if (lower === 'auto') {
     const sunState = hass?.states?.['sun.sun']?.state;
@@ -975,7 +984,8 @@ class ModernShutterCard extends HTMLElement {
       cover_type: 'auto',
       compact: false,
       slats_color: 'gray',
-      window_background: 'sky',
+      window_background: 'auto',
+      show_window_grid: true,
       show_presets: true,
       show_buttons: true,
       show_percentage: true,
@@ -1022,7 +1032,8 @@ class ModernShutterCard extends HTMLElement {
       cover_type: config.cover_type || 'auto',
       compact: Boolean(config.compact),
       slats_color: config.slats_color || config.color || 'gray',
-      window_background: config.window_background || 'sky',
+      window_background: config.window_background || 'auto',
+      show_window_grid: config.show_window_grid !== false,
       show_presets: config.show_presets !== false,
       presets:
         Array.isArray(config.presets) && config.presets.length > 0
@@ -1326,6 +1337,10 @@ class ModernShutterCard extends HTMLElement {
             </div>`
           : '';
 
+        const windowGridHtml = this._config.show_window_grid
+          ? '<div class="window-cross-v"></div><div class="window-cross-h"></div>'
+          : '';
+
         return `
           <div
             class="shutter-tile"
@@ -1352,8 +1367,7 @@ class ModernShutterCard extends HTMLElement {
                 <div class="window-frame" data-index="${idx}" role="slider" aria-valuemin="0" aria-valuemax="100" tabindex="0">
                   <div class="window-sky">
                     <div class="window-scene"></div>
-                    <div class="window-cross-v"></div>
-                    <div class="window-cross-h"></div>
+                    ${windowGridHtml}
                     <div class="window-glare"></div>
                   </div>
 
@@ -2386,7 +2400,8 @@ class ModernShutterCardEditor extends HTMLElement {
       cover_type: 'auto',
       compact: false,
       slats_color: 'gray',
-      window_background: 'sky',
+      window_background: 'auto',
+      show_window_grid: true,
       show_presets: true,
       show_buttons: true,
       show_percentage: true,
@@ -2788,7 +2803,7 @@ class ModernShutterCardEditor extends HTMLElement {
         <label>
           ${escapeHtml(tr('edWindowBg'))}
           <select id="cfg-bg">
-            ${renderBgOptions(this._config.window_background || 'sky', false)}
+            ${renderBgOptions(this._config.window_background || 'auto', false)}
           </select>
         </label>
 
@@ -2808,6 +2823,10 @@ class ModernShutterCardEditor extends HTMLElement {
           <label class="check-label">
             <input type="checkbox" id="cfg-pct" ${this._config.show_percentage !== false ? 'checked' : ''} />
             ${escapeHtml(tr('edShowPct'))}
+          </label>
+          <label class="check-label">
+            <input type="checkbox" id="cfg-window-grid" ${this._config.show_window_grid !== false ? 'checked' : ''} />
+            ${escapeHtml(tr('edShowWindowGrid'))}
           </label>
           <label class="check-label">
             <input type="checkbox" id="cfg-invert" ${this._config.invert_position ? 'checked' : ''} />
@@ -2854,6 +2873,7 @@ class ModernShutterCardEditor extends HTMLElement {
     bindSimple('cfg-presets', 'show_presets', true, true);
     bindSimple('cfg-buttons', 'show_buttons', true);
     bindSimple('cfg-pct', 'show_percentage', true);
+    bindSimple('cfg-window-grid', 'show_window_grid', true);
     bindSimple('cfg-invert', 'invert_position', true);
     bindSimple('cfg-haptic', 'haptic', true);
 
