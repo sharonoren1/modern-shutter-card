@@ -3,6 +3,7 @@
 [![hacs_badge](https://img.shields.io/badge/HACS-Custom-41BDF5.svg)](https://github.com/hacs/integration)
 [![GitHub Release](https://img.shields.io/github/release/sharonoren1/modern-shutter-card.svg)](https://github.com/sharonoren1/modern-shutter-card/releases)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20A%20Coffee-FFDD00?style=flat&logo=buy-me-a-coffee&logoColor=black)](https://www.buymeacoffee.com/orensharon)
 
 A modern, zero-dependency Lovelace shutter & blinds card for **Home Assistant**, built with crisp CSS/SVG graphics, full mobile touch-lock, quick presets, tilt control, open-window safety protection, multi-language & RTL support, Sections View sizing, and a built-in Visual Editor.
 
@@ -135,6 +136,16 @@ entities:
 | `slats_color` | `string` | Card default | Override slat color for this specific shutter. |
 | `window_sensor` | `string` | `""` | Optional `binary_sensor` to display an open-window warning badge. |
 | `block_close_if_open` | `boolean` | `false` | Prevent closing the shutter while `window_sensor` is open. |
+
+---
+
+## Support
+
+If you find this card useful and want to support its ongoing development, feel free to buy me a coffee!
+
+<a href="https://www.buymeacoffee.com/orensharon" target="_blank">
+  <img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" height="45" />
+</a>
 
 ---
 
