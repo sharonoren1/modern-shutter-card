@@ -5,7 +5,7 @@
  * License: MIT
  */
 
-const CARD_VERSION = '1.6.0';
+const CARD_VERSION = '1.7.0';
 const SUPPORT_SET_TILT_POSITION = 128;
 
 const DEFAULT_PRESETS = [
@@ -36,6 +36,9 @@ const TRANSLATIONS = {
     down: 'Down',
     openAction: 'Open',
     closeAction: 'Close',
+    openAll: 'Open all',
+    stopAll: 'Stop all',
+    closeAll: 'Close all',
     edGeneral: 'General Settings',
     edTitle: 'Card Title',
     edOptionalTitle: 'Optional title',
@@ -71,6 +74,7 @@ const TRANSLATIONS = {
     edPosLeft: 'Left',
     edPosRight: 'Right',
     edCompact: 'Compact Mode (Side-by-Side)',
+    edShowGroupControls: 'Show Group Controls (All)',
     edShowPresets: 'Show Quick Presets',
     edShowButtons: 'Show Open / Stop / Close',
     edShowPct: 'Show Percentage Badge',
@@ -108,6 +112,9 @@ const TRANSLATIONS = {
     down: 'למטה',
     openAction: 'פתח',
     closeAction: 'סגור',
+    openAll: 'פתח הכל',
+    stopAll: 'עצור הכל',
+    closeAll: 'סגור הכל',
     edGeneral: 'הגדרות כלליות',
     edTitle: 'כותרת הכרטיס',
     edOptionalTitle: 'כותרת אופציונלית',
@@ -143,6 +150,7 @@ const TRANSLATIONS = {
     edPosLeft: 'שמאל',
     edPosRight: 'ימין',
     edCompact: 'מצב קומפקטי (זה לצד זה)',
+    edShowGroupControls: 'הצג שליטה קבוצתית (הכל)',
     edShowPresets: 'הצג כפתורי מצבים מהירים',
     edShowButtons: 'הצג כפתורי פתיחה / עצור / סגירה',
     edShowPct: 'הצג אחוז פתיחה',
@@ -180,6 +188,9 @@ const TRANSLATIONS = {
     down: 'أسفل',
     openAction: 'فتح',
     closeAction: 'إغلاق',
+    openAll: 'فتح الكل',
+    stopAll: 'إيقاف الكل',
+    closeAll: 'إغلاق الكل',
     edGeneral: 'الإعدادات العامة',
     edTitle: 'عنوان البطاقة',
     edOptionalTitle: 'عنوان اختياري',
@@ -215,6 +226,7 @@ const TRANSLATIONS = {
     edPosLeft: 'يسار',
     edPosRight: 'يمين',
     edCompact: 'الوضع المدمج',
+    edShowGroupControls: 'إظهار التحكم الجماعي (الكل)',
     edShowPresets: 'إظهار الأزرار السريعة',
     edShowButtons: 'إظهار أزرار الفتح / الإيقاف / الإغلاق',
     edShowPct: 'إظهار نسبة الفتح',
@@ -252,6 +264,9 @@ const TRANSLATIONS = {
     down: 'Вниз',
     openAction: 'Открыть',
     closeAction: 'Закрыть',
+    openAll: 'Открыть все',
+    stopAll: 'Остановить все',
+    closeAll: 'Закрыть все',
     edGeneral: 'Общие настройки',
     edTitle: 'Заголовок карточки',
     edOptionalTitle: 'Необязательный заголовок',
@@ -287,6 +302,7 @@ const TRANSLATIONS = {
     edPosLeft: 'Слева',
     edPosRight: 'Справа',
     edCompact: 'Компактный режим',
+    edShowGroupControls: 'Групповое управление (Все)',
     edShowPresets: 'Показать быстрые кнопки',
     edShowButtons: 'Показать Открыть / Стоп / Закрыть',
     edShowPct: 'Показать проценты',
@@ -324,6 +340,9 @@ const TRANSLATIONS = {
     down: 'Descendre',
     openAction: 'Ouvrir',
     closeAction: 'Fermer',
+    openAll: 'Tout ouvrir',
+    stopAll: 'Tout arrêter',
+    closeAll: 'Tout fermer',
     edGeneral: 'Paramètres généraux',
     edTitle: 'Titre de la carte',
     edOptionalTitle: 'Titre optionnel',
@@ -359,6 +378,7 @@ const TRANSLATIONS = {
     edPosLeft: 'Gauche',
     edPosRight: 'Droite',
     edCompact: 'Mode compact (côte à côte)',
+    edShowGroupControls: 'Contrôle groupé (Tous)',
     edShowPresets: 'Afficher les préréglages',
     edShowButtons: 'Afficher Ouvrir / Stop / Fermer',
     edShowPct: 'Afficher le pourcentage',
@@ -396,6 +416,9 @@ const TRANSLATIONS = {
     down: 'Runter',
     openAction: 'Öffnen',
     closeAction: 'Schließen',
+    openAll: 'Alle öffnen',
+    stopAll: 'Alle stoppen',
+    closeAll: 'Alle schließen',
     edGeneral: 'Allgemeine Einstellungen',
     edTitle: 'Kartentitel',
     edOptionalTitle: 'Optionaler Titel',
@@ -431,6 +454,7 @@ const TRANSLATIONS = {
     edPosLeft: 'Links',
     edPosRight: 'Rechts',
     edCompact: 'Kompaktmodus (Nebeneinander)',
+    edShowGroupControls: 'Gruppensteuerung (Alle)',
     edShowPresets: 'Schnellwahl-Buttons anzeigen',
     edShowButtons: 'Öffnen / Stopp / Schließen anzeigen',
     edShowPct: 'Prozentanzeige anzeigen',
@@ -468,6 +492,9 @@ const TRANSLATIONS = {
     down: 'Bajar',
     openAction: 'Abrir',
     closeAction: 'Cerrar',
+    openAll: 'Abrir todo',
+    stopAll: 'Parar todo',
+    closeAll: 'Cerrar todo',
     edGeneral: 'Ajustes generales',
     edTitle: 'Título de la tarjeta',
     edOptionalTitle: 'Título opcional',
@@ -503,6 +530,7 @@ const TRANSLATIONS = {
     edPosLeft: 'Izquierda',
     edPosRight: 'Derecha',
     edCompact: 'Modo compacto',
+    edShowGroupControls: 'Mostrar control grupal (Todo)',
     edShowPresets: 'Mostrar accesos rápidos',
     edShowButtons: 'Mostrar Abrir / Parar / Cerrar',
     edShowPct: 'Mostrar porcentaje',
@@ -540,6 +568,9 @@ const TRANSLATIONS = {
     down: 'Giù',
     openAction: 'Apri',
     closeAction: 'Chiudi',
+    openAll: 'Apri tutto',
+    stopAll: 'Ferma tutto',
+    closeAll: 'Chiudi tutto',
     edGeneral: 'Impostazioni generali',
     edTitle: 'Titolo scheda',
     edOptionalTitle: 'Titolo opzionale',
@@ -575,6 +606,7 @@ const TRANSLATIONS = {
     edPosLeft: 'Sinistra',
     edPosRight: 'Destra',
     edCompact: 'Modalità compatta',
+    edShowGroupControls: 'Controllo di gruppo (Tutti)',
     edShowPresets: 'Mostra preset rapidi',
     edShowButtons: 'Mostra Apri / Stop / Chiudi',
     edShowPct: 'Mostra percentuale',
@@ -612,6 +644,9 @@ const TRANSLATIONS = {
     down: 'Omlaag',
     openAction: 'Openen',
     closeAction: 'Sluiten',
+    openAll: 'Alles openen',
+    stopAll: 'Alles stoppen',
+    closeAll: 'Alles sluiten',
     edGeneral: 'Algemene instellingen',
     edTitle: 'Kaarttitel',
     edOptionalTitle: 'Optionele titel',
@@ -647,6 +682,7 @@ const TRANSLATIONS = {
     edPosLeft: 'Links',
     edPosRight: 'Rechts',
     edCompact: 'Compacte weergave',
+    edShowGroupControls: 'Groepsbediening tonen (Alles)',
     edShowPresets: 'Snelle knoppen tonen',
     edShowButtons: 'Open / Stop / Dicht tonen',
     edShowPct: 'Percentage tonen',
@@ -1023,6 +1059,7 @@ class ModernShutterCard extends HTMLElement {
       slats_color: 'gray',
       window_background: 'auto',
       buttons_position: 'left',
+      show_group_controls: true,
       show_window_grid: true,
       show_presets: true,
       show_buttons: true,
@@ -1072,6 +1109,7 @@ class ModernShutterCard extends HTMLElement {
       slats_color: config.slats_color || config.color || 'gray',
       window_background: config.window_background || 'auto',
       buttons_position: config.buttons_position === 'right' ? 'right' : 'left',
+      show_group_controls: config.show_group_controls !== false,
       show_window_grid: config.show_window_grid !== false,
       show_presets: config.show_presets !== false,
       presets:
@@ -1249,7 +1287,7 @@ class ModernShutterCard extends HTMLElement {
     });
   }
 
-  _callCoverAction(index, action) {
+  _callCoverAction(index, action, silentHaptic = false) {
     const item = this._getEntityConfig(index);
     const info = this._getOpenness(index);
     if (!info.available) return;
@@ -1266,9 +1304,19 @@ class ModernShutterCard extends HTMLElement {
       service = info.invert ? 'open_cover' : 'close_cover';
     }
 
-    triggerHaptic(this, this._config.haptic, 'light');
+    if (!silentHaptic) {
+      triggerHaptic(this, this._config.haptic, 'light');
+    }
     this._hass.callService('cover', service, {
       entity_id: item.entity,
+    });
+  }
+
+  _callGroupAction(action) {
+    if (!this._config?.entities?.length) return;
+    triggerHaptic(this, this._config.haptic, 'light');
+    this._config.entities.forEach((_, idx) => {
+      this._callCoverAction(idx, action, true);
     });
   }
 
@@ -1305,6 +1353,18 @@ class ModernShutterCard extends HTMLElement {
     }
   }
 
+  _updateGroupIcons() {
+    const groupBar = this.shadowRoot.querySelector('.group-controls');
+    if (!groupBar) return;
+    const allHoriz =
+      this._config.entities.length > 0 &&
+      this._config.entities.every((_, idx) => HORIZONTAL_TYPES.has(this._getResolvedCoverType(idx)));
+    const upBtn = groupBar.querySelector('.group-btn[data-group-action="up"]');
+    const downBtn = groupBar.querySelector('.group-btn[data-group-action="down"]');
+    if (upBtn) upBtn.innerHTML = allHoriz ? ICONS.openHoriz : ICONS.up;
+    if (downBtn) downBtn.innerHTML = allHoriz ? ICONS.closeHoriz : ICONS.down;
+  }
+
   _applyWindowBackground(tile, item) {
     const sceneEl = tile.querySelector('.window-scene');
     if (!sceneEl) return;
@@ -1337,6 +1397,33 @@ class ModernShutterCard extends HTMLElement {
     this._lastRtl = isRtl;
     const compact = this._config.compact;
     const buttonsRight = this._config.buttons_position === 'right';
+    const showGroupControls =
+      this._config.show_group_controls !== false && this._config.entities.length > 1;
+    const allHoriz =
+      this._config.entities.length > 0 &&
+      this._config.entities.every((_, idx) => HORIZONTAL_TYPES.has(this._getResolvedCoverType(idx)));
+
+    const headerHtml =
+      this._config.title || showGroupControls
+        ? `<div class="card-header-bar">
+            ${this._config.title ? `<div class="card-header-title">${escapeHtml(this._config.title)}</div>` : '<div></div>'}
+            ${
+              showGroupControls
+                ? `<div class="group-controls">
+                    <button type="button" class="group-btn" data-group-action="up" aria-label="${escapeHtml(t(lang, 'openAll'))}" title="${escapeHtml(t(lang, 'openAll'))}">
+                      ${allHoriz ? ICONS.openHoriz : ICONS.up}
+                    </button>
+                    <button type="button" class="group-btn stop-btn" data-group-action="stop" aria-label="${escapeHtml(t(lang, 'stopAll'))}" title="${escapeHtml(t(lang, 'stopAll'))}">
+                      ${ICONS.stop}
+                    </button>
+                    <button type="button" class="group-btn" data-group-action="down" aria-label="${escapeHtml(t(lang, 'closeAll'))}" title="${escapeHtml(t(lang, 'closeAll'))}">
+                      ${allHoriz ? ICONS.closeHoriz : ICONS.down}
+                    </button>
+                  </div>`
+                : ''
+            }
+          </div>`
+        : '';
 
     const tilesHtml = this._config.entities
       .map((item, idx) => {
@@ -1484,12 +1571,65 @@ class ModernShutterCard extends HTMLElement {
           overflow: hidden;
         }
 
+        .card-header-bar {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 10px;
+          margin: 0 0 12px 0;
+        }
+
         .card-header-title {
           font-size: 1.05rem;
           font-weight: 600;
-          margin: 0 0 12px 0;
+          margin: 0;
           color: var(--msc-text);
           letter-spacing: -0.01em;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+        }
+
+        .group-controls {
+          display: flex;
+          align-items: center;
+          gap: 6px;
+          flex-shrink: 0;
+        }
+
+        .group-btn {
+          width: 32px;
+          height: 32px;
+          border-radius: 8px;
+          border: 1px solid var(--msc-divider);
+          background: var(--msc-bg);
+          color: var(--msc-text);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+          padding: 0;
+          transition: background 0.15s ease, transform 0.1s ease, border-color 0.15s ease, color 0.15s ease;
+        }
+
+        .group-btn:hover {
+          border-color: var(--msc-primary);
+          color: var(--msc-primary);
+        }
+
+        .group-btn:active {
+          transform: scale(0.92);
+        }
+
+        .group-btn svg {
+          width: 20px;
+          height: 20px;
+          fill: currentColor;
+        }
+
+        .group-btn.stop-btn svg {
+          width: 13px;
+          height: 13px;
         }
 
         .shutters-container {
@@ -2133,7 +2273,7 @@ class ModernShutterCard extends HTMLElement {
       </style>
 
       <ha-card dir="${isRtl ? 'rtl' : 'ltr'}">
-        ${this._config.title ? `<div class="card-header-title">${escapeHtml(this._config.title)}</div>` : ''}
+        ${headerHtml}
         <div class="shutters-container ${compact ? 'compact' : ''}">
           ${tilesHtml}
         </div>
@@ -2150,6 +2290,12 @@ class ModernShutterCard extends HTMLElement {
   }
 
   _bindEvents() {
+    this.shadowRoot.querySelectorAll('.group-btn').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        this._callGroupAction(btn.dataset.groupAction);
+      });
+    });
+
     this.shadowRoot.querySelectorAll('.entity-title').forEach((btn) => {
       btn.addEventListener('click', () => {
         this._openMoreInfo(btn.dataset.moreInfo);
@@ -2320,6 +2466,7 @@ class ModernShutterCard extends HTMLElement {
   _updateAllStates() {
     if (!this._config || !this._hass) return;
     this._config.entities.forEach((_, idx) => this._updateSingleState(idx));
+    this._updateGroupIcons();
   }
 
   _updateSingleState(index) {
@@ -2449,6 +2596,7 @@ class ModernShutterCardEditor extends HTMLElement {
       slats_color: 'gray',
       window_background: 'auto',
       buttons_position: 'left',
+      show_group_controls: true,
       show_window_grid: true,
       show_presets: true,
       show_buttons: true,
@@ -2904,6 +3052,10 @@ class ModernShutterCardEditor extends HTMLElement {
             ${escapeHtml(tr('edCompact'))}
           </label>
           <label class="check-label">
+            <input type="checkbox" id="cfg-group-controls" ${this._config.show_group_controls !== false ? 'checked' : ''} />
+            ${escapeHtml(tr('edShowGroupControls'))}
+          </label>
+          <label class="check-label">
             <input type="checkbox" id="cfg-presets" ${this._config.show_presets !== false ? 'checked' : ''} />
             ${escapeHtml(tr('edShowPresets'))}
           </label>
@@ -2962,6 +3114,7 @@ class ModernShutterCardEditor extends HTMLElement {
     bindSimple('cfg-bg', 'window_background');
     bindSimple('cfg-btn-pos', 'buttons_position');
     bindSimple('cfg-compact', 'compact', true);
+    bindSimple('cfg-group-controls', 'show_group_controls', true);
     bindSimple('cfg-presets', 'show_presets', true, true);
     bindSimple('cfg-buttons', 'show_buttons', true);
     bindSimple('cfg-pct', 'show_percentage', true);
@@ -3123,7 +3276,7 @@ window.customCards.push({
   type: 'modern-shutter-card',
   name: 'Modern Shutter Card',
   description:
-    'A modern multi-language visual shutter, blinds & sliding curtain card with presets, touch-lock, tilt, window sensor protection, scenic backgrounds, RTL, and Sections View support.',
+    'A modern multi-language visual shutter, blinds & sliding curtain card with group controls, presets, touch-lock, tilt, window sensor protection, scenic backgrounds, RTL, and Sections View support.',
   preview: true,
   documentationURL: 'https://github.com/sharonoren1/modern-shutter-card',
 });
