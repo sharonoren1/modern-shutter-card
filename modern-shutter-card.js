@@ -5,7 +5,7 @@
  * License: MIT
  */
 
-const CARD_VERSION = '1.7.1';
+const CARD_VERSION = '1.7.2';
 const SUPPORT_SET_TILT_POSITION = 128;
 
 const DEFAULT_PRESETS = [
