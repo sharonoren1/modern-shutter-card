@@ -5,7 +5,7 @@
  * License: MIT
  */
 
-const CARD_VERSION = '1.4.2';
+const CARD_VERSION = '1.5.0';
 const SUPPORT_SET_TILT_POSITION = 128;
 
 const DEFAULT_PRESETS = [
@@ -19,6 +19,7 @@ const RTL_LANGS = new Set(['he', 'ar', 'fa', 'ur']);
 
 const COVER_TYPES = ['auto', 'shutter', 'curtain', 'curtain_left', 'curtain_right', 'roller', 'venetian'];
 const HORIZONTAL_TYPES = new Set(['curtain', 'curtain_left', 'curtain_right']);
+const BG_PRESETS = new Set(['sky', 'sunny', 'sea', 'sunset', 'mountains', 'night', 'auto']);
 
 const TRANSLATIONS = {
   en: {
@@ -58,6 +59,14 @@ const TRANSLATIONS = {
     edColorNavy: 'Navy Blue',
     edColorSage: 'Sage Green',
     edColorBurgundy: 'Burgundy',
+    edWindowBg: 'Window Background',
+    edBgSky: 'Sky (Default)',
+    edBgSunny: 'Sunny Day',
+    edBgSea: 'Sea View',
+    edBgSunset: 'Sunset',
+    edBgMountains: 'Mountains',
+    edBgNight: 'Night',
+    edBgAuto: 'Auto (Day / Night)',
     edCompact: 'Compact Mode (Side-by-Side)',
     edShowPresets: 'Show Quick Presets',
     edShowButtons: 'Show Open / Stop / Close',
@@ -117,6 +126,14 @@ const TRANSLATIONS = {
     edColorNavy: 'כחול נייבי',
     edColorSage: 'ירוק מרווה',
     edColorBurgundy: 'בורדו',
+    edWindowBg: 'רקע חלון',
+    edBgSky: 'שמיים (ברירת מחדל)',
+    edBgSunny: 'יום שמשי',
+    edBgSea: 'נוף לים',
+    edBgSunset: 'שקיעה',
+    edBgMountains: 'הרים וטבע',
+    edBgNight: 'לילה',
+    edBgAuto: 'אוטומטי (יום / לילה)',
     edCompact: 'מצב קומפקטי (זה לצד זה)',
     edShowPresets: 'הצג כפתורי מצבים מהירים',
     edShowButtons: 'הצג כפתורי פתיחה / עצור / סגירה',
@@ -176,6 +193,14 @@ const TRANSLATIONS = {
     edColorNavy: 'أزرق كحلي',
     edColorSage: 'أخضر مريمية',
     edColorBurgundy: 'عنابي',
+    edWindowBg: 'خلفية النافذة',
+    edBgSky: 'سماء (افتراضي)',
+    edBgSunny: 'يوم مشمس',
+    edBgSea: 'إطلالة بحرية',
+    edBgSunset: 'غروب الشمس',
+    edBgMountains: 'جبال وطبيعة',
+    edBgNight: 'ليل',
+    edBgAuto: 'تلقائي (نهار / ليل)',
     edCompact: 'الوضع المدمج',
     edShowPresets: 'إظهار الأزرار السريعة',
     edShowButtons: 'إظهار أزرار الفتح / الإيقاف / الإغلاق',
@@ -235,6 +260,14 @@ const TRANSLATIONS = {
     edColorNavy: 'Тёмно-синий',
     edColorSage: 'Шалфейный',
     edColorBurgundy: 'Бордовый',
+    edWindowBg: 'Фон окна',
+    edBgSky: 'Небо (по умолчанию)',
+    edBgSunny: 'Солнечный день',
+    edBgSea: 'Вид на море',
+    edBgSunset: 'Закат',
+    edBgMountains: 'Горы',
+    edBgNight: 'Ночь',
+    edBgAuto: 'Авто (День / Ночь)',
     edCompact: 'Компактный режим',
     edShowPresets: 'Показать быстрые кнопки',
     edShowButtons: 'Показать Открыть / Стоп / Закрыть',
@@ -294,6 +327,14 @@ const TRANSLATIONS = {
     edColorNavy: 'Bleu marine',
     edColorSage: 'Vert sauge',
     edColorBurgundy: 'Bordeaux',
+    edWindowBg: 'Arrière-plan de fenêtre',
+    edBgSky: 'Ciel (Par défaut)',
+    edBgSunny: 'Journée ensoleillée',
+    edBgSea: 'Vue sur la mer',
+    edBgSunset: 'Coucher de soleil',
+    edBgMountains: 'Montagnes',
+    edBgNight: 'Nuit',
+    edBgAuto: 'Auto (Jour / Nuit)',
     edCompact: 'Mode compact (côte à côte)',
     edShowPresets: 'Afficher les préréglages',
     edShowButtons: 'Afficher Ouvrir / Stop / Fermer',
@@ -353,6 +394,14 @@ const TRANSLATIONS = {
     edColorNavy: 'Marineblau',
     edColorSage: 'Salbeigrün',
     edColorBurgundy: 'Burgunderrot',
+    edWindowBg: 'Fensterhintergrund',
+    edBgSky: 'Himmel (Standard)',
+    edBgSunny: 'Sonniger Tag',
+    edBgSea: 'Meerblick',
+    edBgSunset: 'Sonnenuntergang',
+    edBgMountains: 'Berge',
+    edBgNight: 'Nacht',
+    edBgAuto: 'Auto (Tag / Nacht)',
     edCompact: 'Kompaktmodus (Nebeneinander)',
     edShowPresets: 'Schnellwahl-Buttons anzeigen',
     edShowButtons: 'Öffnen / Stopp / Schließen anzeigen',
@@ -412,6 +461,14 @@ const TRANSLATIONS = {
     edColorNavy: 'Azul marino',
     edColorSage: 'Verde salvia',
     edColorBurgundy: 'Burdeos',
+    edWindowBg: 'Fondo de ventana',
+    edBgSky: 'Cielo (Por defecto)',
+    edBgSunny: 'Día soleado',
+    edBgSea: 'Vista al mar',
+    edBgSunset: 'Atardecer',
+    edBgMountains: 'Montañas',
+    edBgNight: 'Noche',
+    edBgAuto: 'Auto (Día / Noche)',
     edCompact: 'Modo compacto',
     edShowPresets: 'Mostrar accesos rápidos',
     edShowButtons: 'Mostrar Abrir / Parar / Cerrar',
@@ -471,6 +528,14 @@ const TRANSLATIONS = {
     edColorNavy: 'Blu navy',
     edColorSage: 'Verde salvia',
     edColorBurgundy: 'Bordeaux',
+    edWindowBg: 'Sfondo finestra',
+    edBgSky: 'Cielo (Predefinito)',
+    edBgSunny: 'Giornata di sole',
+    edBgSea: 'Vista mare',
+    edBgSunset: 'Tramonto',
+    edBgMountains: 'Montagne',
+    edBgNight: 'Notte',
+    edBgAuto: 'Auto (Giorno / Notte)',
     edCompact: 'Modalità compatta',
     edShowPresets: 'Mostra preset rapidi',
     edShowButtons: 'Mostra Apri / Stop / Chiudi',
@@ -530,6 +595,14 @@ const TRANSLATIONS = {
     edColorNavy: 'Marineblauw',
     edColorSage: 'Saliegroen',
     edColorBurgundy: 'Bordeaux',
+    edWindowBg: 'Raamachtergrond',
+    edBgSky: 'Lucht (Standaard)',
+    edBgSunny: 'Zonnige dag',
+    edBgSea: 'Zeezicht',
+    edBgSunset: 'Zonsondergang',
+    edBgMountains: 'Bergen',
+    edBgNight: 'Nacht',
+    edBgAuto: 'Auto (Dag / Nacht)',
     edCompact: 'Compacte weergave',
     edShowPresets: 'Snelle knoppen tonen',
     edShowButtons: 'Open / Stop / Dicht tonen',
@@ -639,6 +712,16 @@ const TYPE_OPTIONS = [
   { key: 'venetian', labelKey: 'edTypeVenetian' },
 ];
 
+const BG_OPTIONS = [
+  { key: 'sky', labelKey: 'edBgSky' },
+  { key: 'sunny', labelKey: 'edBgSunny' },
+  { key: 'sea', labelKey: 'edBgSea' },
+  { key: 'sunset', labelKey: 'edBgSunset' },
+  { key: 'mountains', labelKey: 'edBgMountains' },
+  { key: 'night', labelKey: 'edBgNight' },
+  { key: 'auto', labelKey: 'edBgAuto' },
+];
+
 const ICONS = {
   up: '<svg viewBox="0 0 24 24"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"/></svg>',
   stop: '<svg viewBox="0 0 24 24"><path d="M6 6h12v12H6z"/></svg>',
@@ -647,6 +730,132 @@ const ICONS = {
     '<svg viewBox="0 0 24 24"><path d="M9.5 16.5L5 12l4.5-4.5 1.4 1.4L7.8 12l3.1 3.1-1.4 1.4zm5 0l-1.4-1.4L16.2 12l-3.1-3.1 1.4-1.4L19 12l-4.5 4.5z"/></svg>',
   closeHoriz:
     '<svg viewBox="0 0 24 24"><path d="M5.5 7.5L10 12l-4.5 4.5-1.4-1.4L7.2 12 4.1 8.9l1.4-1.4zm13 0l1.4 1.4L16.8 12l3.1 3.1-1.4 1.4L14 12l4.5-4.5z"/></svg>',
+};
+
+const WINDOW_SCENES = {
+  sunny: `<svg viewBox="0 0 200 165" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <defs>
+      <linearGradient id="msc-sun-sky" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#38bdf8"/>
+        <stop offset="65%" stop-color="#bae6fd"/>
+        <stop offset="100%" stop-color="#fef9c3"/>
+      </linearGradient>
+      <radialGradient id="msc-sun-glow" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="#fef08a" stop-opacity="0.95"/>
+        <stop offset="45%" stop-color="#fde047" stop-opacity="0.5"/>
+        <stop offset="100%" stop-color="#fde047" stop-opacity="0"/>
+      </radialGradient>
+    </defs>
+    <rect width="200" height="165" fill="url(#msc-sun-sky)"/>
+    <circle cx="152" cy="40" r="38" fill="url(#msc-sun-glow)"/>
+    <circle cx="152" cy="40" r="17" fill="#fef08a"/>
+    <g fill="#ffffff" opacity="0.86">
+      <ellipse cx="52" cy="54" rx="22" ry="9"/>
+      <ellipse cx="66" cy="50" rx="16" ry="11"/>
+      <ellipse cx="38" cy="56" rx="14" ry="7"/>
+    </g>
+    <g fill="#ffffff" opacity="0.72">
+      <ellipse cx="132" cy="92" rx="20" ry="8"/>
+      <ellipse cx="145" cy="89" rx="14" ry="9"/>
+      <ellipse cx="118" cy="94" rx="12" ry="6"/>
+    </g>
+  </svg>`,
+
+  sea: `<svg viewBox="0 0 200 165" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <defs>
+      <linearGradient id="msc-sea-sky" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#38bdf8"/>
+        <stop offset="58%" stop-color="#bae6fd"/>
+        <stop offset="100%" stop-color="#e0f2fe"/>
+      </linearGradient>
+      <linearGradient id="msc-sea-water" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#0284c7"/>
+        <stop offset="55%" stop-color="#0369a1"/>
+        <stop offset="100%" stop-color="#0c4a6e"/>
+      </linearGradient>
+    </defs>
+    <rect width="200" height="102" fill="url(#msc-sea-sky)"/>
+    <circle cx="148" cy="36" r="15" fill="#fef08a" opacity="0.95"/>
+    <circle cx="148" cy="36" r="26" fill="#fef08a" opacity="0.25"/>
+    <g fill="#ffffff" opacity="0.75">
+      <ellipse cx="54" cy="44" rx="20" ry="7"/>
+      <ellipse cx="66" cy="41" rx="13" ry="8"/>
+    </g>
+    <rect y="100" width="200" height="65" fill="url(#msc-sea-water)"/>
+    <ellipse cx="148" cy="105" rx="26" ry="3" fill="#fef08a" opacity="0.45"/>
+    <ellipse cx="148" cy="115" rx="18" ry="2.2" fill="#fef08a" opacity="0.32"/>
+    <path d="M0 120 Q25 115 50 120 T100 120 T150 120 T200 120" fill="none" stroke="#7dd3fc" stroke-width="2" opacity="0.45"/>
+    <path d="M0 136 Q30 130 60 136 T120 136 T180 136 T200 136" fill="none" stroke="#bae6fd" stroke-width="2" opacity="0.38"/>
+    <path d="M0 151 Q25 146 50 151 T100 151 T150 151 T200 151" fill="none" stroke="#e0f2fe" stroke-width="2" opacity="0.3"/>
+  </svg>`,
+
+  sunset: `<svg viewBox="0 0 200 165" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <defs>
+      <linearGradient id="msc-sunset-sky" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#312e81"/>
+        <stop offset="35%" stop-color="#be185d"/>
+        <stop offset="70%" stop-color="#f97316"/>
+        <stop offset="100%" stop-color="#fde047"/>
+      </linearGradient>
+      <linearGradient id="msc-sunset-sea" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#7c2d12"/>
+        <stop offset="100%" stop-color="#1e1b4b"/>
+      </linearGradient>
+    </defs>
+    <rect width="200" height="114" fill="url(#msc-sunset-sky)"/>
+    <circle cx="100" cy="108" r="24" fill="#fef08a" opacity="0.92"/>
+    <circle cx="100" cy="108" r="38" fill="#fdba74" opacity="0.28"/>
+    <rect y="112" width="200" height="53" fill="url(#msc-sunset-sea)"/>
+    <ellipse cx="100" cy="117" rx="34" ry="3.5" fill="#fde047" opacity="0.55"/>
+    <ellipse cx="100" cy="127" rx="22" ry="2.5" fill="#fb923c" opacity="0.45"/>
+    <ellipse cx="100" cy="138" rx="13" ry="2" fill="#f97316" opacity="0.35"/>
+  </svg>`,
+
+  mountains: `<svg viewBox="0 0 200 165" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <defs>
+      <linearGradient id="msc-mnt-sky" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#60a5fa"/>
+        <stop offset="65%" stop-color="#dbeafe"/>
+        <stop offset="100%" stop-color="#f0fdf4"/>
+      </linearGradient>
+    </defs>
+    <rect width="200" height="165" fill="url(#msc-mnt-sky)"/>
+    <g fill="#ffffff" opacity="0.78">
+      <ellipse cx="48" cy="38" rx="18" ry="6"/>
+      <ellipse cx="58" cy="35" rx="12" ry="7"/>
+      <ellipse cx="148" cy="46" rx="16" ry="5.5"/>
+    </g>
+    <path d="M0 124 L42 74 L84 114 L132 62 L182 112 L200 94 L200 165 L0 165 Z" fill="#94a3b8"/>
+    <path d="M132 62 L120 76 L130 73 L137 78 L144 75 Z" fill="#f8fafc" opacity="0.9"/>
+    <path d="M42 74 L33 85 L42 82 L49 86 Z" fill="#f8fafc" opacity="0.85"/>
+    <path d="M0 138 L55 96 L108 134 L160 88 L200 124 L200 165 L0 165 Z" fill="#475569"/>
+    <path d="M0 150 Q55 128 110 144 T200 136 L200 165 L0 165 Z" fill="#15803d"/>
+  </svg>`,
+
+  night: `<svg viewBox="0 0 200 165" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <defs>
+      <linearGradient id="msc-night-sky" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#0f172a"/>
+        <stop offset="65%" stop-color="#1e293b"/>
+        <stop offset="100%" stop-color="#334155"/>
+      </linearGradient>
+    </defs>
+    <rect width="200" height="165" fill="url(#msc-night-sky)"/>
+    <g fill="#fef9c3">
+      <circle cx="28" cy="26" r="1.4" opacity="0.9"/>
+      <circle cx="62" cy="18" r="1.1" opacity="0.75"/>
+      <circle cx="94" cy="34" r="1.5" opacity="0.85"/>
+      <circle cx="118" cy="20" r="1" opacity="0.7"/>
+      <circle cx="42" cy="58" r="1.2" opacity="0.65"/>
+      <circle cx="80" cy="68" r="1.1" opacity="0.8"/>
+      <circle cx="172" cy="62" r="1.3" opacity="0.75"/>
+      <circle cx="22" cy="92" r="1" opacity="0.6"/>
+      <circle cx="128" cy="84" r="1.2" opacity="0.7"/>
+    </g>
+    <circle cx="152" cy="38" r="15" fill="#fef08a"/>
+    <circle cx="158" cy="34" r="13" fill="#0f172a"/>
+    <path d="M0 142 Q60 126 125 138 T200 132 L200 165 L0 165 Z" fill="#0f172a" opacity="0.75"/>
+  </svg>`,
 };
 
 function clamp(val, min, max) {
@@ -724,6 +933,19 @@ function resolveCoverType(explicitType, cardType, stateObj) {
   return 'shutter';
 }
 
+function resolveWindowBackground(entityBg, cardBg, hass) {
+  const raw = String(entityBg || cardBg || 'sky').trim();
+  const lower = raw.toLowerCase();
+  if (lower === 'auto') {
+    const sunState = hass?.states?.['sun.sun']?.state;
+    return { mode: sunState === 'below_horizon' ? 'night' : 'sunny', customUrl: null };
+  }
+  if (BG_PRESETS.has(lower)) {
+    return { mode: lower, customUrl: null };
+  }
+  return { mode: 'custom', customUrl: raw };
+}
+
 class ModernShutterCard extends HTMLElement {
   constructor() {
     super();
@@ -753,6 +975,7 @@ class ModernShutterCard extends HTMLElement {
       cover_type: 'auto',
       compact: false,
       slats_color: 'gray',
+      window_background: 'sky',
       show_presets: true,
       show_buttons: true,
       show_percentage: true,
@@ -799,6 +1022,7 @@ class ModernShutterCard extends HTMLElement {
       cover_type: config.cover_type || 'auto',
       compact: Boolean(config.compact),
       slats_color: config.slats_color || config.color || 'gray',
+      window_background: config.window_background || 'sky',
       show_presets: config.show_presets !== false,
       presets:
         Array.isArray(config.presets) && config.presets.length > 0
@@ -1031,6 +1255,30 @@ class ModernShutterCard extends HTMLElement {
     }
   }
 
+  _applyWindowBackground(tile, item) {
+    const sceneEl = tile.querySelector('.window-scene');
+    if (!sceneEl) return;
+    const resolved = resolveWindowBackground(
+      item.window_background,
+      this._config.window_background,
+      this._hass
+    );
+    const sig = resolved.customUrl ? `custom:${resolved.customUrl}` : resolved.mode;
+    if (sceneEl.dataset.bgSig === sig) return;
+    sceneEl.dataset.bgSig = sig;
+
+    if (resolved.customUrl) {
+      const safeUrl = resolved.customUrl.replace(/"/g, '%22').replace(/'/g, '%27');
+      sceneEl.innerHTML = '';
+      sceneEl.style.backgroundImage = `url("${safeUrl}")`;
+      sceneEl.style.backgroundSize = 'cover';
+      sceneEl.style.backgroundPosition = 'center';
+    } else {
+      sceneEl.style.backgroundImage = '';
+      sceneEl.innerHTML = WINDOW_SCENES[resolved.mode] || '';
+    }
+  }
+
   _renderStructure() {
     if (!this._config) return;
     const lang = this._getLang();
@@ -1103,6 +1351,7 @@ class ModernShutterCard extends HTMLElement {
               <div class="window-wrapper">
                 <div class="window-frame" data-index="${idx}" role="slider" aria-valuemin="0" aria-valuemax="100" tabindex="0">
                   <div class="window-sky">
+                    <div class="window-scene"></div>
                     <div class="window-cross-v"></div>
                     <div class="window-cross-h"></div>
                     <div class="window-glare"></div>
@@ -1364,6 +1613,18 @@ class ModernShutterCard extends HTMLElement {
           .window-sky {
             background: linear-gradient(180deg, #1d3557 0%, #3a5a82 60%, #5c7fa3 100%);
           }
+        }
+
+        .window-scene {
+          position: absolute;
+          inset: 0;
+          pointer-events: none;
+        }
+
+        .window-scene svg {
+          display: block;
+          width: 100%;
+          height: 100%;
         }
 
         .window-cross-v {
@@ -1819,6 +2080,11 @@ class ModernShutterCard extends HTMLElement {
       </ha-card>
     `;
 
+    this._config.entities.forEach((item, idx) => {
+      const tile = this.shadowRoot.querySelector(`.shutter-tile[data-index="${idx}"]`);
+      if (tile) this._applyWindowBackground(tile, item);
+    });
+
     this._bindEvents();
     this._rendered = true;
   }
@@ -2010,6 +2276,8 @@ class ModernShutterCard extends HTMLElement {
       this._updateControlIcons(tile, resolvedType);
     }
 
+    this._applyWindowBackground(tile, item);
+
     tile.classList.toggle('unavailable', !info.available);
 
     const nameEl = tile.querySelector('.name-text');
@@ -2118,6 +2386,7 @@ class ModernShutterCardEditor extends HTMLElement {
       cover_type: 'auto',
       compact: false,
       slats_color: 'gray',
+      window_background: 'sky',
       show_presets: true,
       show_buttons: true,
       show_percentage: true,
@@ -2217,6 +2486,22 @@ class ModernShutterCardEditor extends HTMLElement {
       return opts.join('');
     };
 
+    const renderBgOptions = (selectedVal, includeCardDefault = false) => {
+      const opts = [];
+      if (includeCardDefault) {
+        opts.push(`<option value="" ${!selectedVal ? 'selected' : ''}>${escapeHtml(tr('edCardDefault'))}</option>`);
+      }
+      BG_OPTIONS.forEach((opt) => {
+        opts.push(
+          `<option value="${opt.key}" ${selectedVal === opt.key ? 'selected' : ''}>${escapeHtml(tr(opt.labelKey))}</option>`
+        );
+      });
+      if (selectedVal && !BG_PRESETS.has(String(selectedVal).toLowerCase())) {
+        opts.push(`<option value="${escapeHtml(selectedVal)}" selected>${escapeHtml(selectedVal)}</option>`);
+      }
+      return opts.join('');
+    };
+
     const presetsEditorHtml =
       this._config.show_presets !== false
         ? `
@@ -2265,7 +2550,8 @@ class ModernShutterCardEditor extends HTMLElement {
           ),
         ].join('');
 
-        const showStyleOverrides = hasMultiple || Boolean(item.cover_type || item.slats_color);
+        const showStyleOverrides =
+          hasMultiple || Boolean(item.cover_type || item.slats_color || item.window_background);
 
         return `
           <div class="entity-box" data-idx="${idx}">
@@ -2298,7 +2584,13 @@ class ModernShutterCardEditor extends HTMLElement {
                         ${renderColorOptions(item.slats_color || '', true)}
                       </select>
                     </label>
-                  </div>`
+                  </div>
+                  <label>
+                    ${escapeHtml(tr('edWindowBg'))}
+                    <select class="ent-select" data-idx="${idx}" data-field="window_background">
+                      ${renderBgOptions(item.window_background || '', true)}
+                    </select>
+                  </label>`
                 : ''
             }
             <label>
@@ -2493,6 +2785,13 @@ class ModernShutterCardEditor extends HTMLElement {
           </label>
         </div>
 
+        <label>
+          ${escapeHtml(tr('edWindowBg'))}
+          <select id="cfg-bg">
+            ${renderBgOptions(this._config.window_background || 'sky', false)}
+          </select>
+        </label>
+
         <div class="checks-grid">
           <label class="check-label">
             <input type="checkbox" id="cfg-compact" ${this._config.compact ? 'checked' : ''} />
@@ -2550,6 +2849,7 @@ class ModernShutterCardEditor extends HTMLElement {
     bindSimple('cfg-lang', 'language', false, true);
     bindSimple('cfg-type', 'cover_type');
     bindSimple('cfg-color', 'slats_color');
+    bindSimple('cfg-bg', 'window_background');
     bindSimple('cfg-compact', 'compact', true);
     bindSimple('cfg-presets', 'show_presets', true, true);
     bindSimple('cfg-buttons', 'show_buttons', true);
@@ -2666,7 +2966,7 @@ window.customCards.push({
   type: 'modern-shutter-card',
   name: 'Modern Shutter Card',
   description:
-    'A modern multi-language visual shutter, blinds & sliding curtain card with presets, touch-lock, tilt, window sensor protection, RTL, and Sections View support.',
+    'A modern multi-language visual shutter, blinds & sliding curtain card with presets, touch-lock, tilt, window sensor protection, scenic backgrounds, RTL, and Sections View support.',
   preview: true,
   documentationURL: 'https://github.com/sharonoren1/modern-shutter-card',
 });
