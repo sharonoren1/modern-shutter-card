@@ -11,6 +11,9 @@ A modern, zero-dependency Lovelace shutter & blinds card for **Home Assistant**,
 
 ![Modern Shutter Card Configurations](.images/modern-shutter-card.png)
 
+> ☕ Enjoying this card? [Buy me a coffee](https://www.buymeacoffee.com/orensharon) to support ongoing development!
+
+
 ---
 
 ## Features
