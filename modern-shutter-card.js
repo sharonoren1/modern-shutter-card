@@ -5,7 +5,7 @@
  * License: MIT
  */
 
-const CARD_VERSION = '1.3.0';
+const CARD_VERSION = '1.3.1';
 const SUPPORT_SET_TILT_POSITION = 128;
 
 const DEFAULT_PRESETS = [
@@ -2156,6 +2156,8 @@ class ModernShutterCardEditor extends HTMLElement {
       return opts.join('');
     };
 
+    const hasMultiple = (this._config.entities || []).length > 1;
+
     const entitiesHtml = (this._config.entities || [])
       .map((item, idx) => {
         const coverOptions = covers
@@ -2177,6 +2179,8 @@ class ModernShutterCardEditor extends HTMLElement {
           ),
         ].join('');
 
+        const showStyleOverrides = hasMultiple || Boolean(item.cover_type || item.slats_color);
+
         return `
           <div class="entity-box" data-idx="${idx}">
             <div class="entity-box-header">
@@ -2193,20 +2197,24 @@ class ModernShutterCardEditor extends HTMLElement {
               ${escapeHtml(tr('edCustomName'))}
               <input type="text" class="ent-input" data-idx="${idx}" data-field="name" value="${escapeHtml(item.name || '')}" placeholder="${escapeHtml(tr('edFriendlyName'))}" />
             </label>
-            <div class="grid-2">
-              <label>
-                ${escapeHtml(tr('edCoverType'))}
-                <select class="ent-select" data-idx="${idx}" data-field="cover_type">
-                  ${renderTypeOptions(item.cover_type || '', true)}
-                </select>
-              </label>
-              <label>
-                ${escapeHtml(tr('edSlatsColor'))}
-                <select class="ent-select" data-idx="${idx}" data-field="slats_color">
-                  ${renderColorOptions(item.slats_color || '', true)}
-                </select>
-              </label>
-            </div>
+            ${
+              showStyleOverrides
+                ? `<div class="grid-2">
+                    <label>
+                      ${escapeHtml(tr('edCoverType'))}
+                      <select class="ent-select" data-idx="${idx}" data-field="cover_type">
+                        ${renderTypeOptions(item.cover_type || '', true)}
+                      </select>
+                    </label>
+                    <label>
+                      ${escapeHtml(tr('edSlatsColor'))}
+                      <select class="ent-select" data-idx="${idx}" data-field="slats_color">
+                        ${renderColorOptions(item.slats_color || '', true)}
+                      </select>
+                    </label>
+                  </div>`
+                : ''
+            }
             <label>
               ${escapeHtml(tr('edWindowSensor'))}
               <select class="ent-select" data-idx="${idx}" data-field="window_sensor">
