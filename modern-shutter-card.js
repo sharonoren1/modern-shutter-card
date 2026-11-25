@@ -5,7 +5,7 @@
  * License: MIT
  */
 
-const CARD_VERSION = '1.4.1';
+const CARD_VERSION = '1.4.2';
 const SUPPORT_SET_TILT_POSITION = 128;
 
 const DEFAULT_PRESETS = [
@@ -2108,6 +2108,7 @@ class ModernShutterCardEditor extends HTMLElement {
     this.attachShadow({ mode: 'open' });
     this._config = {};
     this._hass = null;
+    this._rendered = false;
   }
 
   setConfig(config) {
@@ -2144,7 +2145,15 @@ class ModernShutterCardEditor extends HTMLElement {
       );
     }
 
-    this._render();
+    const activeEl = this.shadowRoot?.activeElement;
+    const isTyping =
+      activeEl &&
+      activeEl.tagName === 'INPUT' &&
+      (activeEl.type === 'text' || activeEl.type === 'number');
+
+    if (!this._rendered || !isTyping) {
+      this._render();
+    }
   }
 
   set hass(hass) {
@@ -2520,6 +2529,7 @@ class ModernShutterCardEditor extends HTMLElement {
     `;
 
     this._bindEditorEvents(covers);
+    this._rendered = true;
   }
 
   _bindEditorEvents(covers) {
