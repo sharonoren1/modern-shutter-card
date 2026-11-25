@@ -5,31 +5,49 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20A%20Coffee-FFDD00?style=flat&logo=buy-me-a-coffee&logoColor=black)](https://www.buymeacoffee.com/orensharon)
 
-A modern, zero-dependency Lovelace shutter & blinds card for **Home Assistant**, built with crisp CSS/SVG graphics, full mobile touch-lock, quick presets, tilt control, open-window safety protection, multi-language & RTL support, Sections View sizing, and a built-in Visual Editor.
+A modern, zero-dependency Lovelace **shutter, blinds & sliding curtain card** for **Home Assistant**, built with crisp CSS/SVG graphics, full mobile touch-lock, quick presets, tilt control, open-window safety protection, multi-language & RTL support, Sections View sizing, and a built-in Visual Editor.
 
 ![Modern Shutter Card Demo](.images/modern-shutter-card.gif)
 
 ![Modern Shutter Card Configurations](.images/modern-shutter-card.png)
 
-> ☕ Enjoying this card? [Buy me a coffee](https://www.buymeacoffee.com/orensharon) to support ongoing development!
+If you find this card useful and want to support its ongoing development, feel free to buy me a coffee!
 
+<a href="https://www.buymeacoffee.com/orensharon" target="_blank">
+  <img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" height="45" />
+</a>
 
 ---
 
 ## Features
 
+- **All Cover & Curtain Types** — Dedicated CSS/SVG designs and interactions for **Rolling Shutters**, **Double Sliding Curtains**, **Single Sliding Curtains (Left / Right)**, **Roller Shades**, and **Venetian Blinds** — with automatic detection via Home Assistant `device_class`.
+- **Smart Directional Dragging & Touch-Lock** — Vertical drag for shutters/shades and horizontal drag (center-out or side-to-side) for sliding curtains, with mobile touch-lock and haptic feedback.
 - **Pure CSS & SVG Graphics** — Crisp at every resolution, zero external images or build dependencies.
 - **Multi-Language & Full RTL Support** — Auto-detects Home Assistant's language (or set manually) with built-in translations for **English, Hebrew (עברית), Arabic (العربية), Russian (Русский), French (Français), German (Deutsch), Spanish (Español), Italian (Italiano), and Dutch (Nederlands)** — for both the card and the Visual Editor.
-- **Mobile Touch-Lock & Haptic Feedback** — Smooth vertical dragging on touchscreens without scrolling the dashboard.
 - **Quick Position Presets** — One-tap customizable preset buttons (e.g. `0%`, `15%`, `50%`, `100%`).
 - **Home Assistant Sections View** — Implements `getGridOptions()` for native drag-to-resize layouts.
-- **Built-in Visual Editor** — Configure entities, language, colors, presets, and window sensors directly from the UI.
-- **Themes & Dark Mode** — Uses official Home Assistant CSS variables plus slat color themes (`gray`, `white`, `wood`, `black`, or custom hex).
-- **Live Motion Animation** — Smooth transitions and directional movement indicators during `opening` / `closing`.
+- **Built-in Visual Editor** — Configure entities, cover types, colors/fabrics, language, presets, and window sensors directly from the UI.
+- **Themes, Fabrics & Dark Mode** — Uses official Home Assistant CSS variables plus built-in slat & fabric palettes (`gray`, `white`, `wood`, `black`, `beige`, `navy`, `sage`, `burgundy`, or any custom hex color).
+- **Live Motion Animation** — Smooth transitions and directional movement indicators (vertical or horizontal) during `opening` / `closing`.
 - **Invert Position** — Per-card or per-entity inversion for motors where `0%` is open and `100%` is closed (common on Tuya/Zigbee modules).
-- **Venetian / Tilt Support** — Automatic tilt slider when the cover entity supports `set_cover_tilt_position`.
+- **Venetian / Tilt Support** — Automatic tilt slider when the cover entity supports `set_cover_tilt_position`, with live slat opacity feedback on Venetian blinds.
 - **Open Window Sensor Protection** — Link a `binary_sensor` to display a live open-window badge and optionally block accidental closing.
-- **Compact Multi-Shutter Mode** — Display 2–3 shutters side by side in a single responsive card.
+- **Compact Multi-Cover Mode** — Mix shutters, roller shades, and sliding curtains side by side in a single responsive card.
+
+---
+
+## Supported Cover Types (`cover_type`)
+
+| Value | Visual Style | Drag & Controls |
+| --- | --- | --- |
+| `auto` *(default)* | Detects from HA `device_class` (`curtain` → `curtain`, `shade` → `roller`, `blind` → `venetian`, fallback → `shutter`) | Automatic |
+| `shutter` | Classic rolling shutter with horizontal slats & bottom bar | Vertical drag, Up / Stop / Down |
+| `curtain` | Double sliding curtain with top rod & vertical fabric pleats opening from the center | Horizontal drag (center ↔ edges), Open / Stop / Close |
+| `curtain_left` | Single sliding curtain gathering to the left | Horizontal drag (left ↔ right), Open / Stop / Close |
+| `curtain_right` | Single sliding curtain gathering to the right | Horizontal drag (right ↔ left), Open / Stop / Close |
+| `roller` | Smooth woven roller shade with top cylinder roll & weighted hem bar | Vertical drag, Up / Stop / Down |
+| `venetian` | Thin slatted Venetian blinds with ladder cords & live visual tilt shading | Vertical drag + Tilt slider |
 
 ---
 
@@ -61,11 +79,12 @@ A modern, zero-dependency Lovelace shutter & blinds card for **Home Assistant**,
 
 You can configure the card completely via the **Visual Editor**, or using YAML:
 
-### Basic Example
+### Basic Example (Rolling Shutter)
 
 ```yaml
 type: custom:modern-shutter-card
 title: Living Room Shutters
+cover_type: shutter
 slats_color: gray
 language: auto
 entities:
@@ -73,14 +92,25 @@ entities:
     name: Balcony Shutter
 ```
 
-### Full-Featured Example (Compact Mode + Window Sensor + Custom Presets)
+### Sliding Curtain Example
 
 ```yaml
 type: custom:modern-shutter-card
-title: Home Shutters
+title: Master Bedroom
+cover_type: curtain
+slats_color: beige
+entities:
+  - entity: cover.bedroom_curtain
+    name: Main Curtain
+```
+
+### Full-Featured Mixed Example (Shutter + Sliding Curtain + Roller Shade)
+
+```yaml
+type: custom:modern-shutter-card
+title: Home Covers
 compact: true
 language: en
-slats_color: wood
 show_presets: true
 show_buttons: true
 show_percentage: true
@@ -98,13 +128,20 @@ presets:
     position: 100
 entities:
   - entity: cover.living_room_main
-    name: Living Room Main
+    name: Living Room Shutter
+    cover_type: shutter
+    slats_color: gray
     window_sensor: binary_sensor.living_room_door
     block_close_if_open: true
-  - entity: cover.kitchen_shutter
-    name: Kitchen
+  - entity: cover.living_room_curtain
+    name: Sheer Curtain
+    cover_type: curtain
+    slats_color: beige
+  - entity: cover.office_blind
+    name: Office Roller
+    cover_type: roller
+    slats_color: navy
     invert_position: true
-    slats_color: white
 ```
 
 ---
@@ -117,13 +154,14 @@ entities:
 | --- | --- | --- | --- |
 | `entities` | `list` | **Required** | List of cover entity IDs or entity config objects (or use single `entity`). |
 | `title` | `string` | `""` | Optional card header title. |
+| `cover_type` | `string` | `auto` | Cover style: `auto`, `shutter`, `curtain`, `curtain_left`, `curtain_right`, `roller`, `venetian`. |
 | `language` | `string` | `auto` | UI language: `auto`, `en`, `he`, `ar`, `ru`, `fr`, `de`, `es`, `it`, `nl`. |
-| `compact` | `boolean` | `false` | Display multiple shutters side by side in a responsive grid. |
-| `slats_color` | `string` | `gray` | Slat theme: `gray`, `white`, `wood`, `black`, or any CSS color (`#3b4252`). |
+| `compact` | `boolean` | `false` | Display multiple covers side by side in a responsive grid. |
+| `slats_color` | `string` | `gray` | Color/fabric theme: `gray`, `white`, `wood`, `black`, `beige`, `navy`, `sage`, `burgundy`, or any CSS color (`#3b4252`). |
 | `show_presets` | `boolean` | `true` | Show quick-position preset buttons. |
 | `presets` | `list` | `0/15/50/100%` | Custom list of `{ label, position }` objects. |
-| `show_buttons` | `boolean` | `true` | Show Up / Stop / Down control buttons. |
-| `show_percentage` | `boolean` | `true` | Show open percentage badge on the shutter. |
+| `show_buttons` | `boolean` | `true` | Show Open / Stop / Close control buttons. |
+| `show_percentage` | `boolean` | `true` | Show open percentage badge on the cover. |
 | `show_tilt` | `auto \| boolean` | `auto` | Show tilt slider (`auto` detects entity capability). |
 | `invert_position` | `boolean` | `false` | Invert position logic (`0%` = open, `100%` = closed). |
 | `haptic` | `boolean` | `true` | Trigger subtle haptic feedback on drag/tap. |
@@ -133,12 +171,13 @@ entities:
 
 | Option | Type | Default | Description |
 | --- | --- | --- | --- |
-| `entity` | `string` | **Required** | Cover entity ID (e.g. `cover.bedroom_shutter`). |
+| `entity` | `string` | **Required** | Cover entity ID (e.g. `cover.bedroom_curtain`). |
 | `name` | `string` | Friendly name | Custom display name. |
-| `invert_position` | `boolean` | Card default | Override inversion for this specific shutter. |
-| `slats_color` | `string` | Card default | Override slat color for this specific shutter. |
+| `cover_type` | `string` | Card default | Override cover type for this specific entity (`shutter`, `curtain`, `curtain_left`, `curtain_right`, `roller`, `venetian`). |
+| `slats_color` | `string` | Card default | Override color/fabric theme for this specific entity. |
+| `invert_position` | `boolean` | Card default | Override inversion for this specific cover. |
 | `window_sensor` | `string` | `""` | Optional `binary_sensor` to display an open-window warning badge. |
-| `block_close_if_open` | `boolean` | `false` | Prevent closing the shutter while `window_sensor` is open. |
+| `block_close_if_open` | `boolean` | `false` | Prevent closing the cover while `window_sensor` is open. |
 
 ---
 
