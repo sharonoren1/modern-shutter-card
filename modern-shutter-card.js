@@ -5,7 +5,7 @@
  * License: MIT
  */
 
-const CARD_VERSION = '1.3.2';
+const CARD_VERSION = '1.4.0';
 const SUPPORT_SET_TILT_POSITION = 128;
 
 const DEFAULT_PRESETS = [
@@ -64,6 +64,10 @@ const TRANSLATIONS = {
     edShowPct: 'Show Percentage Badge',
     edInvertGlobal: 'Invert Position (Global)',
     edHaptic: 'Haptic Feedback',
+    edPresets: 'Quick Presets',
+    edPresetLabel: 'Label',
+    edPresetPos: 'Position (%)',
+    edAddPreset: '+ Add Preset',
     edShutters: 'Covers & Shutters',
     edShutter: 'Cover',
     edRemove: 'Remove',
@@ -119,6 +123,10 @@ const TRANSLATIONS = {
     edShowPct: 'הצג אחוז פתיחה',
     edInvertGlobal: 'היפוך כיוון (גלובלי)',
     edHaptic: 'רטט במגע (Haptic)',
+    edPresets: 'מצבים מהירים (Presets)',
+    edPresetLabel: 'תווית',
+    edPresetPos: 'אחוז (%)',
+    edAddPreset: '+ הוסף מצב',
     edShutters: 'תריסים ווילונות',
     edShutter: 'תריס / וילון',
     edRemove: 'הסר',
@@ -174,6 +182,10 @@ const TRANSLATIONS = {
     edShowPct: 'إظهار نسبة الفتح',
     edInvertGlobal: 'عكس الاتجاه (عام)',
     edHaptic: 'اهتزاز اللمس',
+    edPresets: 'الأزرار السريعة',
+    edPresetLabel: 'التسمية',
+    edPresetPos: 'النسبة (%)',
+    edAddPreset: '+ إضافة زر',
     edShutters: 'الستائر',
     edShutter: 'ستارة',
     edRemove: 'حذف',
@@ -229,6 +241,10 @@ const TRANSLATIONS = {
     edShowPct: 'Показать проценты',
     edInvertGlobal: 'Инвертировать позицию',
     edHaptic: 'Виброотклик',
+    edPresets: 'Быстрые кнопки',
+    edPresetLabel: 'Подпись',
+    edPresetPos: 'Позиция (%)',
+    edAddPreset: '+ Добавить кнопку',
     edShutters: 'Жалюзи / Шторы',
     edShutter: 'Штора',
     edRemove: 'Удалить',
@@ -284,6 +300,10 @@ const TRANSLATIONS = {
     edShowPct: 'Afficher le pourcentage',
     edInvertGlobal: 'Inverser la position (Global)',
     edHaptic: 'Retour haptique',
+    edPresets: 'Préréglages rapides',
+    edPresetLabel: 'Libellé',
+    edPresetPos: 'Position (%)',
+    edAddPreset: '+ Ajouter',
     edShutters: 'Volets & Rideaux',
     edShutter: 'Volet / Rideau',
     edRemove: 'Supprimer',
@@ -339,6 +359,10 @@ const TRANSLATIONS = {
     edShowPct: 'Prozentanzeige anzeigen',
     edInvertGlobal: 'Position invertieren (Global)',
     edHaptic: 'Haptisches Feedback',
+    edPresets: 'Schnellwahl-Buttons',
+    edPresetLabel: 'Beschriftung',
+    edPresetPos: 'Position (%)',
+    edAddPreset: '+ Hinzufügen',
     edShutters: 'Rollläden & Vorhänge',
     edShutter: 'Abdeckung',
     edRemove: 'Entfernen',
@@ -394,6 +418,10 @@ const TRANSLATIONS = {
     edShowPct: 'Mostrar porcentaje',
     edInvertGlobal: 'Invertir posición (Global)',
     edHaptic: 'Respuesta háptica',
+    edPresets: 'Accesos rápidos',
+    edPresetLabel: 'Etiqueta',
+    edPresetPos: 'Posición (%)',
+    edAddPreset: '+ Añadir',
     edShutters: 'Persianas y Cortinas',
     edShutter: 'Persiana / Cortina',
     edRemove: 'Eliminar',
@@ -449,6 +477,10 @@ const TRANSLATIONS = {
     edShowPct: 'Mostra percentuale',
     edInvertGlobal: 'Inverti posizione (Globale)',
     edHaptic: 'Feedback aptico',
+    edPresets: 'Preset rapidi',
+    edPresetLabel: 'Etichetta',
+    edPresetPos: 'Posizione (%)',
+    edAddPreset: '+ Aggiungi',
     edShutters: 'Tapparelle e Tende',
     edShutter: 'Tapparella / Tenda',
     edRemove: 'Rimuovi',
@@ -504,6 +536,10 @@ const TRANSLATIONS = {
     edShowPct: 'Percentage tonen',
     edInvertGlobal: 'Positie omkeren (Globaal)',
     edHaptic: 'Haptische feedback',
+    edPresets: 'Snelle knoppen',
+    edPresetLabel: 'Label',
+    edPresetPos: 'Positie (%)',
+    edAddPreset: '+ Toevoegen',
     edShutters: 'Rolluiken & Gordijnen',
     edShutter: 'Rolluik / Gordijn',
     edRemove: 'Verwijderen',
@@ -724,7 +760,7 @@ class ModernShutterCard extends HTMLElement {
       invert_position: false,
       haptic: true,
       rtl: 'auto',
-      presets: DEFAULT_PRESETS,
+      presets: DEFAULT_PRESETS.map((p) => ({ ...p })),
       entities: [
         {
           entity: defaultEntity,
@@ -2088,9 +2124,17 @@ class ModernShutterCardEditor extends HTMLElement {
       invert_position: false,
       haptic: true,
       rtl: 'auto',
-      presets: DEFAULT_PRESETS,
       ...config,
     };
+
+    if (!Array.isArray(this._config.presets) || this._config.presets.length === 0) {
+      this._config.presets = DEFAULT_PRESETS.map((p) => ({ ...p }));
+    } else {
+      this._config.presets = this._config.presets.map((p) => ({
+        label: p.label ?? `${clamp(Number(p.position) || 0, 0, 100)}%`,
+        position: clamp(Number(p.position) || 0, 0, 100),
+      }));
+    }
 
     if (!Array.isArray(this._config.entities)) {
       this._config.entities = this._config.entity ? [{ entity: this._config.entity }] : [];
@@ -2163,6 +2207,31 @@ class ModernShutterCardEditor extends HTMLElement {
       });
       return opts.join('');
     };
+
+    const presetsEditorHtml =
+      this._config.show_presets !== false
+        ? `
+          <div class="section-title">${escapeHtml(tr('edPresets'))}</div>
+          <div class="presets-editor">
+            <div class="preset-edit-header">
+              <span>${escapeHtml(tr('edPresetLabel'))}</span>
+              <span>${escapeHtml(tr('edPresetPos'))}</span>
+              <span></span>
+            </div>
+            ${(this._config.presets || [])
+              .map(
+                (p, pIdx) => `
+              <div class="preset-edit-row" data-pidx="${pIdx}">
+                <input type="text" class="preset-label-input" data-pidx="${pIdx}" value="${escapeHtml(p.label)}" placeholder="${escapeHtml(tr('edPresetLabel'))}" />
+                <input type="number" class="preset-pos-input" data-pidx="${pIdx}" min="0" max="100" value="${clamp(Number(p.position) || 0, 0, 100)}" />
+                <button type="button" class="remove-preset-btn" data-remove-preset="${pIdx}" title="${escapeHtml(tr('edRemove'))}">✕</button>
+              </div>`
+              )
+              .join('')}
+            <button type="button" class="add-preset-btn" id="add-preset-btn">${escapeHtml(tr('edAddPreset'))}</button>
+          </div>
+        `
+        : '';
 
     const hasMultiple = (this._config.entities || []).length > 1;
 
@@ -2275,7 +2344,7 @@ class ModernShutterCardEditor extends HTMLElement {
           font-size: 0.82rem;
           color: var(--secondary-text-color);
         }
-        input[type="text"], select {
+        input[type="text"], input[type="number"], select {
           padding: 7px 9px;
           border-radius: 6px;
           border: 1px solid var(--divider-color, rgba(128,128,128,0.35));
@@ -2283,6 +2352,7 @@ class ModernShutterCardEditor extends HTMLElement {
           color: var(--primary-text-color);
           font: inherit;
           font-size: 0.88rem;
+          box-sizing: border-box;
         }
         .checks-grid {
           display: grid;
@@ -2295,6 +2365,53 @@ class ModernShutterCardEditor extends HTMLElement {
           gap: 6px;
           color: var(--primary-text-color);
           cursor: pointer;
+        }
+        .presets-editor {
+          display: flex;
+          flex-direction: column;
+          gap: 6px;
+          padding: 10px;
+          border-radius: 10px;
+          border: 1px solid var(--divider-color, rgba(128,128,128,0.3));
+          background: rgba(127, 127, 127, 0.04);
+        }
+        .preset-edit-header,
+        .preset-edit-row {
+          display: grid;
+          grid-template-columns: 1fr 90px 30px;
+          gap: 8px;
+          align-items: center;
+        }
+        .preset-edit-header {
+          font-size: 0.78rem;
+          color: var(--secondary-text-color);
+          padding-bottom: 2px;
+        }
+        .preset-edit-row input {
+          width: 100%;
+        }
+        .remove-preset-btn {
+          border: none;
+          border-radius: 6px;
+          height: 32px;
+          background: rgba(220, 38, 38, 0.14);
+          color: #dc2626;
+          cursor: pointer;
+          font-weight: 700;
+          padding: 0;
+        }
+        .add-preset-btn {
+          border: 1px dashed var(--primary-color, #03a9f4);
+          background: transparent;
+          color: var(--primary-color, #03a9f4);
+          border-radius: 6px;
+          padding: 5px 10px;
+          cursor: pointer;
+          font: inherit;
+          font-size: 0.8rem;
+          font-weight: 600;
+          align-self: flex-start;
+          margin-top: 2px;
         }
         .entity-box {
           border: 1px solid var(--divider-color, rgba(128,128,128,0.3));
@@ -2394,6 +2511,8 @@ class ModernShutterCardEditor extends HTMLElement {
           </label>
         </div>
 
+        ${presetsEditorHtml}
+
         <div class="section-title">${escapeHtml(tr('edShutters'))}</div>
         ${entitiesHtml}
         <button type="button" class="add-btn" id="add-entity-btn">${escapeHtml(tr('edAddShutter'))}</button>
@@ -2422,11 +2541,66 @@ class ModernShutterCardEditor extends HTMLElement {
     bindSimple('cfg-type', 'cover_type');
     bindSimple('cfg-color', 'slats_color');
     bindSimple('cfg-compact', 'compact', true);
-    bindSimple('cfg-presets', 'show_presets', true);
+    bindSimple('cfg-presets', 'show_presets', true, true);
     bindSimple('cfg-buttons', 'show_buttons', true);
     bindSimple('cfg-pct', 'show_percentage', true);
     bindSimple('cfg-invert', 'invert_position', true);
     bindSimple('cfg-haptic', 'haptic', true);
+
+    this.shadowRoot.querySelectorAll('.preset-label-input').forEach((el) => {
+      el.addEventListener('input', (e) => {
+        const pIdx = Number(e.target.dataset.pidx);
+        const updated = [...this._config.presets];
+        updated[pIdx] = { ...updated[pIdx], label: e.target.value };
+        this._config = { ...this._config, presets: updated };
+        this._emitConfig();
+      });
+    });
+
+    this.shadowRoot.querySelectorAll('.preset-pos-input').forEach((el) => {
+      el.addEventListener('input', (e) => {
+        const pIdx = Number(e.target.dataset.pidx);
+        const raw = e.target.value;
+        if (raw === '') return;
+        const newPos = clamp(Math.round(Number(raw) || 0), 0, 100);
+        const updated = [...this._config.presets];
+        const prev = updated[pIdx];
+        const autoLabel = !prev.label || prev.label.trim() === `${prev.position}%`;
+        const nextLabel = autoLabel ? `${newPos}%` : prev.label;
+        updated[pIdx] = { ...prev, position: newPos, label: nextLabel };
+        if (autoLabel) {
+          const labelInput = this.shadowRoot.querySelector(`.preset-label-input[data-pidx="${pIdx}"]`);
+          if (labelInput) labelInput.value = nextLabel;
+        }
+        this._config = { ...this._config, presets: updated };
+        this._emitConfig();
+      });
+    });
+
+    this.shadowRoot.querySelectorAll('.remove-preset-btn').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const pIdx = Number(btn.dataset.removePreset);
+        const updated = this._config.presets.filter((_, i) => i !== pIdx);
+        this._config = {
+          ...this._config,
+          presets: updated.length > 0 ? updated : DEFAULT_PRESETS.map((p) => ({ ...p })),
+        };
+        this._emitConfig();
+        this._render();
+      });
+    });
+
+    const addPresetBtn = this.shadowRoot.getElementById('add-preset-btn');
+    if (addPresetBtn) {
+      addPresetBtn.addEventListener('click', () => {
+        this._config = {
+          ...this._config,
+          presets: [...(this._config.presets || []), { label: '25%', position: 25 }],
+        };
+        this._emitConfig();
+        this._render();
+      });
+    }
 
     this.shadowRoot.querySelectorAll('.ent-select, .ent-input, .ent-check').forEach((el) => {
       const eventName = el.type === 'text' ? 'input' : 'change';
