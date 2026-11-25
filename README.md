@@ -9,7 +9,7 @@ A modern, zero-dependency Lovelace **shutter, blinds & sliding curtain card** fo
 
 ![Modern Shutter Card Demo](images/modern-shutter-card.gif)
 
-![Modern Shutter Card Configurations](images/modern-shutter-card-configurations.gif?v=2)
+![Modern Shutter Card Configurations](images/modern-shutter-card-configurations.gif)
 
 If you find this card useful and want to support its ongoing development, feel free to buy me a coffee!
 
