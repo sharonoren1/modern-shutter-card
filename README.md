@@ -37,7 +37,7 @@ A modern, zero-dependency Lovelace shutter & blinds card for **Home Assistant**,
 2. Click the three-dot menu in the top right and select **Custom repositories**.
 3. Add repository URL:
    ```text
-   https://github.com/sharonoren1/modern-shutter-card
+   [https://github.com/sharonoren1/modern-shutter-card](https://github.com/sharonoren1/modern-shutter-card)
    ```
 4. Select category **Dashboard** (or **Lovelace**) and click **Add**.
 5. Search for **Modern Shutter Card** and click **Download**.
@@ -61,21 +61,21 @@ You can configure the card completely via the **Visual Editor**, or using YAML:
 
 ```yaml
 type: custom:modern-shutter-card
-title: תריסי סלון
+title: Living Room Shutters
 slats_color: gray
 language: auto
 entities:
   - entity: cover.living_room_shutter
-    name: תריס מרפסת
+    name: Balcony Shutter
 ```
 
 ### Full-Featured Example (Compact Mode + Window Sensor + Custom Presets)
 
 ```yaml
 type: custom:modern-shutter-card
-title: תריסי הבית
+title: Home Shutters
 compact: true
-language: he
+language: en
 slats_color: wood
 show_presets: true
 show_buttons: true
@@ -84,21 +84,21 @@ show_tilt: auto
 haptic: true
 rtl: auto
 presets:
-  - label: סגור
+  - label: Closed
     position: 0
-  - label: חריצים
+  - label: Vent
     position: 15
-  - label: חצי
+  - label: Half
     position: 50
-  - label: פתוח
+  - label: Open
     position: 100
 entities:
   - entity: cover.living_room_main
-    name: סלון ראשי
+    name: Living Room Main
     window_sensor: binary_sensor.living_room_door
     block_close_if_open: true
   - entity: cover.kitchen_shutter
-    name: מטבח
+    name: Kitchen
     invert_position: true
     slats_color: white
 ```
