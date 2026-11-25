@@ -5,7 +5,7 @@
  * License: MIT
  */
 
-const CARD_VERSION = '1.5.1';
+const CARD_VERSION = '1.6.0';
 const SUPPORT_SET_TILT_POSITION = 128;
 
 const DEFAULT_PRESETS = [
@@ -67,6 +67,9 @@ const TRANSLATIONS = {
     edBgSunset: 'Sunset',
     edBgMountains: 'Mountains',
     edBgNight: 'Night',
+    edButtonsPos: 'Buttons Position',
+    edPosLeft: 'Left',
+    edPosRight: 'Right',
     edCompact: 'Compact Mode (Side-by-Side)',
     edShowPresets: 'Show Quick Presets',
     edShowButtons: 'Show Open / Stop / Close',
@@ -78,6 +81,7 @@ const TRANSLATIONS = {
     edPresetLabel: 'Label',
     edPresetPos: 'Position (%)',
     edAddPreset: '+ Add Preset',
+    edDragReorder: 'Drag to reorder',
     edShutters: 'Covers & Shutters',
     edShutter: 'Cover',
     edRemove: 'Remove',
@@ -135,6 +139,9 @@ const TRANSLATIONS = {
     edBgSunset: 'שקיעה',
     edBgMountains: 'הרים וטבע',
     edBgNight: 'לילה',
+    edButtonsPos: 'מיקום כפתורי שליטה',
+    edPosLeft: 'שמאל',
+    edPosRight: 'ימין',
     edCompact: 'מצב קומפקטי (זה לצד זה)',
     edShowPresets: 'הצג כפתורי מצבים מהירים',
     edShowButtons: 'הצג כפתורי פתיחה / עצור / סגירה',
@@ -146,6 +153,7 @@ const TRANSLATIONS = {
     edPresetLabel: 'תווית',
     edPresetPos: 'אחוז (%)',
     edAddPreset: '+ הוסף מצב',
+    edDragReorder: 'גרור לשינוי סדר',
     edShutters: 'תריסים ווילונות',
     edShutter: 'תריס / וילון',
     edRemove: 'הסר',
@@ -203,6 +211,9 @@ const TRANSLATIONS = {
     edBgSunset: 'غروب الشمس',
     edBgMountains: 'جبال وطبيعة',
     edBgNight: 'ليل',
+    edButtonsPos: 'موضع الأزرار',
+    edPosLeft: 'يسار',
+    edPosRight: 'يمين',
     edCompact: 'الوضع المدمج',
     edShowPresets: 'إظهار الأزرار السريعة',
     edShowButtons: 'إظهار أزرار الفتح / الإيقاف / الإغلاق',
@@ -214,6 +225,7 @@ const TRANSLATIONS = {
     edPresetLabel: 'التسمية',
     edPresetPos: 'النسبة (%)',
     edAddPreset: '+ إضافة زر',
+    edDragReorder: 'اسحب لإعادة الترتيب',
     edShutters: 'الستائر',
     edShutter: 'ستارة',
     edRemove: 'حذف',
@@ -271,6 +283,9 @@ const TRANSLATIONS = {
     edBgSunset: 'Закат',
     edBgMountains: 'Горы',
     edBgNight: 'Ночь',
+    edButtonsPos: 'Позиция кнопок',
+    edPosLeft: 'Слева',
+    edPosRight: 'Справа',
     edCompact: 'Компактный режим',
     edShowPresets: 'Показать быстрые кнопки',
     edShowButtons: 'Показать Открыть / Стоп / Закрыть',
@@ -282,6 +297,7 @@ const TRANSLATIONS = {
     edPresetLabel: 'Подпись',
     edPresetPos: 'Позиция (%)',
     edAddPreset: '+ Добавить кнопку',
+    edDragReorder: 'Перетащите для сортировки',
     edShutters: 'Жалюзи / Шторы',
     edShutter: 'Штора',
     edRemove: 'Удалить',
@@ -339,6 +355,9 @@ const TRANSLATIONS = {
     edBgSunset: 'Coucher de soleil',
     edBgMountains: 'Montagnes',
     edBgNight: 'Nuit',
+    edButtonsPos: 'Position des boutons',
+    edPosLeft: 'Gauche',
+    edPosRight: 'Droite',
     edCompact: 'Mode compact (côte à côte)',
     edShowPresets: 'Afficher les préréglages',
     edShowButtons: 'Afficher Ouvrir / Stop / Fermer',
@@ -350,6 +369,7 @@ const TRANSLATIONS = {
     edPresetLabel: 'Libellé',
     edPresetPos: 'Position (%)',
     edAddPreset: '+ Ajouter',
+    edDragReorder: 'Glisser pour réorganiser',
     edShutters: 'Volets & Rideaux',
     edShutter: 'Volet / Rideau',
     edRemove: 'Supprimer',
@@ -407,6 +427,9 @@ const TRANSLATIONS = {
     edBgSunset: 'Sonnenuntergang',
     edBgMountains: 'Berge',
     edBgNight: 'Nacht',
+    edButtonsPos: 'Button-Position',
+    edPosLeft: 'Links',
+    edPosRight: 'Rechts',
     edCompact: 'Kompaktmodus (Nebeneinander)',
     edShowPresets: 'Schnellwahl-Buttons anzeigen',
     edShowButtons: 'Öffnen / Stopp / Schließen anzeigen',
@@ -418,6 +441,7 @@ const TRANSLATIONS = {
     edPresetLabel: 'Beschriftung',
     edPresetPos: 'Position (%)',
     edAddPreset: '+ Hinzufügen',
+    edDragReorder: 'Zum Sortieren ziehen',
     edShutters: 'Rollläden & Vorhänge',
     edShutter: 'Abdeckung',
     edRemove: 'Entfernen',
@@ -475,6 +499,9 @@ const TRANSLATIONS = {
     edBgSunset: 'Atardecer',
     edBgMountains: 'Montañas',
     edBgNight: 'Noche',
+    edButtonsPos: 'Posición de botones',
+    edPosLeft: 'Izquierda',
+    edPosRight: 'Derecha',
     edCompact: 'Modo compacto',
     edShowPresets: 'Mostrar accesos rápidos',
     edShowButtons: 'Mostrar Abrir / Parar / Cerrar',
@@ -486,6 +513,7 @@ const TRANSLATIONS = {
     edPresetLabel: 'Etiqueta',
     edPresetPos: 'Posición (%)',
     edAddPreset: '+ Añadir',
+    edDragReorder: 'Arrastrar para reordenar',
     edShutters: 'Persianas y Cortinas',
     edShutter: 'Persiana / Cortina',
     edRemove: 'Eliminar',
@@ -543,6 +571,9 @@ const TRANSLATIONS = {
     edBgSunset: 'Tramonto',
     edBgMountains: 'Montagne',
     edBgNight: 'Notte',
+    edButtonsPos: 'Posizione pulsanti',
+    edPosLeft: 'Sinistra',
+    edPosRight: 'Destra',
     edCompact: 'Modalità compatta',
     edShowPresets: 'Mostra preset rapidi',
     edShowButtons: 'Mostra Apri / Stop / Chiudi',
@@ -554,6 +585,7 @@ const TRANSLATIONS = {
     edPresetLabel: 'Etichetta',
     edPresetPos: 'Posizione (%)',
     edAddPreset: '+ Aggiungi',
+    edDragReorder: 'Trascina per riordinare',
     edShutters: 'Tapparelle e Tende',
     edShutter: 'Tapparella / Tenda',
     edRemove: 'Rimuovi',
@@ -611,6 +643,9 @@ const TRANSLATIONS = {
     edBgSunset: 'Zonsondergang',
     edBgMountains: 'Bergen',
     edBgNight: 'Nacht',
+    edButtonsPos: 'Knoppositie',
+    edPosLeft: 'Links',
+    edPosRight: 'Rechts',
     edCompact: 'Compacte weergave',
     edShowPresets: 'Snelle knoppen tonen',
     edShowButtons: 'Open / Stop / Dicht tonen',
@@ -622,6 +657,7 @@ const TRANSLATIONS = {
     edPresetLabel: 'Label',
     edPresetPos: 'Positie (%)',
     edAddPreset: '+ Toevoegen',
+    edDragReorder: 'Slepen om te ordenen',
     edShutters: 'Rolluiken & Gordijnen',
     edShutter: 'Rolluik / Gordijn',
     edRemove: 'Verwijderen',
@@ -739,6 +775,7 @@ const ICONS = {
     '<svg viewBox="0 0 24 24"><path d="M9.5 16.5L5 12l4.5-4.5 1.4 1.4L7.8 12l3.1 3.1-1.4 1.4zm5 0l-1.4-1.4L16.2 12l-3.1-3.1 1.4-1.4L19 12l-4.5 4.5z"/></svg>',
   closeHoriz:
     '<svg viewBox="0 0 24 24"><path d="M5.5 7.5L10 12l-4.5 4.5-1.4-1.4L7.2 12 4.1 8.9l1.4-1.4zm13 0l1.4 1.4L16.8 12l3.1 3.1-1.4 1.4L14 12l4.5-4.5z"/></svg>',
+  grip: '<svg viewBox="0 0 24 24"><circle cx="9" cy="6" r="1.7"/><circle cx="15" cy="6" r="1.7"/><circle cx="9" cy="12" r="1.7"/><circle cx="15" cy="12" r="1.7"/><circle cx="9" cy="18" r="1.7"/><circle cx="15" cy="18" r="1.7"/></svg>',
 };
 
 const WINDOW_SCENES = {
@@ -985,6 +1022,7 @@ class ModernShutterCard extends HTMLElement {
       compact: false,
       slats_color: 'gray',
       window_background: 'auto',
+      buttons_position: 'left',
       show_window_grid: true,
       show_presets: true,
       show_buttons: true,
@@ -1033,6 +1071,7 @@ class ModernShutterCard extends HTMLElement {
       compact: Boolean(config.compact),
       slats_color: config.slats_color || config.color || 'gray',
       window_background: config.window_background || 'auto',
+      buttons_position: config.buttons_position === 'right' ? 'right' : 'left',
       show_window_grid: config.show_window_grid !== false,
       show_presets: config.show_presets !== false,
       presets:
@@ -1297,6 +1336,7 @@ class ModernShutterCard extends HTMLElement {
     this._lastLang = lang;
     this._lastRtl = isRtl;
     const compact = this._config.compact;
+    const buttonsRight = this._config.buttons_position === 'right';
 
     const tilesHtml = this._config.entities
       .map((item, idx) => {
@@ -1361,7 +1401,7 @@ class ModernShutterCard extends HTMLElement {
               <span class="state-pill"></span>
             </div>
 
-            <div class="shutter-stage">
+            <div class="shutter-stage ${buttonsRight ? 'buttons-right' : ''}">
               ${buttonsHtml}
               <div class="window-wrapper">
                 <div class="window-frame" data-index="${idx}" role="slider" aria-valuemin="0" aria-valuemax="100" tabindex="0">
@@ -1523,9 +1563,15 @@ class ModernShutterCard extends HTMLElement {
 
         .shutter-stage {
           display: flex;
+          flex-direction: row;
+          direction: ltr;
           align-items: center;
           justify-content: center;
           gap: 12px;
+        }
+
+        .shutter-stage.buttons-right {
+          flex-direction: row-reverse;
         }
 
         .shutters-container.compact .shutter-stage {
@@ -2391,6 +2437,7 @@ class ModernShutterCardEditor extends HTMLElement {
     this._config = {};
     this._hass = null;
     this._rendered = false;
+    this._dragPresetIdx = null;
   }
 
   setConfig(config) {
@@ -2401,6 +2448,7 @@ class ModernShutterCardEditor extends HTMLElement {
       compact: false,
       slats_color: 'gray',
       window_background: 'auto',
+      buttons_position: 'left',
       show_window_grid: true,
       show_presets: true,
       show_buttons: true,
@@ -2523,6 +2571,7 @@ class ModernShutterCardEditor extends HTMLElement {
           <div class="section-title">${escapeHtml(tr('edPresets'))}</div>
           <div class="presets-editor">
             <div class="preset-edit-header">
+              <span></span>
               <span>${escapeHtml(tr('edPresetLabel'))}</span>
               <span>${escapeHtml(tr('edPresetPos'))}</span>
               <span></span>
@@ -2530,7 +2579,8 @@ class ModernShutterCardEditor extends HTMLElement {
             ${(this._config.presets || [])
               .map(
                 (p, pIdx) => `
-              <div class="preset-edit-row" data-pidx="${pIdx}">
+              <div class="preset-edit-row" data-pidx="${pIdx}" draggable="true">
+                <span class="preset-drag-handle" title="${escapeHtml(tr('edDragReorder'))}">${ICONS.grip}</span>
                 <input type="text" class="preset-label-input" data-pidx="${pIdx}" value="${escapeHtml(p.label)}" placeholder="${escapeHtml(tr('edPresetLabel'))}" />
                 <input type="number" class="preset-pos-input" data-pidx="${pIdx}" min="0" max="100" value="${clamp(Number(p.position) || 0, 0, 100)}" />
                 <button type="button" class="remove-preset-btn" data-remove-preset="${pIdx}" title="${escapeHtml(tr('edRemove'))}">✕</button>
@@ -2694,7 +2744,7 @@ class ModernShutterCardEditor extends HTMLElement {
         .preset-edit-header,
         .preset-edit-row {
           display: grid;
-          grid-template-columns: 1fr 90px 30px;
+          grid-template-columns: 24px 1fr 86px 30px;
           gap: 8px;
           align-items: center;
         }
@@ -2702,6 +2752,38 @@ class ModernShutterCardEditor extends HTMLElement {
           font-size: 0.78rem;
           color: var(--secondary-text-color);
           padding-bottom: 2px;
+        }
+        .preset-edit-row {
+          padding: 3px 2px;
+          border-radius: 8px;
+          border: 1px dashed transparent;
+          transition: background 0.15s ease, border-color 0.15s ease, opacity 0.15s ease;
+        }
+        .preset-edit-row.dragging {
+          opacity: 0.5;
+          border-color: var(--primary-color, #03a9f4);
+          background: rgba(3, 169, 244, 0.06);
+        }
+        .preset-edit-row.drag-over {
+          border-color: var(--primary-color, #03a9f4);
+          background: rgba(3, 169, 244, 0.12);
+        }
+        .preset-drag-handle {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: grab;
+          color: var(--secondary-text-color);
+          height: 30px;
+          user-select: none;
+        }
+        .preset-drag-handle:active {
+          cursor: grabbing;
+        }
+        .preset-drag-handle svg {
+          width: 18px;
+          height: 18px;
+          fill: currentColor;
         }
         .preset-edit-row input {
           width: 100%;
@@ -2800,12 +2882,21 @@ class ModernShutterCardEditor extends HTMLElement {
           </label>
         </div>
 
-        <label>
-          ${escapeHtml(tr('edWindowBg'))}
-          <select id="cfg-bg">
-            ${renderBgOptions(this._config.window_background || 'auto', false)}
-          </select>
-        </label>
+        <div class="grid-2">
+          <label>
+            ${escapeHtml(tr('edWindowBg'))}
+            <select id="cfg-bg">
+              ${renderBgOptions(this._config.window_background || 'auto', false)}
+            </select>
+          </label>
+          <label>
+            ${escapeHtml(tr('edButtonsPos'))}
+            <select id="cfg-btn-pos">
+              <option value="left" ${this._config.buttons_position !== 'right' ? 'selected' : ''}>${escapeHtml(tr('edPosLeft'))}</option>
+              <option value="right" ${this._config.buttons_position === 'right' ? 'selected' : ''}>${escapeHtml(tr('edPosRight'))}</option>
+            </select>
+          </label>
+        </div>
 
         <div class="checks-grid">
           <label class="check-label">
@@ -2869,6 +2960,7 @@ class ModernShutterCardEditor extends HTMLElement {
     bindSimple('cfg-type', 'cover_type');
     bindSimple('cfg-color', 'slats_color');
     bindSimple('cfg-bg', 'window_background');
+    bindSimple('cfg-btn-pos', 'buttons_position');
     bindSimple('cfg-compact', 'compact', true);
     bindSimple('cfg-presets', 'show_presets', true, true);
     bindSimple('cfg-buttons', 'show_buttons', true);
@@ -2904,6 +2996,51 @@ class ModernShutterCardEditor extends HTMLElement {
         }
         this._config = { ...this._config, presets: updated };
         this._emitConfig();
+      });
+    });
+
+    this.shadowRoot.querySelectorAll('.preset-edit-row').forEach((row) => {
+      row.addEventListener('dragstart', (e) => {
+        this._dragPresetIdx = Number(row.dataset.pidx);
+        row.classList.add('dragging');
+        if (e.dataTransfer) {
+          e.dataTransfer.effectAllowed = 'move';
+          e.dataTransfer.setData('text/plain', String(this._dragPresetIdx));
+        }
+      });
+
+      row.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        if (e.dataTransfer) e.dataTransfer.dropEffect = 'move';
+        const targetIdx = Number(row.dataset.pidx);
+        if (this._dragPresetIdx !== null && targetIdx !== this._dragPresetIdx) {
+          row.classList.add('drag-over');
+        }
+      });
+
+      row.addEventListener('dragleave', () => {
+        row.classList.remove('drag-over');
+      });
+
+      row.addEventListener('drop', (e) => {
+        e.preventDefault();
+        row.classList.remove('drag-over');
+        const targetIdx = Number(row.dataset.pidx);
+        if (this._dragPresetIdx === null || this._dragPresetIdx === targetIdx) return;
+        const updated = [...this._config.presets];
+        const [moved] = updated.splice(this._dragPresetIdx, 1);
+        updated.splice(targetIdx, 0, moved);
+        this._dragPresetIdx = null;
+        this._config = { ...this._config, presets: updated };
+        this._emitConfig();
+        this._render();
+      });
+
+      row.addEventListener('dragend', () => {
+        this._dragPresetIdx = null;
+        this.shadowRoot
+          .querySelectorAll('.preset-edit-row')
+          .forEach((r) => r.classList.remove('dragging', 'drag-over'));
       });
     });
 
