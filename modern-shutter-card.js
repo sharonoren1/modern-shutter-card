@@ -5,7 +5,7 @@
  * License: MIT
  */
 
-const CARD_VERSION = '1.3.1';
+const CARD_VERSION = '1.3.2';
 const SUPPORT_SET_TILT_POSITION = 128;
 
 const DEFAULT_PRESETS = [
@@ -1224,8 +1224,9 @@ class ModernShutterCard extends HTMLElement {
 
         .shutter-stage {
           display: flex;
-          align-items: stretch;
-          gap: 10px;
+          align-items: center;
+          justify-content: center;
+          gap: 12px;
         }
 
         .shutters-container.compact .shutter-stage {
@@ -1235,8 +1236,8 @@ class ModernShutterCard extends HTMLElement {
         .controls-col {
           display: flex;
           flex-direction: column;
-          justify-content: space-between;
-          gap: 6px;
+          justify-content: center;
+          gap: 8px;
         }
 
         .ctrl-btn {
@@ -1282,13 +1283,20 @@ class ModernShutterCard extends HTMLElement {
 
         .window-wrapper {
           flex: 1;
+          max-width: 190px;
           min-width: 0;
+        }
+
+        .shutter-tile[data-cover-type="curtain"] .window-wrapper,
+        .shutter-tile[data-cover-type="curtain_left"] .window-wrapper,
+        .shutter-tile[data-cover-type="curtain_right"] .window-wrapper {
+          max-width: 230px;
         }
 
         .window-frame {
           position: relative;
           width: 100%;
-          height: 144px;
+          height: 165px;
           border-radius: 10px;
           overflow: hidden;
           border: 3px solid color-mix(in srgb, var(--msc-text) 18%, transparent);
@@ -1307,7 +1315,7 @@ class ModernShutterCard extends HTMLElement {
         }
 
         .shutters-container.compact .window-frame {
-          height: 120px;
+          height: 130px;
         }
 
         .window-sky {
