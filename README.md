@@ -59,7 +59,7 @@ If you find this card useful and want to support its ongoing development, feel f
 2. Click the three-dot menu in the top right and select **Custom repositories**.
 3. Add repository URL:
    ```text
-   [https://github.com/sharonoren1/modern-shutter-card](https://github.com/sharonoren1/modern-shutter-card)
+   https://github.com/sharonoren1/modern-shutter-card
    ```
 4. Select category **Dashboard** (or **Lovelace**) and click **Add**.
 5. Search for **Modern Shutter Card** and click **Download**.
