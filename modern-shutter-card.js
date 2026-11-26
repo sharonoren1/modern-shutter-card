@@ -5,7 +5,7 @@
  * License: MIT
  */
 
-const CARD_VERSION = '1.7.2';
+const CARD_VERSION = '1.8.0';
 const SUPPORT_SET_TILT_POSITION = 128;
 
 const DEFAULT_PRESETS = [
@@ -19,7 +19,7 @@ const RTL_LANGS = new Set(['he', 'ar', 'fa', 'ur']);
 
 const COVER_TYPES = ['auto', 'shutter', 'curtain', 'curtain_left', 'curtain_right', 'roller', 'venetian'];
 const HORIZONTAL_TYPES = new Set(['curtain', 'curtain_left', 'curtain_right']);
-const BG_PRESETS = new Set(['sky', 'sunny', 'sea', 'sunset', 'mountains', 'night', 'auto']);
+const BG_PRESETS = new Set(['auto', 'weather', 'sky', 'sunny', 'sea', 'sunset', 'mountains', 'night']);
 
 const TRANSLATIONS = {
   en: {
@@ -64,12 +64,15 @@ const TRANSLATIONS = {
     edColorBurgundy: 'Burgundy',
     edWindowBg: 'Window Background',
     edBgAuto: 'Auto (Day / Night)',
+    edBgWeather: 'Live Weather',
     edBgSky: 'Sky',
     edBgSunny: 'Sunny Day',
     edBgSea: 'Sea View',
     edBgSunset: 'Sunset',
     edBgMountains: 'Mountains',
     edBgNight: 'Night',
+    edWeatherEntity: 'Weather Entity',
+    edAutoWeather: 'Auto (First Weather Entity)',
     edButtonsPos: 'Buttons Position',
     edPosLeft: 'Left',
     edPosRight: 'Right',
@@ -79,6 +82,7 @@ const TRANSLATIONS = {
     edShowButtons: 'Show Open / Stop / Close',
     edShowPct: 'Show Percentage Badge',
     edShowWindowGrid: 'Show Window Dividers',
+    edAnimateBg: 'Animate Background',
     edInvertGlobal: 'Invert Position (Global)',
     edHaptic: 'Haptic Feedback',
     edPresets: 'Quick Presets',
@@ -140,12 +144,15 @@ const TRANSLATIONS = {
     edColorBurgundy: 'בורדו',
     edWindowBg: 'רקע חלון',
     edBgAuto: 'אוטומטי (יום / לילה)',
+    edBgWeather: 'מזג אוויר חי',
     edBgSky: 'שמיים',
     edBgSunny: 'יום שמשי',
     edBgSea: 'נוף לים',
     edBgSunset: 'שקיעה',
     edBgMountains: 'הרים וטבע',
     edBgNight: 'לילה',
+    edWeatherEntity: 'ישות מזג אוויר (Weather)',
+    edAutoWeather: 'אוטומטי (ישות מזג האוויר הראשונה)',
     edButtonsPos: 'מיקום כפתורי שליטה',
     edPosLeft: 'שמאל',
     edPosRight: 'ימין',
@@ -155,6 +162,7 @@ const TRANSLATIONS = {
     edShowButtons: 'הצג כפתורי פתיחה / עצור / סגירה',
     edShowPct: 'הצג אחוז פתיחה',
     edShowWindowGrid: 'הצג חלוקת חלון (צלב)',
+    edAnimateBg: 'הנפשת רקע (אנימציה)',
     edInvertGlobal: 'היפוך כיוון (גלובלי)',
     edHaptic: 'רטט במגע (Haptic)',
     edPresets: 'מצבים מהירים (Presets)',
@@ -216,12 +224,15 @@ const TRANSLATIONS = {
     edColorBurgundy: 'عنابي',
     edWindowBg: 'خلفية النافذة',
     edBgAuto: 'تلقائي (نهار / ليل)',
+    edBgWeather: 'الطقس المباشر',
     edBgSky: 'سماء',
     edBgSunny: 'يوم مشمس',
     edBgSea: 'إطلالة بحرية',
     edBgSunset: 'غروب الشمس',
     edBgMountains: 'جبال وطبيعة',
     edBgNight: 'ليل',
+    edWeatherEntity: 'كيان الطقس (Weather)',
+    edAutoWeather: 'تلقائي (أول كيان طقس)',
     edButtonsPos: 'موضع الأزرار',
     edPosLeft: 'يسار',
     edPosRight: 'يمين',
@@ -231,6 +242,7 @@ const TRANSLATIONS = {
     edShowButtons: 'إظهار أزرار الفتح / الإيقاف / الإغلاق',
     edShowPct: 'إظهار نسبة الفتح',
     edShowWindowGrid: 'إظهار تقسيم النافذة',
+    edAnimateBg: 'تحريك الخلفية',
     edInvertGlobal: 'عكس الاتجاه (عام)',
     edHaptic: 'اهتزاز اللمس',
     edPresets: 'الأزرار السريعة',
@@ -292,12 +304,15 @@ const TRANSLATIONS = {
     edColorBurgundy: 'Бордовый',
     edWindowBg: 'Фон окна',
     edBgAuto: 'Авто (День / Ночь)',
+    edBgWeather: 'Погода в реальном времени',
     edBgSky: 'Небо',
     edBgSunny: 'Солнечный день',
     edBgSea: 'Вид на море',
     edBgSunset: 'Закат',
     edBgMountains: 'Горы',
     edBgNight: 'Ночь',
+    edWeatherEntity: 'Объект погоды (Weather)',
+    edAutoWeather: 'Авто (первый объект погоды)',
     edButtonsPos: 'Позиция кнопок',
     edPosLeft: 'Слева',
     edPosRight: 'Справа',
@@ -307,6 +322,7 @@ const TRANSLATIONS = {
     edShowButtons: 'Показать Открыть / Стоп / Закрыть',
     edShowPct: 'Показать проценты',
     edShowWindowGrid: 'Показать переплёт окна',
+    edAnimateBg: 'Анимация фона',
     edInvertGlobal: 'Инвертировать позицию',
     edHaptic: 'Виброотклик',
     edPresets: 'Быстрые кнопки',
@@ -368,12 +384,15 @@ const TRANSLATIONS = {
     edColorBurgundy: 'Bordeaux',
     edWindowBg: 'Arrière-plan de fenêtre',
     edBgAuto: 'Auto (Jour / Nuit)',
+    edBgWeather: 'Météo en direct',
     edBgSky: 'Ciel',
     edBgSunny: 'Journée ensoleillée',
     edBgSea: 'Vue sur la mer',
     edBgSunset: 'Coucher de soleil',
     edBgMountains: 'Montagnes',
     edBgNight: 'Nuit',
+    edWeatherEntity: 'Entité météo (Weather)',
+    edAutoWeather: 'Auto (Première entité météo)',
     edButtonsPos: 'Position des boutons',
     edPosLeft: 'Gauche',
     edPosRight: 'Droite',
@@ -383,6 +402,7 @@ const TRANSLATIONS = {
     edShowButtons: 'Afficher Ouvrir / Stop / Fermer',
     edShowPct: 'Afficher le pourcentage',
     edShowWindowGrid: 'Afficher les croisillons',
+    edAnimateBg: 'Animer l’arrière-plan',
     edInvertGlobal: 'Inverser la position (Global)',
     edHaptic: 'Retour haptique',
     edPresets: 'Préréglages rapides',
@@ -444,12 +464,15 @@ const TRANSLATIONS = {
     edColorBurgundy: 'Burgunderrot',
     edWindowBg: 'Fensterhintergrund',
     edBgAuto: 'Auto (Tag / Nacht)',
+    edBgWeather: 'Live-Wetter',
     edBgSky: 'Himmel',
     edBgSunny: 'Sonniger Tag',
     edBgSea: 'Meerblick',
     edBgSunset: 'Sonnenuntergang',
     edBgMountains: 'Berge',
     edBgNight: 'Nacht',
+    edWeatherEntity: 'Wetter-Entität (Weather)',
+    edAutoWeather: 'Auto (Erste Wetter-Entität)',
     edButtonsPos: 'Button-Position',
     edPosLeft: 'Links',
     edPosRight: 'Rechts',
@@ -459,6 +482,7 @@ const TRANSLATIONS = {
     edShowButtons: 'Öffnen / Stopp / Schließen anzeigen',
     edShowPct: 'Prozentanzeige anzeigen',
     edShowWindowGrid: 'Fensterkreuz anzeigen',
+    edAnimateBg: 'Hintergrund animieren',
     edInvertGlobal: 'Position invertieren (Global)',
     edHaptic: 'Haptisches Feedback',
     edPresets: 'Schnellwahl-Buttons',
@@ -520,12 +544,15 @@ const TRANSLATIONS = {
     edColorBurgundy: 'Burdeos',
     edWindowBg: 'Fondo de ventana',
     edBgAuto: 'Auto (Día / Noche)',
+    edBgWeather: 'Clima en vivo',
     edBgSky: 'Cielo',
     edBgSunny: 'Día soleado',
     edBgSea: 'Vista al mar',
     edBgSunset: 'Atardecer',
     edBgMountains: 'Montañas',
     edBgNight: 'Noche',
+    edWeatherEntity: 'Entidad de clima (Weather)',
+    edAutoWeather: 'Auto (Primera entidad de clima)',
     edButtonsPos: 'Posición de botones',
     edPosLeft: 'Izquierda',
     edPosRight: 'Derecha',
@@ -535,6 +562,7 @@ const TRANSLATIONS = {
     edShowButtons: 'Mostrar Abrir / Parar / Cerrar',
     edShowPct: 'Mostrar porcentaje',
     edShowWindowGrid: 'Mostrar división de ventana',
+    edAnimateBg: 'Animar fondo',
     edInvertGlobal: 'Invertir posición (Global)',
     edHaptic: 'Respuesta háptica',
     edPresets: 'Accesos rápidos',
@@ -596,12 +624,15 @@ const TRANSLATIONS = {
     edColorBurgundy: 'Bordeaux',
     edWindowBg: 'Sfondo finestra',
     edBgAuto: 'Auto (Giorno / Notte)',
+    edBgWeather: 'Meteo dal vivo',
     edBgSky: 'Cielo',
     edBgSunny: 'Giornata di sole',
     edBgSea: 'Vista mare',
     edBgSunset: 'Tramonto',
     edBgMountains: 'Montagne',
     edBgNight: 'Notte',
+    edWeatherEntity: 'Entità meteo (Weather)',
+    edAutoWeather: 'Auto (Prima entità meteo)',
     edButtonsPos: 'Posizione pulsanti',
     edPosLeft: 'Sinistra',
     edPosRight: 'Destra',
@@ -611,6 +642,7 @@ const TRANSLATIONS = {
     edShowButtons: 'Mostra Apri / Stop / Chiudi',
     edShowPct: 'Mostra percentuale',
     edShowWindowGrid: 'Mostra griglia finestra',
+    edAnimateBg: 'Anima sfondo',
     edInvertGlobal: 'Inverti posizione (Globale)',
     edHaptic: 'Feedback aptico',
     edPresets: 'Preset rapidi',
@@ -672,12 +704,15 @@ const TRANSLATIONS = {
     edColorBurgundy: 'Bordeaux',
     edWindowBg: 'Raamachtergrond',
     edBgAuto: 'Auto (Dag / Nacht)',
+    edBgWeather: 'Live weer',
     edBgSky: 'Lucht',
     edBgSunny: 'Zonnige dag',
     edBgSea: 'Zeezicht',
     edBgSunset: 'Zonsondergang',
     edBgMountains: 'Bergen',
     edBgNight: 'Nacht',
+    edWeatherEntity: 'Weer-entiteit (Weather)',
+    edAutoWeather: 'Auto (Eerste weer-entiteit)',
     edButtonsPos: 'Knoppositie',
     edPosLeft: 'Links',
     edPosRight: 'Rechts',
@@ -687,6 +722,7 @@ const TRANSLATIONS = {
     edShowButtons: 'Open / Stop / Dicht tonen',
     edShowPct: 'Percentage tonen',
     edShowWindowGrid: 'Raamverdeling tonen',
+    edAnimateBg: 'Achtergrond animeren',
     edInvertGlobal: 'Positie omkeren (Globaal)',
     edHaptic: 'Haptische feedback',
     edPresets: 'Snelle knoppen',
@@ -795,6 +831,7 @@ const TYPE_OPTIONS = [
 
 const BG_OPTIONS = [
   { key: 'auto', labelKey: 'edBgAuto' },
+  { key: 'weather', labelKey: 'edBgWeather' },
   { key: 'sky', labelKey: 'edBgSky' },
   { key: 'sunny', labelKey: 'edBgSunny' },
   { key: 'sea', labelKey: 'edBgSea' },
@@ -814,6 +851,42 @@ const ICONS = {
   grip: '<svg viewBox="0 0 24 24"><circle cx="9" cy="6" r="1.7"/><circle cx="15" cy="6" r="1.7"/><circle cx="9" cy="12" r="1.7"/><circle cx="15" cy="12" r="1.7"/><circle cx="9" cy="18" r="1.7"/><circle cx="15" cy="18" r="1.7"/></svg>',
 };
 
+const RAIN_DROPS_SVG = `
+  <g stroke="#bae6fd" stroke-width="1.5" stroke-linecap="round" opacity="0.78">
+    <line class="msc-rain-drop" x1="18" y1="0" x2="14" y2="14" style="--d:0.85s;--del:-0.1s"/>
+    <line class="msc-rain-drop" x1="42" y1="0" x2="38" y2="15" style="--d:0.95s;--del:-0.55s"/>
+    <line class="msc-rain-drop" x1="68" y1="0" x2="64" y2="13" style="--d:0.8s;--del:-0.32s"/>
+    <line class="msc-rain-drop" x1="94" y1="0" x2="90" y2="16" style="--d:1.0s;--del:-0.78s"/>
+    <line class="msc-rain-drop" x1="120" y1="0" x2="116" y2="14" style="--d:0.88s;--del:-0.22s"/>
+    <line class="msc-rain-drop" x1="146" y1="0" x2="142" y2="15" style="--d:0.92s;--del:-0.66s"/>
+    <line class="msc-rain-drop" x1="172" y1="0" x2="168" y2="13" style="--d:0.82s;--del:-0.42s"/>
+    <line class="msc-rain-drop" x1="30" y1="0" x2="26" y2="12" style="--d:1.05s;--del:-0.88s"/>
+    <line class="msc-rain-drop" x1="82" y1="0" x2="78" y2="14" style="--d:0.9s;--del:-0.15s"/>
+    <line class="msc-rain-drop" x1="134" y1="0" x2="130" y2="13" style="--d:0.98s;--del:-0.48s"/>
+    <line class="msc-rain-drop" x1="186" y1="0" x2="182" y2="15" style="--d:0.86s;--del:-0.71s"/>
+    <line class="msc-rain-drop" x1="55" y1="0" x2="51" y2="14" style="--d:0.93s;--del:-0.05s"/>
+    <line class="msc-rain-drop" x1="108" y1="0" x2="104" y2="12" style="--d:0.84s;--del:-0.6s"/>
+    <line class="msc-rain-drop" x1="160" y1="0" x2="156" y2="15" style="--d:1.02s;--del:-0.29s"/>
+  </g>
+`;
+
+const SNOW_FLAKES_SVG = `
+  <g fill="#ffffff">
+    <circle class="msc-snow-flake" cx="20" cy="0" r="2.2" opacity="0.9" style="--d:4.2s;--del:-0.4s"/>
+    <circle class="msc-snow-flake" cx="46" cy="0" r="1.6" opacity="0.75" style="--d:5.1s;--del:-2.1s"/>
+    <circle class="msc-snow-flake" cx="74" cy="0" r="2.5" opacity="0.92" style="--d:3.9s;--del:-1.3s"/>
+    <circle class="msc-snow-flake" cx="102" cy="0" r="1.8" opacity="0.8" style="--d:4.8s;--del:-3.2s"/>
+    <circle class="msc-snow-flake" cx="130" cy="0" r="2.3" opacity="0.88" style="--d:4.4s;--del:-0.9s"/>
+    <circle class="msc-snow-flake" cx="158" cy="0" r="1.7" opacity="0.78" style="--d:5.4s;--del:-2.7s"/>
+    <circle class="msc-snow-flake" cx="182" cy="0" r="2.1" opacity="0.86" style="--d:4.1s;--del:-1.8s"/>
+    <circle class="msc-snow-flake" cx="34" cy="0" r="1.5" opacity="0.7" style="--d:5.6s;--del:-3.8s"/>
+    <circle class="msc-snow-flake" cx="88" cy="0" r="2.0" opacity="0.85" style="--d:4.6s;--del:-0.2s"/>
+    <circle class="msc-snow-flake" cx="144" cy="0" r="2.4" opacity="0.9" style="--d:3.8s;--del:-2.4s"/>
+    <circle class="msc-snow-flake" cx="60" cy="0" r="1.8" opacity="0.82" style="--d:4.9s;--del:-3.5s"/>
+    <circle class="msc-snow-flake" cx="116" cy="0" r="1.5" opacity="0.74" style="--d:5.3s;--del:-1.5s"/>
+  </g>
+`;
+
 const WINDOW_SCENES = {
   sunny: `<svg viewBox="0 0 200 165" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
     <defs>
@@ -829,14 +902,14 @@ const WINDOW_SCENES = {
       </radialGradient>
     </defs>
     <rect width="200" height="165" fill="url(#msc-sun-sky)"/>
-    <circle cx="152" cy="40" r="38" fill="url(#msc-sun-glow)"/>
+    <circle class="msc-sun-pulse" cx="152" cy="40" r="38" fill="url(#msc-sun-glow)"/>
     <circle cx="152" cy="40" r="17" fill="#fef08a"/>
-    <g fill="#ffffff" opacity="0.86">
+    <g class="msc-cloud-sway" fill="#ffffff" opacity="0.86" style="--d:16s;--del:-2s">
       <ellipse cx="52" cy="54" rx="22" ry="9"/>
       <ellipse cx="66" cy="50" rx="16" ry="11"/>
       <ellipse cx="38" cy="56" rx="14" ry="7"/>
     </g>
-    <g fill="#ffffff" opacity="0.72">
+    <g class="msc-cloud-sway" fill="#ffffff" opacity="0.72" style="--d:22s;--del:-8s">
       <ellipse cx="132" cy="92" rx="20" ry="8"/>
       <ellipse cx="145" cy="89" rx="14" ry="9"/>
       <ellipse cx="118" cy="94" rx="12" ry="6"/>
@@ -858,17 +931,17 @@ const WINDOW_SCENES = {
     </defs>
     <rect width="200" height="102" fill="url(#msc-sea-sky)"/>
     <circle cx="148" cy="36" r="15" fill="#fef08a" opacity="0.95"/>
-    <circle cx="148" cy="36" r="26" fill="#fef08a" opacity="0.25"/>
-    <g fill="#ffffff" opacity="0.75">
+    <circle class="msc-sun-pulse" cx="148" cy="36" r="26" fill="#fef08a" opacity="0.25"/>
+    <g class="msc-cloud-sway" fill="#ffffff" opacity="0.75" style="--d:18s;--del:-4s">
       <ellipse cx="54" cy="44" rx="20" ry="7"/>
       <ellipse cx="66" cy="41" rx="13" ry="8"/>
     </g>
     <rect y="100" width="200" height="65" fill="url(#msc-sea-water)"/>
     <ellipse cx="148" cy="105" rx="26" ry="3" fill="#fef08a" opacity="0.45"/>
     <ellipse cx="148" cy="115" rx="18" ry="2.2" fill="#fef08a" opacity="0.32"/>
-    <path d="M0 120 Q25 115 50 120 T100 120 T150 120 T200 120" fill="none" stroke="#7dd3fc" stroke-width="2" opacity="0.45"/>
-    <path d="M0 136 Q30 130 60 136 T120 136 T180 136 T200 136" fill="none" stroke="#bae6fd" stroke-width="2" opacity="0.38"/>
-    <path d="M0 151 Q25 146 50 151 T100 151 T150 151 T200 151" fill="none" stroke="#e0f2fe" stroke-width="2" opacity="0.3"/>
+    <path class="msc-wave-sway" d="M-10 120 Q15 115 40 120 T90 120 T140 120 T190 120 T220 120" fill="none" stroke="#7dd3fc" stroke-width="2" opacity="0.45" style="--d:6s;--del:0s"/>
+    <path class="msc-wave-sway" d="M-10 136 Q20 130 50 136 T110 136 T170 136 T220 136" fill="none" stroke="#bae6fd" stroke-width="2" opacity="0.38" style="--d:8s;--del:-2s"/>
+    <path class="msc-wave-sway" d="M-10 151 Q15 146 40 151 T90 151 T140 151 T190 151 T220 151" fill="none" stroke="#e0f2fe" stroke-width="2" opacity="0.3" style="--d:7s;--del:-4s"/>
   </svg>`,
 
   sunset: `<svg viewBox="0 0 200 165" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
@@ -886,7 +959,7 @@ const WINDOW_SCENES = {
     </defs>
     <rect width="200" height="114" fill="url(#msc-sunset-sky)"/>
     <circle cx="100" cy="108" r="24" fill="#fef08a" opacity="0.92"/>
-    <circle cx="100" cy="108" r="38" fill="#fdba74" opacity="0.28"/>
+    <circle class="msc-sun-pulse" cx="100" cy="108" r="38" fill="#fdba74" opacity="0.28"/>
     <rect y="112" width="200" height="53" fill="url(#msc-sunset-sea)"/>
     <ellipse cx="100" cy="117" rx="34" ry="3.5" fill="#fde047" opacity="0.55"/>
     <ellipse cx="100" cy="127" rx="22" ry="2.5" fill="#fb923c" opacity="0.45"/>
@@ -902,7 +975,7 @@ const WINDOW_SCENES = {
       </linearGradient>
     </defs>
     <rect width="200" height="165" fill="url(#msc-mnt-sky)"/>
-    <g fill="#ffffff" opacity="0.78">
+    <g class="msc-cloud-sway" fill="#ffffff" opacity="0.78" style="--d:20s;--del:-3s">
       <ellipse cx="48" cy="38" rx="18" ry="6"/>
       <ellipse cx="58" cy="35" rx="12" ry="7"/>
       <ellipse cx="148" cy="46" rx="16" ry="5.5"/>
@@ -924,19 +997,206 @@ const WINDOW_SCENES = {
     </defs>
     <rect width="200" height="165" fill="url(#msc-night-sky)"/>
     <g fill="#fef9c3">
-      <circle cx="28" cy="26" r="1.4" opacity="0.9"/>
-      <circle cx="62" cy="18" r="1.1" opacity="0.75"/>
-      <circle cx="94" cy="34" r="1.5" opacity="0.85"/>
-      <circle cx="118" cy="20" r="1" opacity="0.7"/>
-      <circle cx="42" cy="58" r="1.2" opacity="0.65"/>
-      <circle cx="80" cy="68" r="1.1" opacity="0.8"/>
-      <circle cx="172" cy="62" r="1.3" opacity="0.75"/>
-      <circle cx="22" cy="92" r="1" opacity="0.6"/>
-      <circle cx="128" cy="84" r="1.2" opacity="0.7"/>
+      <circle class="msc-star-twinkle" cx="28" cy="26" r="1.4" style="--d:3.2s;--del:-0.4s"/>
+      <circle class="msc-star-twinkle" cx="62" cy="18" r="1.1" style="--d:4.1s;--del:-1.8s"/>
+      <circle class="msc-star-twinkle" cx="94" cy="34" r="1.5" style="--d:2.9s;--del:-0.9s"/>
+      <circle class="msc-star-twinkle" cx="118" cy="20" r="1" style="--d:3.8s;--del:-2.2s"/>
+      <circle class="msc-star-twinkle" cx="42" cy="58" r="1.2" style="--d:4.5s;--del:-1.1s"/>
+      <circle class="msc-star-twinkle" cx="80" cy="68" r="1.1" style="--d:3.4s;--del:-2.7s"/>
+      <circle class="msc-star-twinkle" cx="172" cy="62" r="1.3" style="--d:3.9s;--del:-0.6s"/>
+      <circle class="msc-star-twinkle" cx="22" cy="92" r="1" style="--d:4.3s;--del:-1.5s"/>
+      <circle class="msc-star-twinkle" cx="128" cy="84" r="1.2" style="--d:3.6s;--del:-2.0s"/>
     </g>
     <circle cx="152" cy="38" r="15" fill="#fef08a"/>
     <circle cx="158" cy="34" r="13" fill="#0f172a"/>
     <path d="M0 142 Q60 126 125 138 T200 132 L200 165 L0 165 Z" fill="#0f172a" opacity="0.75"/>
+  </svg>`,
+
+  partlycloudy: `<svg viewBox="0 0 200 165" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <defs>
+      <linearGradient id="msc-pc-sky" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#60a5fa"/>
+        <stop offset="65%" stop-color="#bae6fd"/>
+        <stop offset="100%" stop-color="#e0f2fe"/>
+      </linearGradient>
+    </defs>
+    <rect width="200" height="165" fill="url(#msc-pc-sky)"/>
+    <circle class="msc-sun-pulse" cx="152" cy="38" r="28" fill="#fef08a" opacity="0.35"/>
+    <circle cx="152" cy="38" r="16" fill="#fef08a"/>
+    <g class="msc-cloud-drift" fill="#ffffff" opacity="0.9" style="--d:26s;--del:-6s">
+      <ellipse cx="45" cy="58" rx="28" ry="12"/>
+      <ellipse cx="64" cy="52" rx="20" ry="14"/>
+      <ellipse cx="26" cy="60" rx="18" ry="9"/>
+    </g>
+    <g class="msc-cloud-drift" fill="#f1f5f9" opacity="0.82" style="--d:34s;--del:-19s">
+      <ellipse cx="42" cy="102" rx="26" ry="11"/>
+      <ellipse cx="60" cy="97" rx="18" ry="12"/>
+      <ellipse cx="24" cy="104" rx="16" ry="8"/>
+    </g>
+  </svg>`,
+
+  partlycloudy_night: `<svg viewBox="0 0 200 165" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <defs>
+      <linearGradient id="msc-pcn-sky" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#0f172a"/>
+        <stop offset="65%" stop-color="#1e293b"/>
+        <stop offset="100%" stop-color="#334155"/>
+      </linearGradient>
+    </defs>
+    <rect width="200" height="165" fill="url(#msc-pcn-sky)"/>
+    <g fill="#fef9c3">
+      <circle class="msc-star-twinkle" cx="30" cy="24" r="1.2" style="--d:3.5s;--del:-0.5s"/>
+      <circle class="msc-star-twinkle" cx="84" cy="20" r="1.3" style="--d:4.1s;--del:-1.9s"/>
+      <circle class="msc-star-twinkle" cx="116" cy="34" r="1.1" style="--d:3.2s;--del:-1.1s"/>
+    </g>
+    <circle cx="152" cy="38" r="15" fill="#fef08a"/>
+    <circle cx="158" cy="34" r="13" fill="#0f172a"/>
+    <g class="msc-cloud-drift" fill="#475569" opacity="0.88" style="--d:28s;--del:-8s">
+      <ellipse cx="45" cy="66" rx="28" ry="12"/>
+      <ellipse cx="64" cy="60" rx="20" ry="13"/>
+      <ellipse cx="26" cy="68" rx="18" ry="9"/>
+    </g>
+    <g class="msc-cloud-drift" fill="#334155" opacity="0.82" style="--d:36s;--del:-22s">
+      <ellipse cx="42" cy="108" rx="26" ry="10"/>
+      <ellipse cx="60" cy="103" rx="18" ry="12"/>
+    </g>
+  </svg>`,
+
+  cloudy: `<svg viewBox="0 0 200 165" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <defs>
+      <linearGradient id="msc-cld-sky" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#64748b"/>
+        <stop offset="60%" stop-color="#94a3b8"/>
+        <stop offset="100%" stop-color="#cbd5e1"/>
+      </linearGradient>
+    </defs>
+    <rect width="200" height="165" fill="url(#msc-cld-sky)"/>
+    <g class="msc-cloud-drift" fill="#e2e8f0" opacity="0.72" style="--d:30s;--del:-4s">
+      <ellipse cx="44" cy="42" rx="32" ry="14"/>
+      <ellipse cx="68" cy="37" rx="24" ry="16"/>
+      <ellipse cx="22" cy="45" rx="20" ry="11"/>
+    </g>
+    <g class="msc-cloud-drift" fill="#f1f5f9" opacity="0.85" style="--d:22s;--del:-12s">
+      <ellipse cx="48" cy="82" rx="34" ry="15"/>
+      <ellipse cx="72" cy="76" rx="24" ry="17"/>
+      <ellipse cx="24" cy="85" rx="22" ry="11"/>
+    </g>
+    <g class="msc-cloud-drift" fill="#cbd5e1" opacity="0.78" style="--d:38s;--del:-26s">
+      <ellipse cx="42" cy="122" rx="30" ry="13"/>
+      <ellipse cx="64" cy="117" rx="22" ry="14"/>
+    </g>
+  </svg>`,
+
+  cloudy_night: `<svg viewBox="0 0 200 165" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <defs>
+      <linearGradient id="msc-cldn-sky" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#0f172a"/>
+        <stop offset="60%" stop-color="#1e293b"/>
+        <stop offset="100%" stop-color="#334155"/>
+      </linearGradient>
+    </defs>
+    <rect width="200" height="165" fill="url(#msc-cldn-sky)"/>
+    <g class="msc-cloud-drift" fill="#334155" opacity="0.85" style="--d:32s;--del:-5s">
+      <ellipse cx="44" cy="46" rx="32" ry="14"/>
+      <ellipse cx="68" cy="40" rx="24" ry="16"/>
+    </g>
+    <g class="msc-cloud-drift" fill="#475569" opacity="0.78" style="--d:24s;--del:-14s">
+      <ellipse cx="48" cy="88" rx="34" ry="15"/>
+      <ellipse cx="72" cy="82" rx="24" ry="16"/>
+    </g>
+  </svg>`,
+
+  rainy: `<svg viewBox="0 0 200 165" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <defs>
+      <linearGradient id="msc-rain-sky" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#334155"/>
+        <stop offset="60%" stop-color="#475569"/>
+        <stop offset="100%" stop-color="#64748b"/>
+      </linearGradient>
+    </defs>
+    <rect width="200" height="165" fill="url(#msc-rain-sky)"/>
+    ${RAIN_DROPS_SVG}
+    <g class="msc-cloud-sway" fill="#1e293b" opacity="0.88" style="--d:16s;--del:-3s">
+      <ellipse cx="44" cy="24" rx="38" ry="16"/>
+      <ellipse cx="96" cy="20" rx="44" ry="18"/>
+      <ellipse cx="156" cy="24" rx="40" ry="16"/>
+    </g>
+  </svg>`,
+
+  lightning: `<svg viewBox="0 0 200 165" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <defs>
+      <linearGradient id="msc-storm-sky" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#0f172a"/>
+        <stop offset="60%" stop-color="#1e293b"/>
+        <stop offset="100%" stop-color="#334155"/>
+      </linearGradient>
+    </defs>
+    <rect width="200" height="165" fill="url(#msc-storm-sky)"/>
+    <rect class="msc-lightning-flash" width="200" height="165" fill="#e0f2fe"/>
+    <path class="msc-lightning-bolt" d="M112 28 L94 74 L108 74 L92 126 L124 68 L108 68 L122 28 Z" fill="#fef08a"/>
+    ${RAIN_DROPS_SVG}
+    <g class="msc-cloud-sway" fill="#0f172a" opacity="0.94" style="--d:14s;--del:-2s">
+      <ellipse cx="44" cy="22" rx="40" ry="16"/>
+      <ellipse cx="100" cy="18" rx="46" ry="18"/>
+      <ellipse cx="158" cy="22" rx="42" ry="16"/>
+    </g>
+  </svg>`,
+
+  snowy: `<svg viewBox="0 0 200 165" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <defs>
+      <linearGradient id="msc-snow-sky" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#64748b"/>
+        <stop offset="60%" stop-color="#94a3b8"/>
+        <stop offset="100%" stop-color="#e2e8f0"/>
+      </linearGradient>
+    </defs>
+    <rect width="200" height="165" fill="url(#msc-snow-sky)"/>
+    ${SNOW_FLAKES_SVG}
+    <g class="msc-cloud-sway" fill="#cbd5e1" opacity="0.85" style="--d:20s;--del:-5s">
+      <ellipse cx="52" cy="20" rx="40" ry="14"/>
+      <ellipse cx="122" cy="18" rx="48" ry="16"/>
+      <ellipse cx="176" cy="22" rx="34" ry="14"/>
+    </g>
+    <path d="M0 148 Q55 138 110 148 T200 144 L200 165 L0 165 Z" fill="#f8fafc" opacity="0.92"/>
+  </svg>`,
+
+  fog: `<svg viewBox="0 0 200 165" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <defs>
+      <linearGradient id="msc-fog-sky" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#94a3b8"/>
+        <stop offset="55%" stop-color="#cbd5e1"/>
+        <stop offset="100%" stop-color="#e2e8f0"/>
+      </linearGradient>
+    </defs>
+    <rect width="200" height="165" fill="url(#msc-fog-sky)"/>
+    <rect class="msc-fog-band" x="-20" y="34" width="240" height="18" rx="9" fill="#f8fafc" opacity="0.52" style="--d:12s;--del:0s"/>
+    <rect class="msc-fog-band" x="-20" y="68" width="240" height="22" rx="11" fill="#ffffff" opacity="0.6" style="--d:15s;--del:-5s"/>
+    <rect class="msc-fog-band" x="-20" y="106" width="240" height="20" rx="10" fill="#f1f5f9" opacity="0.58" style="--d:13s;--del:-8s"/>
+    <rect class="msc-fog-band" x="-20" y="138" width="240" height="18" rx="9" fill="#ffffff" opacity="0.48" style="--d:17s;--del:-3s"/>
+  </svg>`,
+
+  windy: `<svg viewBox="0 0 200 165" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <defs>
+      <linearGradient id="msc-wind-sky" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#38bdf8"/>
+        <stop offset="65%" stop-color="#bae6fd"/>
+        <stop offset="100%" stop-color="#e0f2fe"/>
+      </linearGradient>
+    </defs>
+    <rect width="200" height="165" fill="url(#msc-wind-sky)"/>
+    <g class="msc-cloud-drift" fill="#ffffff" opacity="0.86" style="--d:12s;--del:-3s">
+      <ellipse cx="44" cy="44" rx="26" ry="10"/>
+      <ellipse cx="62" cy="40" rx="18" ry="12"/>
+    </g>
+    <g class="msc-cloud-drift" fill="#f8fafc" opacity="0.75" style="--d:9s;--del:-6s">
+      <ellipse cx="40" cy="84" rx="22" ry="8"/>
+      <ellipse cx="56" cy="81" rx="15" ry="9"/>
+    </g>
+    <g fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" opacity="0.65">
+      <path class="msc-wind-streak" d="M0 64 L52 64 Q62 64 62 56 Q62 50 55 50" style="--d:3.2s;--del:-0.6s"/>
+      <path class="msc-wind-streak" d="M0 112 L68 112 Q78 112 78 120 Q78 126 70 126" style="--d:3.8s;--del:-2.1s"/>
+      <path class="msc-wind-streak" d="M0 138 L44 138" style="--d:2.8s;--del:-1.3s"/>
+    </g>
   </svg>`,
 };
 
@@ -1015,12 +1275,51 @@ function resolveCoverType(explicitType, cardType, stateObj) {
   return 'shutter';
 }
 
-function resolveWindowBackground(entityBg, cardBg, hass) {
+function resolveWeatherScene(weatherEntityId, hass) {
+  const isNight = hass?.states?.['sun.sun']?.state === 'below_horizon';
+  let entityId = weatherEntityId;
+  if (!entityId && hass?.states) {
+    entityId = Object.keys(hass.states).find((id) => id.startsWith('weather.'));
+  }
+  const state = String(hass?.states?.[entityId]?.state || '').toLowerCase();
+  switch (state) {
+    case 'clear-night':
+      return 'night';
+    case 'sunny':
+      return isNight ? 'night' : 'sunny';
+    case 'partlycloudy':
+      return isNight ? 'partlycloudy_night' : 'partlycloudy';
+    case 'cloudy':
+      return isNight ? 'cloudy_night' : 'cloudy';
+    case 'rainy':
+    case 'pouring':
+      return 'rainy';
+    case 'lightning':
+    case 'lightning-rainy':
+      return 'lightning';
+    case 'snowy':
+    case 'snowy-rainy':
+    case 'hail':
+      return 'snowy';
+    case 'fog':
+      return 'fog';
+    case 'windy':
+    case 'windy-variant':
+      return 'windy';
+    default:
+      return isNight ? 'night' : 'sunny';
+  }
+}
+
+function resolveWindowBackground(entityBg, cardBg, weatherEntity, hass) {
   const raw = String(entityBg || cardBg || 'auto').trim();
   const lower = raw.toLowerCase();
   if (lower === 'auto') {
     const sunState = hass?.states?.['sun.sun']?.state;
     return { mode: sunState === 'below_horizon' ? 'night' : 'sunny', customUrl: null };
+  }
+  if (lower === 'weather') {
+    return { mode: resolveWeatherScene(weatherEntity, hass), customUrl: null };
   }
   if (BG_PRESETS.has(lower)) {
     return { mode: lower, customUrl: null };
@@ -1058,6 +1357,8 @@ class ModernShutterCard extends HTMLElement {
       compact: false,
       slats_color: 'gray',
       window_background: 'auto',
+      weather_entity: '',
+      animate_background: true,
       buttons_position: 'left',
       show_group_controls: true,
       show_window_grid: true,
@@ -1108,6 +1409,8 @@ class ModernShutterCard extends HTMLElement {
       compact: Boolean(config.compact),
       slats_color: config.slats_color || config.color || 'gray',
       window_background: config.window_background || 'auto',
+      weather_entity: config.weather_entity || '',
+      animate_background: config.animate_background !== false,
       buttons_position: config.buttons_position === 'right' ? 'right' : 'left',
       show_group_controls: config.show_group_controls !== false,
       show_window_grid: config.show_window_grid !== false,
@@ -1371,6 +1674,7 @@ class ModernShutterCard extends HTMLElement {
     const resolved = resolveWindowBackground(
       item.window_background,
       this._config.window_background,
+      item.weather_entity || this._config.weather_entity,
       this._hass
     );
     const sig = resolved.customUrl ? `custom:${resolved.customUrl}` : resolved.mode;
@@ -1397,6 +1701,7 @@ class ModernShutterCard extends HTMLElement {
     this._lastRtl = isRtl;
     const compact = this._config.compact;
     const buttonsRight = this._config.buttons_position === 'right';
+    const animateBg = this._config.animate_background !== false;
     const showGroupControls =
       this._config.show_group_controls !== false && this._config.entities.length > 1;
     const allHoriz =
@@ -1825,6 +2130,149 @@ class ModernShutterCard extends HTMLElement {
           display: block;
           width: 100%;
           height: 100%;
+        }
+
+        /* ================= Seamless Weather & Scene Animations ================= */
+        .msc-sun-pulse {
+          transform-box: fill-box;
+          transform-origin: center;
+          animation: msc-sun-glow 5s ease-in-out infinite;
+        }
+
+        .msc-star-twinkle {
+          animation: msc-twinkle var(--d, 3.5s) ease-in-out var(--del, 0s) infinite;
+        }
+
+        .msc-cloud-sway {
+          animation: msc-sway var(--d, 18s) ease-in-out var(--del, 0s) infinite;
+        }
+
+        .msc-cloud-drift {
+          animation: msc-drift var(--d, 28s) linear var(--del, 0s) infinite;
+        }
+
+        .msc-wave-sway {
+          animation: msc-wave var(--d, 7s) ease-in-out var(--del, 0s) infinite;
+        }
+
+        .msc-rain-drop {
+          animation: msc-rain var(--d, 0.9s) linear var(--del, 0s) infinite;
+        }
+
+        .msc-snow-flake {
+          animation: msc-snow var(--d, 4.5s) linear var(--del, 0s) infinite;
+        }
+
+        .msc-fog-band {
+          animation: msc-fog var(--d, 14s) ease-in-out var(--del, 0s) infinite;
+        }
+
+        .msc-wind-streak {
+          animation: msc-wind var(--d, 3.2s) linear var(--del, 0s) infinite;
+        }
+
+        .msc-lightning-flash {
+          opacity: 0;
+          animation: msc-flash 6.5s linear infinite;
+        }
+
+        .msc-lightning-bolt {
+          opacity: 0;
+          animation: msc-bolt 6.5s linear infinite;
+        }
+
+        ha-card.no-anim .window-scene * {
+          animation: none !important;
+        }
+
+        ha-card.no-anim .msc-rain-drop {
+          transform: translateY(72px);
+        }
+
+        ha-card.no-anim .msc-snow-flake {
+          transform: translateY(78px);
+        }
+
+        ha-card.no-anim .msc-wind-streak {
+          transform: translateX(65px);
+        }
+
+        ha-card.no-anim .msc-lightning-bolt {
+          opacity: 0.9;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          .window-scene * {
+            animation: none !important;
+          }
+          .msc-rain-drop {
+            transform: translateY(72px);
+          }
+          .msc-snow-flake {
+            transform: translateY(78px);
+          }
+        }
+
+        @keyframes msc-sun-glow {
+          0%, 100% { transform: scale(1); opacity: 0.9; }
+          50% { transform: scale(1.08); opacity: 0.65; }
+        }
+
+        @keyframes msc-twinkle {
+          0%, 100% { opacity: 0.92; }
+          50% { opacity: 0.25; }
+        }
+
+        @keyframes msc-sway {
+          0%, 100% { transform: translateX(-8px); }
+          50% { transform: translateX(8px); }
+        }
+
+        @keyframes msc-drift {
+          0% { transform: translateX(-115px); }
+          100% { transform: translateX(235px); }
+        }
+
+        @keyframes msc-wave {
+          0%, 100% { transform: translateX(-6px); }
+          50% { transform: translateX(6px); }
+        }
+
+        @keyframes msc-rain {
+          0% { transform: translate(6px, -22px); }
+          100% { transform: translate(-22px, 185px); }
+        }
+
+        @keyframes msc-snow {
+          0% { transform: translate(0px, -12px); }
+          25% { transform: translate(7px, 38px); }
+          50% { transform: translate(-5px, 88px); }
+          75% { transform: translate(6px, 136px); }
+          100% { transform: translate(0px, 182px); }
+        }
+
+        @keyframes msc-fog {
+          0%, 100% { transform: translateX(-14px); opacity: 0.48; }
+          50% { transform: translateX(14px); opacity: 0.72; }
+        }
+
+        @keyframes msc-wind {
+          0% { transform: translateX(-95px); opacity: 0; }
+          15% { opacity: 0.72; }
+          85% { opacity: 0.72; }
+          100% { transform: translateX(225px); opacity: 0; }
+        }
+
+        @keyframes msc-flash {
+          0%, 84%, 88%, 92%, 100% { opacity: 0; }
+          86% { opacity: 0.45; }
+          90% { opacity: 0.25; }
+        }
+
+        @keyframes msc-bolt {
+          0%, 84%, 89%, 93%, 100% { opacity: 0; }
+          86% { opacity: 0.95; }
+          90% { opacity: 0.65; }
         }
 
         .window-cross-v {
@@ -2272,7 +2720,7 @@ class ModernShutterCard extends HTMLElement {
         }
       </style>
 
-      <ha-card dir="${isRtl ? 'rtl' : 'ltr'}">
+      <ha-card dir="${isRtl ? 'rtl' : 'ltr'}" class="${animateBg ? '' : 'no-anim'}">
         ${headerHtml}
         <div class="shutters-container ${compact ? 'compact' : ''}">
           ${tilesHtml}
@@ -2595,6 +3043,8 @@ class ModernShutterCardEditor extends HTMLElement {
       compact: false,
       slats_color: 'gray',
       window_background: 'auto',
+      weather_entity: '',
+      animate_background: true,
       buttons_position: 'left',
       show_group_controls: true,
       show_window_grid: true,
@@ -2647,6 +3097,7 @@ class ModernShutterCardEditor extends HTMLElement {
   _emitConfig() {
     const clean = { ...this._config };
     delete clean.entity;
+    if (!clean.weather_entity) delete clean.weather_entity;
     fireEvent(this, 'config-changed', { config: clean });
   }
 
@@ -2664,6 +3115,7 @@ class ModernShutterCardEditor extends HTMLElement {
 
     const covers = this._getEntitiesByDomain('cover');
     const binarySensors = this._getEntitiesByDomain('binary_sensor');
+    const weatherEntities = this._getEntitiesByDomain('weather');
 
     const langOptionsHtml = LANGUAGE_OPTIONS.map((opt) => {
       const label = opt.code === 'auto' ? tr('edAuto') : opt.label;
@@ -2712,6 +3164,20 @@ class ModernShutterCardEditor extends HTMLElement {
       }
       return opts.join('');
     };
+
+    const usesWeather =
+      this._config.window_background === 'weather' ||
+      (this._config.entities || []).some((e) => e.window_background === 'weather');
+
+    const weatherOptionsHtml = [
+      `<option value="">${escapeHtml(tr('edAutoWeather'))}</option>`,
+      ...weatherEntities.map(
+        (id) =>
+          `<option value="${escapeHtml(id)}" ${this._config.weather_entity === id ? 'selected' : ''}>${escapeHtml(
+            this._hass?.states?.[id]?.attributes?.friendly_name || id
+          )} (${escapeHtml(id)})</option>`
+      ),
+    ].join('');
 
     const presetsEditorHtml =
       this._config.show_presets !== false
@@ -3046,6 +3512,17 @@ class ModernShutterCardEditor extends HTMLElement {
           </label>
         </div>
 
+        ${
+          usesWeather
+            ? `<label>
+                ${escapeHtml(tr('edWeatherEntity'))}
+                <select id="cfg-weather">
+                  ${weatherOptionsHtml}
+                </select>
+              </label>`
+            : ''
+        }
+
         <div class="checks-grid">
           <label class="check-label">
             <input type="checkbox" id="cfg-compact" ${this._config.compact ? 'checked' : ''} />
@@ -3070,6 +3547,10 @@ class ModernShutterCardEditor extends HTMLElement {
           <label class="check-label">
             <input type="checkbox" id="cfg-window-grid" ${this._config.show_window_grid !== false ? 'checked' : ''} />
             ${escapeHtml(tr('edShowWindowGrid'))}
+          </label>
+          <label class="check-label">
+            <input type="checkbox" id="cfg-animate-bg" ${this._config.animate_background !== false ? 'checked' : ''} />
+            ${escapeHtml(tr('edAnimateBg'))}
           </label>
           <label class="check-label">
             <input type="checkbox" id="cfg-invert" ${this._config.invert_position ? 'checked' : ''} />
@@ -3111,7 +3592,8 @@ class ModernShutterCardEditor extends HTMLElement {
     bindSimple('cfg-lang', 'language', false, true);
     bindSimple('cfg-type', 'cover_type');
     bindSimple('cfg-color', 'slats_color');
-    bindSimple('cfg-bg', 'window_background');
+    bindSimple('cfg-bg', 'window_background', false, true);
+    bindSimple('cfg-weather', 'weather_entity');
     bindSimple('cfg-btn-pos', 'buttons_position');
     bindSimple('cfg-compact', 'compact', true);
     bindSimple('cfg-group-controls', 'show_group_controls', true);
@@ -3119,6 +3601,7 @@ class ModernShutterCardEditor extends HTMLElement {
     bindSimple('cfg-buttons', 'show_buttons', true);
     bindSimple('cfg-pct', 'show_percentage', true);
     bindSimple('cfg-window-grid', 'show_window_grid', true);
+    bindSimple('cfg-animate-bg', 'animate_background', true);
     bindSimple('cfg-invert', 'invert_position', true);
     bindSimple('cfg-haptic', 'haptic', true);
 
@@ -3235,6 +3718,7 @@ class ModernShutterCardEditor extends HTMLElement {
         }
         this._config = { ...this._config, entities: updated };
         this._emitConfig();
+        if (field === 'window_background') this._render();
       });
     });
 
@@ -3276,7 +3760,7 @@ window.customCards.push({
   type: 'modern-shutter-card',
   name: 'Modern Shutter Card',
   description:
-    'A modern multi-language visual shutter, blinds & sliding curtain card with group controls, presets, touch-lock, tilt, window sensor protection, scenic backgrounds, RTL, and Sections View support.',
+    'A modern multi-language visual shutter, blinds & sliding curtain card with live animated weather scenes, group controls, presets, touch-lock, tilt, window sensor protection, RTL, and Sections View support.',
   preview: true,
   documentationURL: 'https://github.com/sharonoren1/modern-shutter-card',
 });
