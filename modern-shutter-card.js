@@ -5,7 +5,7 @@
  * License: MIT
  */
 
-const CARD_VERSION = '1.9.1';
+const CARD_VERSION = '1.9.2';
 const SUPPORT_SET_TILT_POSITION = 128;
 
 const DEFAULT_PRESETS = [
@@ -1156,13 +1156,19 @@ function triggerHaptic(node, enabled, type = 'selection') {
 
 function getSlatColors(colorKey) {
   if (!colorKey) return SLAT_THEMES.gray;
-  const key = String(colorKey).toLowerCase().trim();
+  const raw = String(colorKey).trim();
+  const key = raw.toLowerCase();
   if (SLAT_THEMES[key]) return SLAT_THEMES[key];
+  const isValidCssColor =
+    typeof CSS !== 'undefined' &&
+    typeof CSS.supports === 'function' &&
+    CSS.supports('color', raw);
+  if (!isValidCssColor) return SLAT_THEMES.gray;
   return {
-    base: colorKey,
-    light: `color-mix(in srgb, ${colorKey} 78%, white)`,
-    dark: `color-mix(in srgb, ${colorKey} 72%, black)`,
-    bar: `color-mix(in srgb, ${colorKey} 60%, black)`,
+    base: raw,
+    light: `color-mix(in srgb, ${raw} 78%, white)`,
+    dark: `color-mix(in srgb, ${raw} 72%, black)`,
+    bar: `color-mix(in srgb, ${raw} 60%, black)`,
   };
 }
 
@@ -1615,7 +1621,6 @@ class ModernShutterCard extends HTMLElement {
 
     const tilesHtml = this._config.entities
       .map((item, idx) => {
-        const colors = getSlatColors(item.slats_color || item.color || this._config.slats_color);
         const initialType = this._getResolvedCoverType(idx);
         const isHoriz = HORIZONTAL_TYPES.has(initialType);
 
@@ -1661,13 +1666,6 @@ class ModernShutterCard extends HTMLElement {
             class="shutter-tile"
             data-index="${idx}"
             data-cover-type="${escapeHtml(initialType)}"
-            style="
-              --slat-base: ${colors.base};
-              --slat-light: ${colors.light};
-              --slat-dark: ${colors.dark};
-              --slat-bar: ${colors.bar};
-              --tilt-opacity: 0.92;
-            "
           >
             <div class="tile-header">
               <button type="button" class="entity-title" data-more-info="${escapeHtml(item.entity)}">
@@ -2224,7 +2222,15 @@ class ModernShutterCard extends HTMLElement {
 
     this._config.entities.forEach((item, idx) => {
       const tile = this.shadowRoot.querySelector(`.shutter-tile[data-index="${idx}"]`);
-      if (tile) this._applyWindowBackground(tile, item);
+      if (tile) {
+        const colors = getSlatColors(item.slats_color || item.color || this._config.slats_color);
+        tile.style.setProperty('--slat-base', colors.base);
+        tile.style.setProperty('--slat-light', colors.light);
+        tile.style.setProperty('--slat-dark', colors.dark);
+        tile.style.setProperty('--slat-bar', colors.bar);
+        tile.style.setProperty('--tilt-opacity', '0.92');
+        this._applyWindowBackground(tile, item);
+      }
     });
 
     this._bindEvents();
