@@ -5,7 +5,7 @@
  * License: MIT
  */
 
-const CARD_VERSION = '1.9.0';
+const CARD_VERSION = '1.9.1';
 const SUPPORT_SET_TILT_POSITION = 128;
 
 const DEFAULT_PRESETS = [
@@ -892,14 +892,19 @@ const STATIC_SCENES = {
 /**
  * Composes a seamless animated SVG combining:
  * 1) Time-of-day sky & sun/moon (day | sunrise | sunset | night)
- * 2) Live weather overlay (clear | partlycloudy | cloudy | rainy | lightning | snowy | fog | windy)
+ * 2) Live weather overlay (clear | partlycloudy | cloudy | rainy | pouring | lightning | snowy | heavy_snow | fog | windy)
  */
 function buildDynamicSceneSvg(phase, weather) {
   const gradId = `msc-sky-${phase}-${weather}`;
   const glowId = `msc-glow-${phase}-${weather}`;
-  const heavyWeather = weather === 'rainy' || weather === 'lightning' || weather === 'snowy' || weather === 'fog';
+  const blurId = `msc-blur-${phase}-${weather}`;
 
-  // Layer 1: Sky gradient stops per phase
+  const hideCelestial = weather === 'pouring' || weather === 'lightning' || weather === 'heavy_snow';
+  const isHazy = weather === 'cloudy' || weather === 'rainy' || weather === 'snowy' || weather === 'fog';
+  const blurStd = weather === 'fog' ? 3.2 : isHazy ? 1.6 : 0;
+  const celestialOpacity = weather === 'fog' ? 0.45 : isHazy ? 0.58 : 1;
+  const filterAttr = blurStd > 0 ? `filter="url(#${blurId})"` : '';
+
   const skyStops = {
     day: `<stop offset="0%" stop-color="#38bdf8"/><stop offset="65%" stop-color="#bae6fd"/><stop offset="100%" stop-color="#fef9c3"/>`,
     sunrise: `<stop offset="0%" stop-color="#3b82f6"/><stop offset="38%" stop-color="#f472b6"/><stop offset="72%" stop-color="#fb923c"/><stop offset="100%" stop-color="#fef08a"/>`,
@@ -907,65 +912,75 @@ function buildDynamicSceneSvg(phase, weather) {
     night: `<stop offset="0%" stop-color="#0f172a"/><stop offset="65%" stop-color="#1e293b"/><stop offset="100%" stop-color="#334155"/>`,
   };
 
-  // Celestial body (sun / sunrise / sunset / moon+stars)
   let celestialSvg = '';
   if (phase === 'night') {
-    const starOpacity = heavyWeather ? 0.25 : 1;
+    const starOpacity = hideCelestial ? 0 : isHazy ? 0.3 : 1;
     celestialSvg = `
-      <g fill="#fef9c3" opacity="${starOpacity}">
-        <circle class="msc-star-twinkle" cx="28" cy="26" r="1.4" style="--d:3.2s;--del:-0.4s"/>
-        <circle class="msc-star-twinkle" cx="62" cy="18" r="1.1" style="--d:4.1s;--del:-1.8s"/>
-        <circle class="msc-star-twinkle" cx="94" cy="34" r="1.5" style="--d:2.9s;--del:-0.9s"/>
-        <circle class="msc-star-twinkle" cx="118" cy="20" r="1" style="--d:3.8s;--del:-2.2s"/>
-        <circle class="msc-star-twinkle" cx="42" cy="58" r="1.2" style="--d:4.5s;--del:-1.1s"/>
-        <circle class="msc-star-twinkle" cx="80" cy="68" r="1.1" style="--d:3.4s;--del:-2.7s"/>
-        <circle class="msc-star-twinkle" cx="172" cy="62" r="1.3" style="--d:3.9s;--del:-0.6s"/>
-        <circle class="msc-star-twinkle" cx="22" cy="92" r="1" style="--d:4.3s;--del:-1.5s"/>
-        <circle class="msc-star-twinkle" cx="128" cy="84" r="1.2" style="--d:3.6s;--del:-2.0s"/>
-      </g>
       ${
-        heavyWeather
+        starOpacity > 0
+          ? `<g fill="#fef9c3" opacity="${starOpacity}">
+              <circle class="msc-star-twinkle" cx="28" cy="26" r="1.4" style="--d:3.2s;--del:-0.4s"/>
+              <circle class="msc-star-twinkle" cx="62" cy="18" r="1.1" style="--d:4.1s;--del:-1.8s"/>
+              <circle class="msc-star-twinkle" cx="94" cy="34" r="1.5" style="--d:2.9s;--del:-0.9s"/>
+              <circle class="msc-star-twinkle" cx="118" cy="20" r="1" style="--d:3.8s;--del:-2.2s"/>
+              <circle class="msc-star-twinkle" cx="42" cy="58" r="1.2" style="--d:4.5s;--del:-1.1s"/>
+              <circle class="msc-star-twinkle" cx="80" cy="68" r="1.1" style="--d:3.4s;--del:-2.7s"/>
+              <circle class="msc-star-twinkle" cx="172" cy="62" r="1.3" style="--d:3.9s;--del:-0.6s"/>
+              <circle class="msc-star-twinkle" cx="22" cy="92" r="1" style="--d:4.3s;--del:-1.5s"/>
+              <circle class="msc-star-twinkle" cx="128" cy="84" r="1.2" style="--d:3.6s;--del:-2.0s"/>
+            </g>`
+          : ''
+      }
+      ${
+        hideCelestial
           ? ''
-          : `<circle cx="152" cy="38" r="15" fill="#fef08a"/>
-             <circle cx="158" cy="34" r="13" fill="#0f172a"/>`
+          : `<g opacity="${celestialOpacity}" ${filterAttr}>
+              <path d="M157 29 A14 14 0 1 0 163.5 50 A11.5 11.5 0 0 1 157 29 Z" fill="#fef08a"/>
+            </g>`
       }
       <path d="M0 144 Q60 130 125 140 T200 135 L200 165 L0 165 Z" fill="#0f172a" opacity="0.65"/>
     `;
   } else if (phase === 'sunrise') {
     celestialSvg = `
-      <g class="msc-sun-rise" opacity="${heavyWeather ? 0.45 : 1}">
-        <circle class="msc-sun-pulse" cx="68" cy="116" r="42" fill="url(#${glowId})"/>
-        <circle cx="68" cy="116" r="20" fill="#fef08a" opacity="0.95"/>
-      </g>
+      ${
+        hideCelestial
+          ? ''
+          : `<g class="msc-sun-rise" opacity="${celestialOpacity}" ${filterAttr}>
+              <circle class="msc-sun-pulse" cx="68" cy="116" r="42" fill="url(#${glowId})"/>
+              <circle cx="68" cy="116" r="20" fill="#fef08a" opacity="0.95"/>
+            </g>`
+      }
       <path d="M0 124 Q55 114 115 124 T200 118 L200 165 L0 165 Z" fill="#431407" opacity="0.32"/>
     `;
   } else if (phase === 'sunset') {
     celestialSvg = `
-      <g class="msc-sun-set" opacity="${heavyWeather ? 0.45 : 1}">
-        <circle class="msc-sun-pulse" cx="100" cy="112" r="42" fill="url(#${glowId})"/>
-        <circle cx="100" cy="112" r="22" fill="#fef08a" opacity="0.94"/>
-      </g>
+      ${
+        hideCelestial
+          ? ''
+          : `<g class="msc-sun-set" opacity="${celestialOpacity}" ${filterAttr}>
+              <circle class="msc-sun-pulse" cx="100" cy="112" r="42" fill="url(#${glowId})"/>
+              <circle cx="100" cy="112" r="22" fill="#fef08a" opacity="0.94"/>
+            </g>`
+      }
       <rect y="116" width="200" height="49" fill="#3b0764" opacity="0.45"/>
-      <ellipse cx="100" cy="121" rx="34" ry="3.2" fill="#fde047" opacity="${heavyWeather ? 0.2 : 0.55}"/>
-      <ellipse cx="100" cy="131" rx="22" ry="2.2" fill="#fb923c" opacity="${heavyWeather ? 0.15 : 0.42}"/>
+      <ellipse cx="100" cy="121" rx="34" ry="3.2" fill="#fde047" opacity="${hideCelestial ? 0 : isHazy ? 0.25 : 0.55}"/>
+      <ellipse cx="100" cy="131" rx="22" ry="2.2" fill="#fb923c" opacity="${hideCelestial ? 0 : isHazy ? 0.18 : 0.42}"/>
     `;
   } else {
-    celestialSvg = heavyWeather
+    celestialSvg = hideCelestial
       ? ''
-      : `
-        <circle class="msc-sun-pulse" cx="152" cy="40" r="38" fill="url(#${glowId})"/>
-        <circle cx="152" cy="40" r="17" fill="#fef08a"/>
-      `;
+      : `<g opacity="${celestialOpacity}" ${filterAttr}>
+          <circle class="msc-sun-pulse" cx="152" cy="40" r="38" fill="url(#${glowId})"/>
+          <circle cx="152" cy="40" r="17" fill="#fef08a"/>
+        </g>`;
   }
 
-  // Cloud colors adapt to time of day
   const cloudPrimary =
     phase === 'night' ? '#475569' : phase === 'sunset' ? '#fbcfe8' : phase === 'sunrise' ? '#ffedd5' : '#ffffff';
   const cloudSecondary =
     phase === 'night' ? '#334155' : phase === 'sunset' ? '#f9a8d4' : phase === 'sunrise' ? '#fed7aa' : '#f1f5f9';
   const stormCloud = phase === 'night' ? '#0f172a' : '#1e293b';
 
-  // Layer 2: Weather overlay
   let weatherSvg = '';
   if (weather === 'clear' && phase !== 'night') {
     weatherSvg = `
@@ -984,28 +999,37 @@ function buildDynamicSceneSvg(phase, weather) {
     `;
   } else if (weather === 'cloudy') {
     weatherSvg = `
-      <rect width="200" height="165" fill="${phase === 'night' ? '#0f172a' : '#64748b'}" opacity="0.32"/>
-      <g class="msc-cloud-drift" fill="${cloudSecondary}" opacity="0.76" style="--d:30s;--del:-4s">
+      <rect width="200" height="165" fill="${phase === 'night' ? '#0f172a' : '#64748b'}" opacity="0.22"/>
+      <g class="msc-cloud-drift" fill="${cloudSecondary}" opacity="0.72" style="--d:30s;--del:-4s">
         <ellipse cx="44" cy="40" rx="32" ry="14"/><ellipse cx="68" cy="35" rx="24" ry="16"/><ellipse cx="22" cy="43" rx="20" ry="11"/>
       </g>
-      <g class="msc-cloud-drift" fill="${cloudPrimary}" opacity="0.86" style="--d:22s;--del:-12s">
+      <g class="msc-cloud-drift" fill="${cloudPrimary}" opacity="0.82" style="--d:22s;--del:-12s">
         <ellipse cx="48" cy="80" rx="34" ry="15"/><ellipse cx="72" cy="74" rx="24" ry="17"/><ellipse cx="24" cy="83" rx="22" ry="11"/>
       </g>
-      <g class="msc-cloud-drift" fill="${cloudSecondary}" opacity="0.78" style="--d:38s;--del:-26s">
+      <g class="msc-cloud-drift" fill="${cloudSecondary}" opacity="0.74" style="--d:38s;--del:-26s">
         <ellipse cx="42" cy="120" rx="30" ry="13"/><ellipse cx="64" cy="115" rx="22" ry="14"/>
       </g>
     `;
   } else if (weather === 'rainy') {
     weatherSvg = `
-      <rect width="200" height="165" fill="#1e293b" opacity="${phase === 'night' ? 0.35 : 0.48}"/>
+      <rect width="200" height="165" fill="#1e293b" opacity="${phase === 'night' ? 0.25 : 0.34}"/>
       ${RAIN_DROPS_SVG}
-      <g class="msc-cloud-sway" fill="${stormCloud}" opacity="0.9" style="--d:16s;--del:-3s">
-        <ellipse cx="44" cy="22" rx="38" ry="16"/><ellipse cx="96" cy="18" rx="44" ry="18"/><ellipse cx="156" cy="22" rx="40" ry="16"/>
+      <g class="msc-cloud-sway" fill="${stormCloud}" opacity="0.82" style="--d:16s;--del:-3s">
+        <ellipse cx="44" cy="20" rx="36" ry="14"/><ellipse cx="96" cy="16" rx="42" ry="16"/><ellipse cx="156" cy="20" rx="38" ry="14"/>
+      </g>
+    `;
+  } else if (weather === 'pouring') {
+    weatherSvg = `
+      <rect width="200" height="165" fill="#0f172a" opacity="${phase === 'night' ? 0.45 : 0.62}"/>
+      ${RAIN_DROPS_SVG}
+      <g transform="translate(10, -8)">${RAIN_DROPS_SVG}</g>
+      <g class="msc-cloud-sway" fill="#0f172a" opacity="0.94" style="--d:14s;--del:-2s">
+        <ellipse cx="44" cy="22" rx="42" ry="17"/><ellipse cx="100" cy="18" rx="48" ry="19"/><ellipse cx="158" cy="22" rx="44" ry="17"/>
       </g>
     `;
   } else if (weather === 'lightning') {
     weatherSvg = `
-      <rect width="200" height="165" fill="#0f172a" opacity="${phase === 'night' ? 0.4 : 0.62}"/>
+      <rect width="200" height="165" fill="#0f172a" opacity="${phase === 'night' ? 0.45 : 0.65}"/>
       <rect class="msc-lightning-flash" width="200" height="165" fill="#e0f2fe"/>
       <path class="msc-lightning-bolt" d="M112 28 L94 74 L108 74 L92 126 L124 68 L108 68 L122 28 Z" fill="#fef08a"/>
       ${RAIN_DROPS_SVG}
@@ -1015,21 +1039,31 @@ function buildDynamicSceneSvg(phase, weather) {
     `;
   } else if (weather === 'snowy') {
     weatherSvg = `
-      <rect width="200" height="165" fill="${phase === 'night' ? '#0f172a' : '#64748b'}" opacity="0.35"/>
+      <rect width="200" height="165" fill="${phase === 'night' ? '#0f172a' : '#64748b'}" opacity="0.22"/>
       ${SNOW_FLAKES_SVG}
-      <g class="msc-cloud-sway" fill="${phase === 'night' ? '#475569' : '#cbd5e1'}" opacity="0.86" style="--d:20s;--del:-5s">
-        <ellipse cx="52" cy="18" rx="40" ry="14"/><ellipse cx="122" cy="16" rx="48" ry="16"/><ellipse cx="176" cy="20" rx="34" ry="14"/>
+      <g class="msc-cloud-sway" fill="${phase === 'night' ? '#475569' : '#cbd5e1'}" opacity="0.78" style="--d:20s;--del:-5s">
+        <ellipse cx="52" cy="16" rx="38" ry="13"/><ellipse cx="122" cy="15" rx="46" ry="15"/><ellipse cx="176" cy="18" rx="32" ry="13"/>
       </g>
       <path d="M0 148 Q55 138 110 148 T200 144 L200 165 L0 165 Z" fill="#f8fafc" opacity="${phase === 'night' ? 0.72 : 0.92}"/>
+    `;
+  } else if (weather === 'heavy_snow') {
+    weatherSvg = `
+      <rect width="200" height="165" fill="${phase === 'night' ? '#0f172a' : '#475569'}" opacity="0.52"/>
+      ${SNOW_FLAKES_SVG}
+      <g transform="translate(12, -10)">${SNOW_FLAKES_SVG}</g>
+      <g class="msc-cloud-sway" fill="${phase === 'night' ? '#334155' : '#94a3b8'}" opacity="0.92" style="--d:18s;--del:-4s">
+        <ellipse cx="52" cy="20" rx="42" ry="16"/><ellipse cx="122" cy="18" rx="50" ry="18"/><ellipse cx="176" cy="22" rx="36" ry="16"/>
+      </g>
+      <path d="M0 146 Q55 135 110 146 T200 142 L200 165 L0 165 Z" fill="#f8fafc" opacity="${phase === 'night' ? 0.75 : 0.95}"/>
     `;
   } else if (weather === 'fog') {
     const fogTint = phase === 'night' ? '#cbd5e1' : '#ffffff';
     weatherSvg = `
-      <rect width="200" height="165" fill="#94a3b8" opacity="0.38"/>
-      <rect class="msc-fog-band" x="-20" y="34" width="240" height="18" rx="9" fill="${fogTint}" opacity="0.48" style="--d:12s;--del:0s"/>
-      <rect class="msc-fog-band" x="-20" y="68" width="240" height="22" rx="11" fill="${fogTint}" opacity="0.58" style="--d:15s;--del:-5s"/>
-      <rect class="msc-fog-band" x="-20" y="106" width="240" height="20" rx="10" fill="${fogTint}" opacity="0.54" style="--d:13s;--del:-8s"/>
-      <rect class="msc-fog-band" x="-20" y="138" width="240" height="18" rx="9" fill="${fogTint}" opacity="0.44" style="--d:17s;--del:-3s"/>
+      <rect width="200" height="165" fill="#94a3b8" opacity="0.3"/>
+      <rect class="msc-fog-band" x="-20" y="34" width="240" height="18" rx="9" fill="${fogTint}" opacity="0.46" style="--d:12s;--del:0s"/>
+      <rect class="msc-fog-band" x="-20" y="68" width="240" height="22" rx="11" fill="${fogTint}" opacity="0.56" style="--d:15s;--del:-5s"/>
+      <rect class="msc-fog-band" x="-20" y="106" width="240" height="20" rx="10" fill="${fogTint}" opacity="0.52" style="--d:13s;--del:-8s"/>
+      <rect class="msc-fog-band" x="-20" y="138" width="240" height="18" rx="9" fill="${fogTint}" opacity="0.42" style="--d:17s;--del:-3s"/>
     `;
   } else if (weather === 'windy') {
     weatherSvg = `
@@ -1055,6 +1089,13 @@ function buildDynamicSceneSvg(phase, weather) {
         <stop offset="45%" stop-color="#fde047" stop-opacity="0.48"/>
         <stop offset="100%" stop-color="#fde047" stop-opacity="0"/>
       </radialGradient>
+      ${
+        blurStd > 0
+          ? `<filter id="${blurId}" x="-50%" y="-50%" width="200%" height="200%">
+              <feGaussianBlur stdDeviation="${blurStd}" />
+            </filter>`
+          : ''
+      }
     </defs>
     <rect width="200" height="165" fill="url(#${gradId})"/>
     ${celestialSvg}
@@ -1160,15 +1201,17 @@ function resolveWeatherCondition(weatherEntityId, hass) {
     case 'cloudy':
       return 'cloudy';
     case 'rainy':
-    case 'pouring':
       return 'rainy';
+    case 'pouring':
+      return 'pouring';
     case 'lightning':
     case 'lightning-rainy':
       return 'lightning';
     case 'snowy':
+      return 'snowy';
     case 'snowy-rainy':
     case 'hail':
-      return 'snowy';
+      return 'heavy_snow';
     case 'fog':
       return 'fog';
     case 'windy':
