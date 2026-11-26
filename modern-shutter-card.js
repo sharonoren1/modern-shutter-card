@@ -5,7 +5,7 @@
  * License: MIT
  */
 
-const CARD_VERSION = '1.8.0';
+const CARD_VERSION = '1.9.0';
 const SUPPORT_SET_TILT_POSITION = 128;
 
 const DEFAULT_PRESETS = [
@@ -19,7 +19,7 @@ const RTL_LANGS = new Set(['he', 'ar', 'fa', 'ur']);
 
 const COVER_TYPES = ['auto', 'shutter', 'curtain', 'curtain_left', 'curtain_right', 'roller', 'venetian'];
 const HORIZONTAL_TYPES = new Set(['curtain', 'curtain_left', 'curtain_right']);
-const BG_PRESETS = new Set(['auto', 'weather', 'sky', 'sunny', 'sea', 'sunset', 'mountains', 'night']);
+const BG_PRESETS = new Set(['weather', 'auto', 'sky', 'sunny', 'sea', 'sunset', 'mountains', 'night']);
 
 const TRANSLATIONS = {
   en: {
@@ -63,8 +63,8 @@ const TRANSLATIONS = {
     edColorSage: 'Sage Green',
     edColorBurgundy: 'Burgundy',
     edWindowBg: 'Window Background',
-    edBgAuto: 'Auto (Day / Night)',
-    edBgWeather: 'Live Weather',
+    edBgWeather: 'Live Weather (Day / Night)',
+    edBgAuto: 'Auto (Day / Sunrise / Sunset / Night)',
     edBgSky: 'Sky',
     edBgSunny: 'Sunny Day',
     edBgSea: 'Sea View',
@@ -143,8 +143,8 @@ const TRANSLATIONS = {
     edColorSage: 'ירוק מרווה',
     edColorBurgundy: 'בורדו',
     edWindowBg: 'רקע חלון',
-    edBgAuto: 'אוטומטי (יום / לילה)',
-    edBgWeather: 'מזג אוויר חי',
+    edBgWeather: 'מזג אוויר חי (יום / זריחה / שקיעה / לילה)',
+    edBgAuto: 'אוטומטי (יום / זריחה / שקיעה / לילה)',
     edBgSky: 'שמיים',
     edBgSunny: 'יום שמשי',
     edBgSea: 'נוף לים',
@@ -223,8 +223,8 @@ const TRANSLATIONS = {
     edColorSage: 'أخضر مريمية',
     edColorBurgundy: 'عنابي',
     edWindowBg: 'خلفية النافذة',
-    edBgAuto: 'تلقائي (نهار / ليل)',
-    edBgWeather: 'الطقس المباشر',
+    edBgWeather: 'الطقس المباشر (نهار / ليل)',
+    edBgAuto: 'تلقائي (نهار / شروق / غروب / ليل)',
     edBgSky: 'سماء',
     edBgSunny: 'يوم مشمس',
     edBgSea: 'إطلالة بحرية',
@@ -303,8 +303,8 @@ const TRANSLATIONS = {
     edColorSage: 'Шалфейный',
     edColorBurgundy: 'Бордовый',
     edWindowBg: 'Фон окна',
-    edBgAuto: 'Авто (День / Ночь)',
     edBgWeather: 'Погода в реальном времени',
+    edBgAuto: 'Авто (День / Рассвет / Закат / Ночь)',
     edBgSky: 'Небо',
     edBgSunny: 'Солнечный день',
     edBgSea: 'Вид на море',
@@ -383,8 +383,8 @@ const TRANSLATIONS = {
     edColorSage: 'Vert sauge',
     edColorBurgundy: 'Bordeaux',
     edWindowBg: 'Arrière-plan de fenêtre',
-    edBgAuto: 'Auto (Jour / Nuit)',
-    edBgWeather: 'Météo en direct',
+    edBgWeather: 'Météo en direct (Jour / Nuit)',
+    edBgAuto: 'Auto (Jour / Aube / Crépuscule / Nuit)',
     edBgSky: 'Ciel',
     edBgSunny: 'Journée ensoleillée',
     edBgSea: 'Vue sur la mer',
@@ -463,8 +463,8 @@ const TRANSLATIONS = {
     edColorSage: 'Salbeigrün',
     edColorBurgundy: 'Burgunderrot',
     edWindowBg: 'Fensterhintergrund',
-    edBgAuto: 'Auto (Tag / Nacht)',
-    edBgWeather: 'Live-Wetter',
+    edBgWeather: 'Live-Wetter (Tag / Nacht)',
+    edBgAuto: 'Auto (Tag / Sonnenauf- & Untergang / Nacht)',
     edBgSky: 'Himmel',
     edBgSunny: 'Sonniger Tag',
     edBgSea: 'Meerblick',
@@ -543,8 +543,8 @@ const TRANSLATIONS = {
     edColorSage: 'Verde salvia',
     edColorBurgundy: 'Burdeos',
     edWindowBg: 'Fondo de ventana',
-    edBgAuto: 'Auto (Día / Noche)',
-    edBgWeather: 'Clima en vivo',
+    edBgWeather: 'Clima en vivo (Día / Noche)',
+    edBgAuto: 'Auto (Día / Amanecer / Atardecer / Noche)',
     edBgSky: 'Cielo',
     edBgSunny: 'Día soleado',
     edBgSea: 'Vista al mar',
@@ -623,8 +623,8 @@ const TRANSLATIONS = {
     edColorSage: 'Verde salvia',
     edColorBurgundy: 'Bordeaux',
     edWindowBg: 'Sfondo finestra',
-    edBgAuto: 'Auto (Giorno / Notte)',
-    edBgWeather: 'Meteo dal vivo',
+    edBgWeather: 'Meteo dal vivo (Giorno / Notte)',
+    edBgAuto: 'Auto (Giorno / Alba / Tramonto / Notte)',
     edBgSky: 'Cielo',
     edBgSunny: 'Giornata di sole',
     edBgSea: 'Vista mare',
@@ -703,8 +703,8 @@ const TRANSLATIONS = {
     edColorSage: 'Saliegroen',
     edColorBurgundy: 'Bordeaux',
     edWindowBg: 'Raamachtergrond',
-    edBgAuto: 'Auto (Dag / Nacht)',
-    edBgWeather: 'Live weer',
+    edBgWeather: 'Live weer (Dag / Nacht)',
+    edBgAuto: 'Auto (Dag / Zonsopgang / Ondergang / Nacht)',
     edBgSky: 'Lucht',
     edBgSunny: 'Zonnige dag',
     edBgSea: 'Zeezicht',
@@ -758,54 +758,14 @@ const LANGUAGE_OPTIONS = [
 ];
 
 const SLAT_THEMES = {
-  gray: {
-    base: '#9aa4b2',
-    light: '#c7cfd9',
-    dark: '#6c7685',
-    bar: '#5c6675',
-  },
-  white: {
-    base: '#eef1f5',
-    light: '#ffffff',
-    dark: '#cfd6df',
-    bar: '#bfc7d1',
-  },
-  wood: {
-    base: '#a6754b',
-    light: '#c8986d',
-    dark: '#754d2d',
-    bar: '#5e3c22',
-  },
-  black: {
-    base: '#2e333b',
-    light: '#444b57',
-    dark: '#191c21',
-    bar: '#111317',
-  },
-  beige: {
-    base: '#d8cbb8',
-    light: '#efe6d8',
-    dark: '#b4a38c',
-    bar: '#8c7b65',
-  },
-  navy: {
-    base: '#2d466b',
-    light: '#466591',
-    dark: '#1c2e4a',
-    bar: '#132036',
-  },
-  sage: {
-    base: '#7f9982',
-    light: '#a4bca6',
-    dark: '#5b735e',
-    bar: '#455947',
-  },
-  burgundy: {
-    base: '#7a2e3a',
-    light: '#a14856',
-    dark: '#541c25',
-    bar: '#3d1219',
-  },
+  gray: { base: '#9aa4b2', light: '#c7cfd9', dark: '#6c7685', bar: '#5c6675' },
+  white: { base: '#eef1f5', light: '#ffffff', dark: '#cfd6df', bar: '#bfc7d1' },
+  wood: { base: '#a6754b', light: '#c8986d', dark: '#754d2d', bar: '#5e3c22' },
+  black: { base: '#2e333b', light: '#444b57', dark: '#191c21', bar: '#111317' },
+  beige: { base: '#d8cbb8', light: '#efe6d8', dark: '#b4a38c', bar: '#8c7b65' },
+  navy: { base: '#2d466b', light: '#466591', dark: '#1c2e4a', bar: '#132036' },
+  sage: { base: '#7f9982', light: '#a4bca6', dark: '#5b735e', bar: '#455947' },
+  burgundy: { base: '#7a2e3a', light: '#a14856', dark: '#541c25', bar: '#3d1219' },
 };
 
 const COLOR_OPTIONS = [
@@ -830,8 +790,8 @@ const TYPE_OPTIONS = [
 ];
 
 const BG_OPTIONS = [
-  { key: 'auto', labelKey: 'edBgAuto' },
   { key: 'weather', labelKey: 'edBgWeather' },
+  { key: 'auto', labelKey: 'edBgAuto' },
   { key: 'sky', labelKey: 'edBgSky' },
   { key: 'sunny', labelKey: 'edBgSunny' },
   { key: 'sea', labelKey: 'edBgSea' },
@@ -852,7 +812,7 @@ const ICONS = {
 };
 
 const RAIN_DROPS_SVG = `
-  <g stroke="#bae6fd" stroke-width="1.5" stroke-linecap="round" opacity="0.78">
+  <g stroke="#bae6fd" stroke-width="1.5" stroke-linecap="round" opacity="0.8">
     <line class="msc-rain-drop" x1="18" y1="0" x2="14" y2="14" style="--d:0.85s;--del:-0.1s"/>
     <line class="msc-rain-drop" x1="42" y1="0" x2="38" y2="15" style="--d:0.95s;--del:-0.55s"/>
     <line class="msc-rain-drop" x1="68" y1="0" x2="64" y2="13" style="--d:0.8s;--del:-0.32s"/>
@@ -887,54 +847,21 @@ const SNOW_FLAKES_SVG = `
   </g>
 `;
 
-const WINDOW_SCENES = {
-  sunny: `<svg viewBox="0 0 200 165" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-    <defs>
-      <linearGradient id="msc-sun-sky" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0%" stop-color="#38bdf8"/>
-        <stop offset="65%" stop-color="#bae6fd"/>
-        <stop offset="100%" stop-color="#fef9c3"/>
-      </linearGradient>
-      <radialGradient id="msc-sun-glow" cx="50%" cy="50%" r="50%">
-        <stop offset="0%" stop-color="#fef08a" stop-opacity="0.95"/>
-        <stop offset="45%" stop-color="#fde047" stop-opacity="0.5"/>
-        <stop offset="100%" stop-color="#fde047" stop-opacity="0"/>
-      </radialGradient>
-    </defs>
-    <rect width="200" height="165" fill="url(#msc-sun-sky)"/>
-    <circle class="msc-sun-pulse" cx="152" cy="40" r="38" fill="url(#msc-sun-glow)"/>
-    <circle cx="152" cy="40" r="17" fill="#fef08a"/>
-    <g class="msc-cloud-sway" fill="#ffffff" opacity="0.86" style="--d:16s;--del:-2s">
-      <ellipse cx="52" cy="54" rx="22" ry="9"/>
-      <ellipse cx="66" cy="50" rx="16" ry="11"/>
-      <ellipse cx="38" cy="56" rx="14" ry="7"/>
-    </g>
-    <g class="msc-cloud-sway" fill="#ffffff" opacity="0.72" style="--d:22s;--del:-8s">
-      <ellipse cx="132" cy="92" rx="20" ry="8"/>
-      <ellipse cx="145" cy="89" rx="14" ry="9"/>
-      <ellipse cx="118" cy="94" rx="12" ry="6"/>
-    </g>
-  </svg>`,
-
+const STATIC_SCENES = {
   sea: `<svg viewBox="0 0 200 165" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
     <defs>
       <linearGradient id="msc-sea-sky" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0%" stop-color="#38bdf8"/>
-        <stop offset="58%" stop-color="#bae6fd"/>
-        <stop offset="100%" stop-color="#e0f2fe"/>
+        <stop offset="0%" stop-color="#38bdf8"/><stop offset="58%" stop-color="#bae6fd"/><stop offset="100%" stop-color="#e0f2fe"/>
       </linearGradient>
       <linearGradient id="msc-sea-water" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0%" stop-color="#0284c7"/>
-        <stop offset="55%" stop-color="#0369a1"/>
-        <stop offset="100%" stop-color="#0c4a6e"/>
+        <stop offset="0%" stop-color="#0284c7"/><stop offset="55%" stop-color="#0369a1"/><stop offset="100%" stop-color="#0c4a6e"/>
       </linearGradient>
     </defs>
     <rect width="200" height="102" fill="url(#msc-sea-sky)"/>
     <circle cx="148" cy="36" r="15" fill="#fef08a" opacity="0.95"/>
     <circle class="msc-sun-pulse" cx="148" cy="36" r="26" fill="#fef08a" opacity="0.25"/>
     <g class="msc-cloud-sway" fill="#ffffff" opacity="0.75" style="--d:18s;--del:-4s">
-      <ellipse cx="54" cy="44" rx="20" ry="7"/>
-      <ellipse cx="66" cy="41" rx="13" ry="8"/>
+      <ellipse cx="54" cy="44" rx="20" ry="7"/><ellipse cx="66" cy="41" rx="13" ry="8"/>
     </g>
     <rect y="100" width="200" height="65" fill="url(#msc-sea-water)"/>
     <ellipse cx="148" cy="105" rx="26" ry="3" fill="#fef08a" opacity="0.45"/>
@@ -944,41 +871,15 @@ const WINDOW_SCENES = {
     <path class="msc-wave-sway" d="M-10 151 Q15 146 40 151 T90 151 T140 151 T190 151 T220 151" fill="none" stroke="#e0f2fe" stroke-width="2" opacity="0.3" style="--d:7s;--del:-4s"/>
   </svg>`,
 
-  sunset: `<svg viewBox="0 0 200 165" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-    <defs>
-      <linearGradient id="msc-sunset-sky" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0%" stop-color="#312e81"/>
-        <stop offset="35%" stop-color="#be185d"/>
-        <stop offset="70%" stop-color="#f97316"/>
-        <stop offset="100%" stop-color="#fde047"/>
-      </linearGradient>
-      <linearGradient id="msc-sunset-sea" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0%" stop-color="#7c2d12"/>
-        <stop offset="100%" stop-color="#1e1b4b"/>
-      </linearGradient>
-    </defs>
-    <rect width="200" height="114" fill="url(#msc-sunset-sky)"/>
-    <circle cx="100" cy="108" r="24" fill="#fef08a" opacity="0.92"/>
-    <circle class="msc-sun-pulse" cx="100" cy="108" r="38" fill="#fdba74" opacity="0.28"/>
-    <rect y="112" width="200" height="53" fill="url(#msc-sunset-sea)"/>
-    <ellipse cx="100" cy="117" rx="34" ry="3.5" fill="#fde047" opacity="0.55"/>
-    <ellipse cx="100" cy="127" rx="22" ry="2.5" fill="#fb923c" opacity="0.45"/>
-    <ellipse cx="100" cy="138" rx="13" ry="2" fill="#f97316" opacity="0.35"/>
-  </svg>`,
-
   mountains: `<svg viewBox="0 0 200 165" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
     <defs>
       <linearGradient id="msc-mnt-sky" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0%" stop-color="#60a5fa"/>
-        <stop offset="65%" stop-color="#dbeafe"/>
-        <stop offset="100%" stop-color="#f0fdf4"/>
+        <stop offset="0%" stop-color="#60a5fa"/><stop offset="65%" stop-color="#dbeafe"/><stop offset="100%" stop-color="#f0fdf4"/>
       </linearGradient>
     </defs>
     <rect width="200" height="165" fill="url(#msc-mnt-sky)"/>
     <g class="msc-cloud-sway" fill="#ffffff" opacity="0.78" style="--d:20s;--del:-3s">
-      <ellipse cx="48" cy="38" rx="18" ry="6"/>
-      <ellipse cx="58" cy="35" rx="12" ry="7"/>
-      <ellipse cx="148" cy="46" rx="16" ry="5.5"/>
+      <ellipse cx="48" cy="38" rx="18" ry="6"/><ellipse cx="58" cy="35" rx="12" ry="7"/><ellipse cx="148" cy="46" rx="16" ry="5.5"/>
     </g>
     <path d="M0 124 L42 74 L84 114 L132 62 L182 112 L200 94 L200 165 L0 165 Z" fill="#94a3b8"/>
     <path d="M132 62 L120 76 L130 73 L137 78 L144 75 Z" fill="#f8fafc" opacity="0.9"/>
@@ -986,219 +887,180 @@ const WINDOW_SCENES = {
     <path d="M0 138 L55 96 L108 134 L160 88 L200 124 L200 165 L0 165 Z" fill="#475569"/>
     <path d="M0 150 Q55 128 110 144 T200 136 L200 165 L0 165 Z" fill="#15803d"/>
   </svg>`,
-
-  night: `<svg viewBox="0 0 200 165" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-    <defs>
-      <linearGradient id="msc-night-sky" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0%" stop-color="#0f172a"/>
-        <stop offset="65%" stop-color="#1e293b"/>
-        <stop offset="100%" stop-color="#334155"/>
-      </linearGradient>
-    </defs>
-    <rect width="200" height="165" fill="url(#msc-night-sky)"/>
-    <g fill="#fef9c3">
-      <circle class="msc-star-twinkle" cx="28" cy="26" r="1.4" style="--d:3.2s;--del:-0.4s"/>
-      <circle class="msc-star-twinkle" cx="62" cy="18" r="1.1" style="--d:4.1s;--del:-1.8s"/>
-      <circle class="msc-star-twinkle" cx="94" cy="34" r="1.5" style="--d:2.9s;--del:-0.9s"/>
-      <circle class="msc-star-twinkle" cx="118" cy="20" r="1" style="--d:3.8s;--del:-2.2s"/>
-      <circle class="msc-star-twinkle" cx="42" cy="58" r="1.2" style="--d:4.5s;--del:-1.1s"/>
-      <circle class="msc-star-twinkle" cx="80" cy="68" r="1.1" style="--d:3.4s;--del:-2.7s"/>
-      <circle class="msc-star-twinkle" cx="172" cy="62" r="1.3" style="--d:3.9s;--del:-0.6s"/>
-      <circle class="msc-star-twinkle" cx="22" cy="92" r="1" style="--d:4.3s;--del:-1.5s"/>
-      <circle class="msc-star-twinkle" cx="128" cy="84" r="1.2" style="--d:3.6s;--del:-2.0s"/>
-    </g>
-    <circle cx="152" cy="38" r="15" fill="#fef08a"/>
-    <circle cx="158" cy="34" r="13" fill="#0f172a"/>
-    <path d="M0 142 Q60 126 125 138 T200 132 L200 165 L0 165 Z" fill="#0f172a" opacity="0.75"/>
-  </svg>`,
-
-  partlycloudy: `<svg viewBox="0 0 200 165" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-    <defs>
-      <linearGradient id="msc-pc-sky" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0%" stop-color="#60a5fa"/>
-        <stop offset="65%" stop-color="#bae6fd"/>
-        <stop offset="100%" stop-color="#e0f2fe"/>
-      </linearGradient>
-    </defs>
-    <rect width="200" height="165" fill="url(#msc-pc-sky)"/>
-    <circle class="msc-sun-pulse" cx="152" cy="38" r="28" fill="#fef08a" opacity="0.35"/>
-    <circle cx="152" cy="38" r="16" fill="#fef08a"/>
-    <g class="msc-cloud-drift" fill="#ffffff" opacity="0.9" style="--d:26s;--del:-6s">
-      <ellipse cx="45" cy="58" rx="28" ry="12"/>
-      <ellipse cx="64" cy="52" rx="20" ry="14"/>
-      <ellipse cx="26" cy="60" rx="18" ry="9"/>
-    </g>
-    <g class="msc-cloud-drift" fill="#f1f5f9" opacity="0.82" style="--d:34s;--del:-19s">
-      <ellipse cx="42" cy="102" rx="26" ry="11"/>
-      <ellipse cx="60" cy="97" rx="18" ry="12"/>
-      <ellipse cx="24" cy="104" rx="16" ry="8"/>
-    </g>
-  </svg>`,
-
-  partlycloudy_night: `<svg viewBox="0 0 200 165" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-    <defs>
-      <linearGradient id="msc-pcn-sky" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0%" stop-color="#0f172a"/>
-        <stop offset="65%" stop-color="#1e293b"/>
-        <stop offset="100%" stop-color="#334155"/>
-      </linearGradient>
-    </defs>
-    <rect width="200" height="165" fill="url(#msc-pcn-sky)"/>
-    <g fill="#fef9c3">
-      <circle class="msc-star-twinkle" cx="30" cy="24" r="1.2" style="--d:3.5s;--del:-0.5s"/>
-      <circle class="msc-star-twinkle" cx="84" cy="20" r="1.3" style="--d:4.1s;--del:-1.9s"/>
-      <circle class="msc-star-twinkle" cx="116" cy="34" r="1.1" style="--d:3.2s;--del:-1.1s"/>
-    </g>
-    <circle cx="152" cy="38" r="15" fill="#fef08a"/>
-    <circle cx="158" cy="34" r="13" fill="#0f172a"/>
-    <g class="msc-cloud-drift" fill="#475569" opacity="0.88" style="--d:28s;--del:-8s">
-      <ellipse cx="45" cy="66" rx="28" ry="12"/>
-      <ellipse cx="64" cy="60" rx="20" ry="13"/>
-      <ellipse cx="26" cy="68" rx="18" ry="9"/>
-    </g>
-    <g class="msc-cloud-drift" fill="#334155" opacity="0.82" style="--d:36s;--del:-22s">
-      <ellipse cx="42" cy="108" rx="26" ry="10"/>
-      <ellipse cx="60" cy="103" rx="18" ry="12"/>
-    </g>
-  </svg>`,
-
-  cloudy: `<svg viewBox="0 0 200 165" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-    <defs>
-      <linearGradient id="msc-cld-sky" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0%" stop-color="#64748b"/>
-        <stop offset="60%" stop-color="#94a3b8"/>
-        <stop offset="100%" stop-color="#cbd5e1"/>
-      </linearGradient>
-    </defs>
-    <rect width="200" height="165" fill="url(#msc-cld-sky)"/>
-    <g class="msc-cloud-drift" fill="#e2e8f0" opacity="0.72" style="--d:30s;--del:-4s">
-      <ellipse cx="44" cy="42" rx="32" ry="14"/>
-      <ellipse cx="68" cy="37" rx="24" ry="16"/>
-      <ellipse cx="22" cy="45" rx="20" ry="11"/>
-    </g>
-    <g class="msc-cloud-drift" fill="#f1f5f9" opacity="0.85" style="--d:22s;--del:-12s">
-      <ellipse cx="48" cy="82" rx="34" ry="15"/>
-      <ellipse cx="72" cy="76" rx="24" ry="17"/>
-      <ellipse cx="24" cy="85" rx="22" ry="11"/>
-    </g>
-    <g class="msc-cloud-drift" fill="#cbd5e1" opacity="0.78" style="--d:38s;--del:-26s">
-      <ellipse cx="42" cy="122" rx="30" ry="13"/>
-      <ellipse cx="64" cy="117" rx="22" ry="14"/>
-    </g>
-  </svg>`,
-
-  cloudy_night: `<svg viewBox="0 0 200 165" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-    <defs>
-      <linearGradient id="msc-cldn-sky" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0%" stop-color="#0f172a"/>
-        <stop offset="60%" stop-color="#1e293b"/>
-        <stop offset="100%" stop-color="#334155"/>
-      </linearGradient>
-    </defs>
-    <rect width="200" height="165" fill="url(#msc-cldn-sky)"/>
-    <g class="msc-cloud-drift" fill="#334155" opacity="0.85" style="--d:32s;--del:-5s">
-      <ellipse cx="44" cy="46" rx="32" ry="14"/>
-      <ellipse cx="68" cy="40" rx="24" ry="16"/>
-    </g>
-    <g class="msc-cloud-drift" fill="#475569" opacity="0.78" style="--d:24s;--del:-14s">
-      <ellipse cx="48" cy="88" rx="34" ry="15"/>
-      <ellipse cx="72" cy="82" rx="24" ry="16"/>
-    </g>
-  </svg>`,
-
-  rainy: `<svg viewBox="0 0 200 165" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-    <defs>
-      <linearGradient id="msc-rain-sky" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0%" stop-color="#334155"/>
-        <stop offset="60%" stop-color="#475569"/>
-        <stop offset="100%" stop-color="#64748b"/>
-      </linearGradient>
-    </defs>
-    <rect width="200" height="165" fill="url(#msc-rain-sky)"/>
-    ${RAIN_DROPS_SVG}
-    <g class="msc-cloud-sway" fill="#1e293b" opacity="0.88" style="--d:16s;--del:-3s">
-      <ellipse cx="44" cy="24" rx="38" ry="16"/>
-      <ellipse cx="96" cy="20" rx="44" ry="18"/>
-      <ellipse cx="156" cy="24" rx="40" ry="16"/>
-    </g>
-  </svg>`,
-
-  lightning: `<svg viewBox="0 0 200 165" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-    <defs>
-      <linearGradient id="msc-storm-sky" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0%" stop-color="#0f172a"/>
-        <stop offset="60%" stop-color="#1e293b"/>
-        <stop offset="100%" stop-color="#334155"/>
-      </linearGradient>
-    </defs>
-    <rect width="200" height="165" fill="url(#msc-storm-sky)"/>
-    <rect class="msc-lightning-flash" width="200" height="165" fill="#e0f2fe"/>
-    <path class="msc-lightning-bolt" d="M112 28 L94 74 L108 74 L92 126 L124 68 L108 68 L122 28 Z" fill="#fef08a"/>
-    ${RAIN_DROPS_SVG}
-    <g class="msc-cloud-sway" fill="#0f172a" opacity="0.94" style="--d:14s;--del:-2s">
-      <ellipse cx="44" cy="22" rx="40" ry="16"/>
-      <ellipse cx="100" cy="18" rx="46" ry="18"/>
-      <ellipse cx="158" cy="22" rx="42" ry="16"/>
-    </g>
-  </svg>`,
-
-  snowy: `<svg viewBox="0 0 200 165" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-    <defs>
-      <linearGradient id="msc-snow-sky" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0%" stop-color="#64748b"/>
-        <stop offset="60%" stop-color="#94a3b8"/>
-        <stop offset="100%" stop-color="#e2e8f0"/>
-      </linearGradient>
-    </defs>
-    <rect width="200" height="165" fill="url(#msc-snow-sky)"/>
-    ${SNOW_FLAKES_SVG}
-    <g class="msc-cloud-sway" fill="#cbd5e1" opacity="0.85" style="--d:20s;--del:-5s">
-      <ellipse cx="52" cy="20" rx="40" ry="14"/>
-      <ellipse cx="122" cy="18" rx="48" ry="16"/>
-      <ellipse cx="176" cy="22" rx="34" ry="14"/>
-    </g>
-    <path d="M0 148 Q55 138 110 148 T200 144 L200 165 L0 165 Z" fill="#f8fafc" opacity="0.92"/>
-  </svg>`,
-
-  fog: `<svg viewBox="0 0 200 165" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-    <defs>
-      <linearGradient id="msc-fog-sky" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0%" stop-color="#94a3b8"/>
-        <stop offset="55%" stop-color="#cbd5e1"/>
-        <stop offset="100%" stop-color="#e2e8f0"/>
-      </linearGradient>
-    </defs>
-    <rect width="200" height="165" fill="url(#msc-fog-sky)"/>
-    <rect class="msc-fog-band" x="-20" y="34" width="240" height="18" rx="9" fill="#f8fafc" opacity="0.52" style="--d:12s;--del:0s"/>
-    <rect class="msc-fog-band" x="-20" y="68" width="240" height="22" rx="11" fill="#ffffff" opacity="0.6" style="--d:15s;--del:-5s"/>
-    <rect class="msc-fog-band" x="-20" y="106" width="240" height="20" rx="10" fill="#f1f5f9" opacity="0.58" style="--d:13s;--del:-8s"/>
-    <rect class="msc-fog-band" x="-20" y="138" width="240" height="18" rx="9" fill="#ffffff" opacity="0.48" style="--d:17s;--del:-3s"/>
-  </svg>`,
-
-  windy: `<svg viewBox="0 0 200 165" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-    <defs>
-      <linearGradient id="msc-wind-sky" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0%" stop-color="#38bdf8"/>
-        <stop offset="65%" stop-color="#bae6fd"/>
-        <stop offset="100%" stop-color="#e0f2fe"/>
-      </linearGradient>
-    </defs>
-    <rect width="200" height="165" fill="url(#msc-wind-sky)"/>
-    <g class="msc-cloud-drift" fill="#ffffff" opacity="0.86" style="--d:12s;--del:-3s">
-      <ellipse cx="44" cy="44" rx="26" ry="10"/>
-      <ellipse cx="62" cy="40" rx="18" ry="12"/>
-    </g>
-    <g class="msc-cloud-drift" fill="#f8fafc" opacity="0.75" style="--d:9s;--del:-6s">
-      <ellipse cx="40" cy="84" rx="22" ry="8"/>
-      <ellipse cx="56" cy="81" rx="15" ry="9"/>
-    </g>
-    <g fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" opacity="0.65">
-      <path class="msc-wind-streak" d="M0 64 L52 64 Q62 64 62 56 Q62 50 55 50" style="--d:3.2s;--del:-0.6s"/>
-      <path class="msc-wind-streak" d="M0 112 L68 112 Q78 112 78 120 Q78 126 70 126" style="--d:3.8s;--del:-2.1s"/>
-      <path class="msc-wind-streak" d="M0 138 L44 138" style="--d:2.8s;--del:-1.3s"/>
-    </g>
-  </svg>`,
 };
+
+/**
+ * Composes a seamless animated SVG combining:
+ * 1) Time-of-day sky & sun/moon (day | sunrise | sunset | night)
+ * 2) Live weather overlay (clear | partlycloudy | cloudy | rainy | lightning | snowy | fog | windy)
+ */
+function buildDynamicSceneSvg(phase, weather) {
+  const gradId = `msc-sky-${phase}-${weather}`;
+  const glowId = `msc-glow-${phase}-${weather}`;
+  const heavyWeather = weather === 'rainy' || weather === 'lightning' || weather === 'snowy' || weather === 'fog';
+
+  // Layer 1: Sky gradient stops per phase
+  const skyStops = {
+    day: `<stop offset="0%" stop-color="#38bdf8"/><stop offset="65%" stop-color="#bae6fd"/><stop offset="100%" stop-color="#fef9c3"/>`,
+    sunrise: `<stop offset="0%" stop-color="#3b82f6"/><stop offset="38%" stop-color="#f472b6"/><stop offset="72%" stop-color="#fb923c"/><stop offset="100%" stop-color="#fef08a"/>`,
+    sunset: `<stop offset="0%" stop-color="#312e81"/><stop offset="36%" stop-color="#be185d"/><stop offset="70%" stop-color="#f97316"/><stop offset="100%" stop-color="#fde047"/>`,
+    night: `<stop offset="0%" stop-color="#0f172a"/><stop offset="65%" stop-color="#1e293b"/><stop offset="100%" stop-color="#334155"/>`,
+  };
+
+  // Celestial body (sun / sunrise / sunset / moon+stars)
+  let celestialSvg = '';
+  if (phase === 'night') {
+    const starOpacity = heavyWeather ? 0.25 : 1;
+    celestialSvg = `
+      <g fill="#fef9c3" opacity="${starOpacity}">
+        <circle class="msc-star-twinkle" cx="28" cy="26" r="1.4" style="--d:3.2s;--del:-0.4s"/>
+        <circle class="msc-star-twinkle" cx="62" cy="18" r="1.1" style="--d:4.1s;--del:-1.8s"/>
+        <circle class="msc-star-twinkle" cx="94" cy="34" r="1.5" style="--d:2.9s;--del:-0.9s"/>
+        <circle class="msc-star-twinkle" cx="118" cy="20" r="1" style="--d:3.8s;--del:-2.2s"/>
+        <circle class="msc-star-twinkle" cx="42" cy="58" r="1.2" style="--d:4.5s;--del:-1.1s"/>
+        <circle class="msc-star-twinkle" cx="80" cy="68" r="1.1" style="--d:3.4s;--del:-2.7s"/>
+        <circle class="msc-star-twinkle" cx="172" cy="62" r="1.3" style="--d:3.9s;--del:-0.6s"/>
+        <circle class="msc-star-twinkle" cx="22" cy="92" r="1" style="--d:4.3s;--del:-1.5s"/>
+        <circle class="msc-star-twinkle" cx="128" cy="84" r="1.2" style="--d:3.6s;--del:-2.0s"/>
+      </g>
+      ${
+        heavyWeather
+          ? ''
+          : `<circle cx="152" cy="38" r="15" fill="#fef08a"/>
+             <circle cx="158" cy="34" r="13" fill="#0f172a"/>`
+      }
+      <path d="M0 144 Q60 130 125 140 T200 135 L200 165 L0 165 Z" fill="#0f172a" opacity="0.65"/>
+    `;
+  } else if (phase === 'sunrise') {
+    celestialSvg = `
+      <g class="msc-sun-rise" opacity="${heavyWeather ? 0.45 : 1}">
+        <circle class="msc-sun-pulse" cx="68" cy="116" r="42" fill="url(#${glowId})"/>
+        <circle cx="68" cy="116" r="20" fill="#fef08a" opacity="0.95"/>
+      </g>
+      <path d="M0 124 Q55 114 115 124 T200 118 L200 165 L0 165 Z" fill="#431407" opacity="0.32"/>
+    `;
+  } else if (phase === 'sunset') {
+    celestialSvg = `
+      <g class="msc-sun-set" opacity="${heavyWeather ? 0.45 : 1}">
+        <circle class="msc-sun-pulse" cx="100" cy="112" r="42" fill="url(#${glowId})"/>
+        <circle cx="100" cy="112" r="22" fill="#fef08a" opacity="0.94"/>
+      </g>
+      <rect y="116" width="200" height="49" fill="#3b0764" opacity="0.45"/>
+      <ellipse cx="100" cy="121" rx="34" ry="3.2" fill="#fde047" opacity="${heavyWeather ? 0.2 : 0.55}"/>
+      <ellipse cx="100" cy="131" rx="22" ry="2.2" fill="#fb923c" opacity="${heavyWeather ? 0.15 : 0.42}"/>
+    `;
+  } else {
+    celestialSvg = heavyWeather
+      ? ''
+      : `
+        <circle class="msc-sun-pulse" cx="152" cy="40" r="38" fill="url(#${glowId})"/>
+        <circle cx="152" cy="40" r="17" fill="#fef08a"/>
+      `;
+  }
+
+  // Cloud colors adapt to time of day
+  const cloudPrimary =
+    phase === 'night' ? '#475569' : phase === 'sunset' ? '#fbcfe8' : phase === 'sunrise' ? '#ffedd5' : '#ffffff';
+  const cloudSecondary =
+    phase === 'night' ? '#334155' : phase === 'sunset' ? '#f9a8d4' : phase === 'sunrise' ? '#fed7aa' : '#f1f5f9';
+  const stormCloud = phase === 'night' ? '#0f172a' : '#1e293b';
+
+  // Layer 2: Weather overlay
+  let weatherSvg = '';
+  if (weather === 'clear' && phase !== 'night') {
+    weatherSvg = `
+      <g class="msc-cloud-sway" fill="${cloudPrimary}" opacity="0.72" style="--d:18s;--del:-2s">
+        <ellipse cx="52" cy="54" rx="22" ry="9"/><ellipse cx="66" cy="50" rx="16" ry="11"/><ellipse cx="38" cy="56" rx="14" ry="7"/>
+      </g>
+    `;
+  } else if (weather === 'partlycloudy') {
+    weatherSvg = `
+      <g class="msc-cloud-drift" fill="${cloudPrimary}" opacity="0.88" style="--d:26s;--del:-6s">
+        <ellipse cx="45" cy="58" rx="28" ry="12"/><ellipse cx="64" cy="52" rx="20" ry="14"/><ellipse cx="26" cy="60" rx="18" ry="9"/>
+      </g>
+      <g class="msc-cloud-drift" fill="${cloudSecondary}" opacity="0.8" style="--d:34s;--del:-19s">
+        <ellipse cx="42" cy="100" rx="26" ry="11"/><ellipse cx="60" cy="95" rx="18" ry="12"/>
+      </g>
+    `;
+  } else if (weather === 'cloudy') {
+    weatherSvg = `
+      <rect width="200" height="165" fill="${phase === 'night' ? '#0f172a' : '#64748b'}" opacity="0.32"/>
+      <g class="msc-cloud-drift" fill="${cloudSecondary}" opacity="0.76" style="--d:30s;--del:-4s">
+        <ellipse cx="44" cy="40" rx="32" ry="14"/><ellipse cx="68" cy="35" rx="24" ry="16"/><ellipse cx="22" cy="43" rx="20" ry="11"/>
+      </g>
+      <g class="msc-cloud-drift" fill="${cloudPrimary}" opacity="0.86" style="--d:22s;--del:-12s">
+        <ellipse cx="48" cy="80" rx="34" ry="15"/><ellipse cx="72" cy="74" rx="24" ry="17"/><ellipse cx="24" cy="83" rx="22" ry="11"/>
+      </g>
+      <g class="msc-cloud-drift" fill="${cloudSecondary}" opacity="0.78" style="--d:38s;--del:-26s">
+        <ellipse cx="42" cy="120" rx="30" ry="13"/><ellipse cx="64" cy="115" rx="22" ry="14"/>
+      </g>
+    `;
+  } else if (weather === 'rainy') {
+    weatherSvg = `
+      <rect width="200" height="165" fill="#1e293b" opacity="${phase === 'night' ? 0.35 : 0.48}"/>
+      ${RAIN_DROPS_SVG}
+      <g class="msc-cloud-sway" fill="${stormCloud}" opacity="0.9" style="--d:16s;--del:-3s">
+        <ellipse cx="44" cy="22" rx="38" ry="16"/><ellipse cx="96" cy="18" rx="44" ry="18"/><ellipse cx="156" cy="22" rx="40" ry="16"/>
+      </g>
+    `;
+  } else if (weather === 'lightning') {
+    weatherSvg = `
+      <rect width="200" height="165" fill="#0f172a" opacity="${phase === 'night' ? 0.4 : 0.62}"/>
+      <rect class="msc-lightning-flash" width="200" height="165" fill="#e0f2fe"/>
+      <path class="msc-lightning-bolt" d="M112 28 L94 74 L108 74 L92 126 L124 68 L108 68 L122 28 Z" fill="#fef08a"/>
+      ${RAIN_DROPS_SVG}
+      <g class="msc-cloud-sway" fill="#0f172a" opacity="0.94" style="--d:14s;--del:-2s">
+        <ellipse cx="44" cy="20" rx="40" ry="16"/><ellipse cx="100" cy="16" rx="46" ry="18"/><ellipse cx="158" cy="20" rx="42" ry="16"/>
+      </g>
+    `;
+  } else if (weather === 'snowy') {
+    weatherSvg = `
+      <rect width="200" height="165" fill="${phase === 'night' ? '#0f172a' : '#64748b'}" opacity="0.35"/>
+      ${SNOW_FLAKES_SVG}
+      <g class="msc-cloud-sway" fill="${phase === 'night' ? '#475569' : '#cbd5e1'}" opacity="0.86" style="--d:20s;--del:-5s">
+        <ellipse cx="52" cy="18" rx="40" ry="14"/><ellipse cx="122" cy="16" rx="48" ry="16"/><ellipse cx="176" cy="20" rx="34" ry="14"/>
+      </g>
+      <path d="M0 148 Q55 138 110 148 T200 144 L200 165 L0 165 Z" fill="#f8fafc" opacity="${phase === 'night' ? 0.72 : 0.92}"/>
+    `;
+  } else if (weather === 'fog') {
+    const fogTint = phase === 'night' ? '#cbd5e1' : '#ffffff';
+    weatherSvg = `
+      <rect width="200" height="165" fill="#94a3b8" opacity="0.38"/>
+      <rect class="msc-fog-band" x="-20" y="34" width="240" height="18" rx="9" fill="${fogTint}" opacity="0.48" style="--d:12s;--del:0s"/>
+      <rect class="msc-fog-band" x="-20" y="68" width="240" height="22" rx="11" fill="${fogTint}" opacity="0.58" style="--d:15s;--del:-5s"/>
+      <rect class="msc-fog-band" x="-20" y="106" width="240" height="20" rx="10" fill="${fogTint}" opacity="0.54" style="--d:13s;--del:-8s"/>
+      <rect class="msc-fog-band" x="-20" y="138" width="240" height="18" rx="9" fill="${fogTint}" opacity="0.44" style="--d:17s;--del:-3s"/>
+    `;
+  } else if (weather === 'windy') {
+    weatherSvg = `
+      <g class="msc-cloud-drift" fill="${cloudPrimary}" opacity="0.85" style="--d:11s;--del:-3s">
+        <ellipse cx="44" cy="44" rx="26" ry="10"/><ellipse cx="62" cy="40" rx="18" ry="12"/>
+      </g>
+      <g class="msc-cloud-drift" fill="${cloudSecondary}" opacity="0.74" style="--d:8.5s;--del:-5s">
+        <ellipse cx="40" cy="84" rx="22" ry="8"/><ellipse cx="56" cy="81" rx="15" ry="9"/>
+      </g>
+      <g fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" opacity="0.65">
+        <path class="msc-wind-streak" d="M0 64 L52 64 Q62 64 62 56 Q62 50 55 50" style="--d:3.2s;--del:-0.6s"/>
+        <path class="msc-wind-streak" d="M0 112 L68 112 Q78 112 78 120 Q78 126 70 126" style="--d:3.8s;--del:-2.1s"/>
+        <path class="msc-wind-streak" d="M0 138 L44 138" style="--d:2.8s;--del:-1.3s"/>
+      </g>
+    `;
+  }
+
+  return `<svg viewBox="0 0 200 165" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <defs>
+      <linearGradient id="${gradId}" x1="0" y1="0" x2="0" y2="1">${skyStops[phase] || skyStops.day}</linearGradient>
+      <radialGradient id="${glowId}" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="#fef08a" stop-opacity="0.95"/>
+        <stop offset="45%" stop-color="#fde047" stop-opacity="0.48"/>
+        <stop offset="100%" stop-color="#fde047" stop-opacity="0"/>
+      </radialGradient>
+    </defs>
+    <rect width="200" height="165" fill="url(#${gradId})"/>
+    ${celestialSvg}
+    ${weatherSvg}
+  </svg>`;
+}
 
 function clamp(val, min, max) {
   return Math.min(max, Math.max(min, val));
@@ -1275,22 +1137,28 @@ function resolveCoverType(explicitType, cardType, stateObj) {
   return 'shutter';
 }
 
-function resolveWeatherScene(weatherEntityId, hass) {
-  const isNight = hass?.states?.['sun.sun']?.state === 'below_horizon';
+function resolveSunPhase(hass) {
+  const sun = hass?.states?.['sun.sun'];
+  if (!sun) return 'day';
+  const elev = Number(sun.attributes?.elevation);
+  const rising = Boolean(sun.attributes?.rising);
+  if (!Number.isNaN(elev) && elev >= -6 && elev <= 10) {
+    return rising ? 'sunrise' : 'sunset';
+  }
+  return sun.state === 'below_horizon' ? 'night' : 'day';
+}
+
+function resolveWeatherCondition(weatherEntityId, hass) {
   let entityId = weatherEntityId;
   if (!entityId && hass?.states) {
     entityId = Object.keys(hass.states).find((id) => id.startsWith('weather.'));
   }
   const state = String(hass?.states?.[entityId]?.state || '').toLowerCase();
   switch (state) {
-    case 'clear-night':
-      return 'night';
-    case 'sunny':
-      return isNight ? 'night' : 'sunny';
     case 'partlycloudy':
-      return isNight ? 'partlycloudy_night' : 'partlycloudy';
+      return 'partlycloudy';
     case 'cloudy':
-      return isNight ? 'cloudy_night' : 'cloudy';
+      return 'cloudy';
     case 'rainy':
     case 'pouring':
       return 'rainy';
@@ -1307,24 +1175,38 @@ function resolveWeatherScene(weatherEntityId, hass) {
     case 'windy-variant':
       return 'windy';
     default:
-      return isNight ? 'night' : 'sunny';
+      return 'clear';
   }
 }
 
 function resolveWindowBackground(entityBg, cardBg, weatherEntity, hass) {
-  const raw = String(entityBg || cardBg || 'auto').trim();
+  const raw = String(entityBg || cardBg || 'weather').trim();
   const lower = raw.toLowerCase();
-  if (lower === 'auto') {
-    const sunState = hass?.states?.['sun.sun']?.state;
-    return { mode: sunState === 'below_horizon' ? 'night' : 'sunny', customUrl: null };
-  }
   if (lower === 'weather') {
-    return { mode: resolveWeatherScene(weatherEntity, hass), customUrl: null };
+    const phase = resolveSunPhase(hass);
+    const weather = resolveWeatherCondition(weatherEntity, hass);
+    return { sig: `dyn:${phase}:${weather}`, svg: buildDynamicSceneSvg(phase, weather), customUrl: null };
   }
-  if (BG_PRESETS.has(lower)) {
-    return { mode: lower, customUrl: null };
+  if (lower === 'auto') {
+    const phase = resolveSunPhase(hass);
+    return { sig: `dyn:${phase}:clear`, svg: buildDynamicSceneSvg(phase, 'clear'), customUrl: null };
   }
-  return { mode: 'custom', customUrl: raw };
+  if (lower === 'sunny') {
+    return { sig: 'dyn:day:clear', svg: buildDynamicSceneSvg('day', 'clear'), customUrl: null };
+  }
+  if (lower === 'sunset') {
+    return { sig: 'dyn:sunset:clear', svg: buildDynamicSceneSvg('sunset', 'clear'), customUrl: null };
+  }
+  if (lower === 'night') {
+    return { sig: 'dyn:night:clear', svg: buildDynamicSceneSvg('night', 'clear'), customUrl: null };
+  }
+  if (lower === 'sky') {
+    return { sig: 'sky', svg: '', customUrl: null };
+  }
+  if (STATIC_SCENES[lower]) {
+    return { sig: lower, svg: STATIC_SCENES[lower], customUrl: null };
+  }
+  return { sig: `custom:${raw}`, svg: '', customUrl: raw };
 }
 
 class ModernShutterCard extends HTMLElement {
@@ -1356,7 +1238,7 @@ class ModernShutterCard extends HTMLElement {
       cover_type: 'auto',
       compact: false,
       slats_color: 'gray',
-      window_background: 'auto',
+      window_background: 'weather',
       weather_entity: '',
       animate_background: true,
       buttons_position: 'left',
@@ -1370,11 +1252,7 @@ class ModernShutterCard extends HTMLElement {
       haptic: true,
       rtl: 'auto',
       presets: DEFAULT_PRESETS.map((p) => ({ ...p })),
-      entities: [
-        {
-          entity: defaultEntity,
-        },
-      ],
+      entities: [{ entity: defaultEntity }],
     };
   }
 
@@ -1393,9 +1271,7 @@ class ModernShutterCard extends HTMLElement {
     }
 
     const entities = rawEntities.map((item) => {
-      if (typeof item === 'string') {
-        return { entity: item };
-      }
+      if (typeof item === 'string') return { entity: item };
       if (!item || typeof item.entity !== 'string' || !item.entity.trim()) {
         throw new Error('Each item in "entities" must specify a valid "entity" ID.');
       }
@@ -1408,7 +1284,7 @@ class ModernShutterCard extends HTMLElement {
       cover_type: config.cover_type || 'auto',
       compact: Boolean(config.compact),
       slats_color: config.slats_color || config.color || 'gray',
-      window_background: config.window_background || 'auto',
+      window_background: config.window_background || 'weather',
       weather_entity: config.weather_entity || '',
       animate_background: config.animate_background !== false,
       buttons_position: config.buttons_position === 'right' ? 'right' : 'left',
@@ -1448,28 +1324,16 @@ class ModernShutterCard extends HTMLElement {
 
   getCardSize() {
     const count = this._config?.entities?.length || 1;
-    if (this._config?.compact) {
-      return 5;
-    }
+    if (this._config?.compact) return 5;
     return Math.max(4, count * 4 + (this._config?.title ? 1 : 0));
   }
 
   getGridOptions() {
     const count = this._config?.entities?.length || 1;
     if (this._config?.compact) {
-      return {
-        columns: 12,
-        min_columns: 6,
-        rows: 5,
-        min_rows: 4,
-      };
+      return { columns: 12, min_columns: 6, rows: 5, min_rows: 4 };
     }
-    return {
-      columns: 6,
-      min_columns: 4,
-      rows: Math.max(5, count * 5),
-      min_rows: 4,
-    };
+    return { columns: 6, min_columns: 4, rows: Math.max(5, count * 5), min_rows: 4 };
   }
 
   _getLang() {
@@ -1522,14 +1386,7 @@ class ModernShutterCard extends HTMLElement {
     }
 
     const openness = invert ? 100 - rawPos : rawPos;
-    return {
-      openness,
-      available,
-      state: stateObj.state,
-      rawPos,
-      invert,
-      stateObj,
-    };
+    return { openness, available, state: stateObj.state, rawPos, invert, stateObj };
   }
 
   _isWindowOpen(item) {
@@ -1559,15 +1416,8 @@ class ModernShutterCard extends HTMLElement {
     if (toast) {
       toast.textContent = this._text('closeBlocked');
       toast.classList.add('visible');
-      if (this._toastTimers.has(index)) {
-        clearTimeout(this._toastTimers.get(index));
-      }
-      this._toastTimers.set(
-        index,
-        setTimeout(() => {
-          toast.classList.remove('visible');
-        }, 2600)
-      );
+      if (this._toastTimers.has(index)) clearTimeout(this._toastTimers.get(index));
+      this._toastTimers.set(index, setTimeout(() => toast.classList.remove('visible'), 2600));
     }
   }
 
@@ -1601,26 +1451,17 @@ class ModernShutterCard extends HTMLElement {
     }
 
     let service = 'stop_cover';
-    if (action === 'up') {
-      service = info.invert ? 'close_cover' : 'open_cover';
-    } else if (action === 'down') {
-      service = info.invert ? 'open_cover' : 'close_cover';
-    }
+    if (action === 'up') service = info.invert ? 'close_cover' : 'open_cover';
+    else if (action === 'down') service = info.invert ? 'open_cover' : 'close_cover';
 
-    if (!silentHaptic) {
-      triggerHaptic(this, this._config.haptic, 'light');
-    }
-    this._hass.callService('cover', service, {
-      entity_id: item.entity,
-    });
+    if (!silentHaptic) triggerHaptic(this, this._config.haptic, 'light');
+    this._hass.callService('cover', service, { entity_id: item.entity });
   }
 
   _callGroupAction(action) {
     if (!this._config?.entities?.length) return;
     triggerHaptic(this, this._config.haptic, 'light');
-    this._config.entities.forEach((_, idx) => {
-      this._callCoverAction(idx, action, true);
-    });
+    this._config.entities.forEach((_, idx) => this._callCoverAction(idx, action, true));
   }
 
   _setTilt(index, tiltValue) {
@@ -1677,9 +1518,8 @@ class ModernShutterCard extends HTMLElement {
       item.weather_entity || this._config.weather_entity,
       this._hass
     );
-    const sig = resolved.customUrl ? `custom:${resolved.customUrl}` : resolved.mode;
-    if (sceneEl.dataset.bgSig === sig) return;
-    sceneEl.dataset.bgSig = sig;
+    if (sceneEl.dataset.bgSig === resolved.sig) return;
+    sceneEl.dataset.bgSig = resolved.sig;
 
     if (resolved.customUrl) {
       const safeUrl = resolved.customUrl.replace(/"/g, '%22').replace(/'/g, '%27');
@@ -1689,7 +1529,7 @@ class ModernShutterCard extends HTMLElement {
       sceneEl.style.backgroundPosition = 'center';
     } else {
       sceneEl.style.backgroundImage = '';
-      sceneEl.innerHTML = WINDOW_SCENES[resolved.mode] || '';
+      sceneEl.innerHTML = resolved.svg || '';
     }
   }
 
@@ -1803,7 +1643,6 @@ class ModernShutterCard extends HTMLElement {
                     <div class="window-glare"></div>
                   </div>
 
-                  <!-- Vertical Covers (Shutter / Roller / Venetian) -->
                   <div class="shutter-curtain">
                     <div class="shutter-slats">
                       <div class="venetian-cord cord-left"></div>
@@ -1814,7 +1653,6 @@ class ModernShutterCard extends HTMLElement {
                     </div>
                   </div>
 
-                  <!-- Horizontal Sliding Curtains (Double / Left / Right) -->
                   <div class="curtain-rod">
                     <span class="rod-cap rod-cap-l"></span>
                     <span class="rod-cap rod-cap-r"></span>
@@ -1917,32 +1755,12 @@ class ModernShutterCard extends HTMLElement {
           transition: background 0.15s ease, transform 0.1s ease, border-color 0.15s ease, color 0.15s ease;
         }
 
-        .group-btn:hover {
-          border-color: var(--msc-primary);
-          color: var(--msc-primary);
-        }
+        .group-btn:hover { border-color: var(--msc-primary); color: var(--msc-primary); }
+        .group-btn:active { transform: scale(0.92); }
+        .group-btn svg { width: 20px; height: 20px; fill: currentColor; }
+        .group-btn.stop-btn svg { width: 13px; height: 13px; }
 
-        .group-btn:active {
-          transform: scale(0.92);
-        }
-
-        .group-btn svg {
-          width: 20px;
-          height: 20px;
-          fill: currentColor;
-        }
-
-        .group-btn.stop-btn svg {
-          width: 13px;
-          height: 13px;
-        }
-
-        .shutters-container {
-          display: flex;
-          flex-direction: column;
-          gap: 16px;
-        }
-
+        .shutters-container { display: flex; flex-direction: column; gap: 16px; }
         .shutters-container.compact {
           display: grid;
           grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
@@ -1960,9 +1778,7 @@ class ModernShutterCard extends HTMLElement {
           transition: opacity 0.2s ease;
         }
 
-        .shutter-tile.unavailable {
-          opacity: 0.55;
-        }
+        .shutter-tile.unavailable { opacity: 0.55; }
 
         .tile-header {
           display: flex;
@@ -1987,9 +1803,7 @@ class ModernShutterCard extends HTMLElement {
           white-space: nowrap;
         }
 
-        .entity-title:hover {
-          color: var(--msc-primary);
-        }
+        .entity-title:hover { color: var(--msc-primary); }
 
         .state-pill {
           font-size: 0.75rem;
@@ -2015,20 +1829,10 @@ class ModernShutterCard extends HTMLElement {
           gap: 12px;
         }
 
-        .shutter-stage.buttons-right {
-          flex-direction: row-reverse;
-        }
+        .shutter-stage.buttons-right { flex-direction: row-reverse; }
+        .shutters-container.compact .shutter-stage { gap: 6px; }
 
-        .shutters-container.compact .shutter-stage {
-          gap: 6px;
-        }
-
-        .controls-col {
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          gap: 8px;
-        }
+        .controls-col { display: flex; flex-direction: column; justify-content: center; gap: 8px; }
 
         .ctrl-btn {
           width: 38px;
@@ -2045,43 +1849,16 @@ class ModernShutterCard extends HTMLElement {
           transition: background 0.15s ease, transform 0.1s ease, border-color 0.15s ease;
         }
 
-        .shutters-container.compact .ctrl-btn {
-          width: 32px;
-          height: 32px;
-          border-radius: 8px;
-        }
+        .shutters-container.compact .ctrl-btn { width: 32px; height: 32px; border-radius: 8px; }
+        .ctrl-btn:hover { border-color: var(--msc-primary); color: var(--msc-primary); }
+        .ctrl-btn:active { transform: scale(0.93); }
+        .ctrl-btn svg { width: 22px; height: 22px; fill: currentColor; }
+        .ctrl-btn.stop-btn svg { width: 15px; height: 15px; }
 
-        .ctrl-btn:hover {
-          border-color: var(--msc-primary);
-          color: var(--msc-primary);
-        }
-
-        .ctrl-btn:active {
-          transform: scale(0.93);
-        }
-
-        .ctrl-btn svg {
-          width: 22px;
-          height: 22px;
-          fill: currentColor;
-        }
-
-        .ctrl-btn.stop-btn svg {
-          width: 15px;
-          height: 15px;
-        }
-
-        .window-wrapper {
-          flex: 1;
-          max-width: 190px;
-          min-width: 0;
-        }
-
+        .window-wrapper { flex: 1; max-width: 190px; min-width: 0; }
         .shutter-tile[data-cover-type="curtain"] .window-wrapper,
         .shutter-tile[data-cover-type="curtain_left"] .window-wrapper,
-        .shutter-tile[data-cover-type="curtain_right"] .window-wrapper {
-          max-width: 230px;
-        }
+        .shutter-tile[data-cover-type="curtain_right"] .window-wrapper { max-width: 230px; }
 
         .window-frame {
           position: relative;
@@ -2100,13 +1877,8 @@ class ModernShutterCard extends HTMLElement {
 
         .shutter-tile[data-cover-type="curtain"] .window-frame,
         .shutter-tile[data-cover-type="curtain_left"] .window-frame,
-        .shutter-tile[data-cover-type="curtain_right"] .window-frame {
-          cursor: ew-resize;
-        }
-
-        .shutters-container.compact .window-frame {
-          height: 130px;
-        }
+        .shutter-tile[data-cover-type="curtain_right"] .window-frame { cursor: ew-resize; }
+        .shutters-container.compact .window-frame { height: 130px; }
 
         .window-sky {
           position: absolute;
@@ -2120,129 +1892,60 @@ class ModernShutterCard extends HTMLElement {
           }
         }
 
-        .window-scene {
-          position: absolute;
-          inset: 0;
-          pointer-events: none;
-        }
+        .window-scene { position: absolute; inset: 0; pointer-events: none; }
+        .window-scene svg { display: block; width: 100%; height: 100%; }
 
-        .window-scene svg {
-          display: block;
-          width: 100%;
-          height: 100%;
-        }
-
-        /* ================= Seamless Weather & Scene Animations ================= */
+        /* ================= Seamless Time-of-Day & Weather Animations ================= */
         .msc-sun-pulse {
           transform-box: fill-box;
           transform-origin: center;
           animation: msc-sun-glow 5s ease-in-out infinite;
         }
+        .msc-sun-rise { animation: msc-sun-bob-up 8s ease-in-out infinite; }
+        .msc-sun-set { animation: msc-sun-bob-down 8s ease-in-out infinite; }
+        .msc-star-twinkle { animation: msc-twinkle var(--d, 3.5s) ease-in-out var(--del, 0s) infinite; }
+        .msc-cloud-sway { animation: msc-sway var(--d, 18s) ease-in-out var(--del, 0s) infinite; }
+        .msc-cloud-drift { animation: msc-drift var(--d, 28s) linear var(--del, 0s) infinite; }
+        .msc-wave-sway { animation: msc-wave var(--d, 7s) ease-in-out var(--del, 0s) infinite; }
+        .msc-rain-drop { animation: msc-rain var(--d, 0.9s) linear var(--del, 0s) infinite; }
+        .msc-snow-flake { animation: msc-snow var(--d, 4.5s) linear var(--del, 0s) infinite; }
+        .msc-fog-band { animation: msc-fog var(--d, 14s) ease-in-out var(--del, 0s) infinite; }
+        .msc-wind-streak { animation: msc-wind var(--d, 3.2s) linear var(--del, 0s) infinite; }
+        .msc-lightning-flash { opacity: 0; animation: msc-flash 6.5s linear infinite; }
+        .msc-lightning-bolt { opacity: 0; animation: msc-bolt 6.5s linear infinite; }
 
-        .msc-star-twinkle {
-          animation: msc-twinkle var(--d, 3.5s) ease-in-out var(--del, 0s) infinite;
-        }
-
-        .msc-cloud-sway {
-          animation: msc-sway var(--d, 18s) ease-in-out var(--del, 0s) infinite;
-        }
-
-        .msc-cloud-drift {
-          animation: msc-drift var(--d, 28s) linear var(--del, 0s) infinite;
-        }
-
-        .msc-wave-sway {
-          animation: msc-wave var(--d, 7s) ease-in-out var(--del, 0s) infinite;
-        }
-
-        .msc-rain-drop {
-          animation: msc-rain var(--d, 0.9s) linear var(--del, 0s) infinite;
-        }
-
-        .msc-snow-flake {
-          animation: msc-snow var(--d, 4.5s) linear var(--del, 0s) infinite;
-        }
-
-        .msc-fog-band {
-          animation: msc-fog var(--d, 14s) ease-in-out var(--del, 0s) infinite;
-        }
-
-        .msc-wind-streak {
-          animation: msc-wind var(--d, 3.2s) linear var(--del, 0s) infinite;
-        }
-
-        .msc-lightning-flash {
-          opacity: 0;
-          animation: msc-flash 6.5s linear infinite;
-        }
-
-        .msc-lightning-bolt {
-          opacity: 0;
-          animation: msc-bolt 6.5s linear infinite;
-        }
-
-        ha-card.no-anim .window-scene * {
-          animation: none !important;
-        }
-
-        ha-card.no-anim .msc-rain-drop {
-          transform: translateY(72px);
-        }
-
-        ha-card.no-anim .msc-snow-flake {
-          transform: translateY(78px);
-        }
-
-        ha-card.no-anim .msc-wind-streak {
-          transform: translateX(65px);
-        }
-
-        ha-card.no-anim .msc-lightning-bolt {
-          opacity: 0.9;
-        }
+        ha-card.no-anim .window-scene * { animation: none !important; }
+        ha-card.no-anim .msc-rain-drop { transform: translateY(72px); }
+        ha-card.no-anim .msc-snow-flake { transform: translateY(78px); }
+        ha-card.no-anim .msc-wind-streak { transform: translateX(65px); }
+        ha-card.no-anim .msc-lightning-bolt { opacity: 0.9; }
 
         @media (prefers-reduced-motion: reduce) {
-          .window-scene * {
-            animation: none !important;
-          }
-          .msc-rain-drop {
-            transform: translateY(72px);
-          }
-          .msc-snow-flake {
-            transform: translateY(78px);
-          }
+          .window-scene * { animation: none !important; }
+          .msc-rain-drop { transform: translateY(72px); }
+          .msc-snow-flake { transform: translateY(78px); }
         }
 
         @keyframes msc-sun-glow {
           0%, 100% { transform: scale(1); opacity: 0.9; }
           50% { transform: scale(1.08); opacity: 0.65; }
         }
-
-        @keyframes msc-twinkle {
-          0%, 100% { opacity: 0.92; }
-          50% { opacity: 0.25; }
+        @keyframes msc-sun-bob-up {
+          0%, 100% { transform: translateY(4px); }
+          50% { transform: translateY(-4px); }
         }
-
-        @keyframes msc-sway {
-          0%, 100% { transform: translateX(-8px); }
-          50% { transform: translateX(8px); }
+        @keyframes msc-sun-bob-down {
+          0%, 100% { transform: translateY(-4px); }
+          50% { transform: translateY(4px); }
         }
-
-        @keyframes msc-drift {
-          0% { transform: translateX(-115px); }
-          100% { transform: translateX(235px); }
-        }
-
-        @keyframes msc-wave {
-          0%, 100% { transform: translateX(-6px); }
-          50% { transform: translateX(6px); }
-        }
-
+        @keyframes msc-twinkle { 0%, 100% { opacity: 0.92; } 50% { opacity: 0.25; } }
+        @keyframes msc-sway { 0%, 100% { transform: translateX(-8px); } 50% { transform: translateX(8px); } }
+        @keyframes msc-drift { 0% { transform: translateX(-115px); } 100% { transform: translateX(235px); } }
+        @keyframes msc-wave { 0%, 100% { transform: translateX(-6px); } 50% { transform: translateX(6px); } }
         @keyframes msc-rain {
           0% { transform: translate(6px, -22px); }
           100% { transform: translate(-22px, 185px); }
         }
-
         @keyframes msc-snow {
           0% { transform: translate(0px, -12px); }
           25% { transform: translate(7px, 38px); }
@@ -2250,25 +1953,21 @@ class ModernShutterCard extends HTMLElement {
           75% { transform: translate(6px, 136px); }
           100% { transform: translate(0px, 182px); }
         }
-
         @keyframes msc-fog {
           0%, 100% { transform: translateX(-14px); opacity: 0.48; }
           50% { transform: translateX(14px); opacity: 0.72; }
         }
-
         @keyframes msc-wind {
           0% { transform: translateX(-95px); opacity: 0; }
           15% { opacity: 0.72; }
           85% { opacity: 0.72; }
           100% { transform: translateX(225px); opacity: 0; }
         }
-
         @keyframes msc-flash {
           0%, 84%, 88%, 92%, 100% { opacity: 0; }
           86% { opacity: 0.45; }
           90% { opacity: 0.25; }
         }
-
         @keyframes msc-bolt {
           0%, 84%, 89%, 93%, 100% { opacity: 0; }
           86% { opacity: 0.95; }
@@ -2277,36 +1976,24 @@ class ModernShutterCard extends HTMLElement {
 
         .window-cross-v {
           position: absolute;
-          top: 0;
-          bottom: 0;
-          left: 50%;
-          width: 3px;
+          top: 0; bottom: 0; left: 50%; width: 3px;
           transform: translateX(-50%);
           background: rgba(255, 255, 255, 0.42);
         }
-
         .window-cross-h {
           position: absolute;
-          left: 0;
-          right: 0;
-          top: 52%;
-          height: 3px;
+          left: 0; right: 0; top: 52%; height: 3px;
           background: rgba(255, 255, 255, 0.42);
         }
-
         .window-glare {
           position: absolute;
           inset: 0;
           background: linear-gradient(125deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0) 45%);
           pointer-events: none;
         }
-
         .window-pelmet {
           position: absolute;
-          top: 0;
-          left: 0;
-          right: 0;
-          height: 8px;
+          top: 0; left: 0; right: 0; height: 8px;
           background: var(--slat-bar);
           box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
           z-index: 4;
@@ -2316,11 +2003,7 @@ class ModernShutterCard extends HTMLElement {
         /* ================= Vertical Cover (Shutter Default) ================= */
         .shutter-curtain {
           position: absolute;
-          top: 0;
-          left: 0;
-          right: 0;
-          height: 10%;
-          min-height: 16px;
+          top: 0; left: 0; right: 0; height: 10%; min-height: 16px;
           z-index: 3;
           display: flex;
           flex-direction: column;
@@ -2328,148 +2011,74 @@ class ModernShutterCard extends HTMLElement {
           box-shadow: 0 4px 10px rgba(0, 0, 0, 0.28);
           will-change: height;
         }
-
-        .shutter-curtain.dragging {
-          transition: none;
-        }
-
+        .shutter-curtain.dragging { transition: none; }
         .shutter-slats {
-          position: relative;
-          flex: 1;
-          width: 100%;
+          position: relative; flex: 1; width: 100%;
           background: repeating-linear-gradient(
-            180deg,
-            var(--slat-light) 0px,
-            var(--slat-base) 2px,
-            var(--slat-base) 9px,
-            var(--slat-dark) 11px,
-            rgba(0, 0, 0, 0.35) 12px
+            180deg, var(--slat-light) 0px, var(--slat-base) 2px,
+            var(--slat-base) 9px, var(--slat-dark) 11px, rgba(0, 0, 0, 0.35) 12px
           );
         }
-
         .shutter-bottom-bar {
           height: 11px;
           background: linear-gradient(180deg, var(--slat-base) 0%, var(--slat-bar) 100%);
-          display: flex;
-          align-items: center;
-          justify-content: center;
+          display: flex; align-items: center; justify-content: center;
           border-top: 1px solid rgba(255, 255, 255, 0.2);
         }
-
-        .drag-pill {
-          width: 28px;
-          height: 3px;
-          border-radius: 99px;
-          background: rgba(255, 255, 255, 0.7);
-        }
-
+        .drag-pill { width: 28px; height: 3px; border-radius: 99px; background: rgba(255, 255, 255, 0.7); }
         .venetian-cord {
-          display: none;
-          position: absolute;
-          top: 0;
-          bottom: 0;
-          width: 2px;
-          background: rgba(255, 255, 255, 0.55);
-          box-shadow: 0 0 2px rgba(0, 0, 0, 0.35);
+          display: none; position: absolute; top: 0; bottom: 0; width: 2px;
+          background: rgba(255, 255, 255, 0.55); box-shadow: 0 0 2px rgba(0, 0, 0, 0.35);
           pointer-events: none;
         }
-
         .venetian-cord.cord-left { left: 22%; }
         .venetian-cord.cord-right { right: 22%; }
 
         /* ================= Roller Shade Variant ================= */
         .shutter-tile[data-cover-type="roller"] .window-pelmet {
-          height: 11px;
-          border-radius: 0 0 6px 6px;
+          height: 11px; border-radius: 0 0 6px 6px;
           background: linear-gradient(180deg, var(--slat-light) 0%, var(--slat-base) 55%, var(--slat-dark) 100%);
         }
-
         .shutter-tile[data-cover-type="roller"] .shutter-slats {
           background:
-            repeating-linear-gradient(
-              0deg,
-              rgba(255, 255, 255, 0.04) 0px,
-              rgba(255, 255, 255, 0.04) 1px,
-              transparent 1px,
-              transparent 3px
-            ),
-            repeating-linear-gradient(
-              90deg,
-              rgba(0, 0, 0, 0.03) 0px,
-              rgba(0, 0, 0, 0.03) 1px,
-              transparent 1px,
-              transparent 4px
-            ),
+            repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.04) 0px, rgba(255, 255, 255, 0.04) 1px, transparent 1px, transparent 3px),
+            repeating-linear-gradient(90deg, rgba(0, 0, 0, 0.03) 0px, rgba(0, 0, 0, 0.03) 1px, transparent 1px, transparent 4px),
             linear-gradient(180deg, var(--slat-light) 0%, var(--slat-base) 100%);
         }
-
-        .shutter-tile[data-cover-type="roller"] .shutter-bottom-bar {
-          height: 9px;
-          border-radius: 0 0 4px 4px;
-        }
+        .shutter-tile[data-cover-type="roller"] .shutter-bottom-bar { height: 9px; border-radius: 0 0 4px 4px; }
 
         /* ================= Venetian Blinds Variant ================= */
-        .shutter-tile[data-cover-type="venetian"] .shutter-curtain {
-          box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-        }
-
+        .shutter-tile[data-cover-type="venetian"] .shutter-curtain { box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2); }
         .shutter-tile[data-cover-type="venetian"] .shutter-slats {
           opacity: var(--tilt-opacity, 0.92);
           background: repeating-linear-gradient(
-            180deg,
-            var(--slat-light) 0px,
-            var(--slat-base) 2px,
-            var(--slat-dark) 4.5px,
-            transparent 5px,
-            transparent 7.5px
+            180deg, var(--slat-light) 0px, var(--slat-base) 2px,
+            var(--slat-dark) 4.5px, transparent 5px, transparent 7.5px
           );
         }
+        .shutter-tile[data-cover-type="venetian"] .venetian-cord { display: block; }
+        .shutter-tile[data-cover-type="venetian"] .shutter-bottom-bar { height: 8px; }
 
-        .shutter-tile[data-cover-type="venetian"] .venetian-cord {
-          display: block;
-        }
-
-        .shutter-tile[data-cover-type="venetian"] .shutter-bottom-bar {
-          height: 8px;
-        }
-
-        /* ================= Sliding Curtains (Double / Left / Right) ================= */
-        .curtain-rod,
-        .curtain-panel {
-          display: none;
-        }
-
+        /* ================= Sliding Curtains ================= */
+        .curtain-rod, .curtain-panel { display: none; }
         .shutter-tile[data-cover-type="curtain"] .shutter-curtain,
         .shutter-tile[data-cover-type="curtain"] .window-pelmet,
         .shutter-tile[data-cover-type="curtain_left"] .shutter-curtain,
         .shutter-tile[data-cover-type="curtain_left"] .window-pelmet,
         .shutter-tile[data-cover-type="curtain_right"] .shutter-curtain,
-        .shutter-tile[data-cover-type="curtain_right"] .window-pelmet {
-          display: none;
-        }
+        .shutter-tile[data-cover-type="curtain_right"] .window-pelmet { display: none; }
 
         .shutter-tile[data-cover-type="curtain"] .curtain-rod,
         .shutter-tile[data-cover-type="curtain_left"] .curtain-rod,
         .shutter-tile[data-cover-type="curtain_right"] .curtain-rod {
-          display: block;
-          position: absolute;
-          top: 5px;
-          left: 4px;
-          right: 4px;
-          height: 5px;
+          display: block; position: absolute; top: 5px; left: 4px; right: 4px; height: 5px;
           border-radius: 99px;
           background: linear-gradient(180deg, #e2e8f0 0%, #64748b 65%, #334155 100%);
           box-shadow: 0 2px 4px rgba(0, 0, 0, 0.35);
-          z-index: 4;
-          pointer-events: none;
+          z-index: 4; pointer-events: none;
         }
-
         .rod-cap {
-          position: absolute;
-          top: -2px;
-          width: 9px;
-          height: 9px;
-          border-radius: 50%;
+          position: absolute; top: -2px; width: 9px; height: 9px; border-radius: 50%;
           background: radial-gradient(circle at 35% 35%, #f1f5f9, #475569);
           box-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
         }
@@ -2480,244 +2089,86 @@ class ModernShutterCard extends HTMLElement {
         .shutter-tile[data-cover-type="curtain"] .curtain-panel-right,
         .shutter-tile[data-cover-type="curtain_left"] .curtain-panel-left,
         .shutter-tile[data-cover-type="curtain_right"] .curtain-panel-right {
-          display: flex;
-          position: absolute;
-          top: 8px;
-          bottom: 0;
-          z-index: 3;
+          display: flex; position: absolute; top: 8px; bottom: 0; z-index: 3;
           transition: width 0.35s cubic-bezier(0.22, 1, 0.36, 1);
           will-change: width;
         }
-
-        .curtain-panel.dragging {
-          transition: none !important;
-        }
-
-        .curtain-panel-left {
-          left: 0;
-          width: 12%;
-          box-shadow: 4px 0 10px rgba(0, 0, 0, 0.28);
-        }
-
-        .curtain-panel-right {
-          right: 0;
-          width: 12%;
-          box-shadow: -4px 0 10px rgba(0, 0, 0, 0.28);
-        }
-
+        .curtain-panel.dragging { transition: none !important; }
+        .curtain-panel-left { left: 0; width: 12%; box-shadow: 4px 0 10px rgba(0, 0, 0, 0.28); }
+        .curtain-panel-right { right: 0; width: 12%; box-shadow: -4px 0 10px rgba(0, 0, 0, 0.28); }
         .curtain-fabric {
-          flex: 1;
-          height: 100%;
+          flex: 1; height: 100%;
           background:
             linear-gradient(180deg, rgba(0, 0, 0, 0.22) 0%, transparent 12%, transparent 90%, rgba(0, 0, 0, 0.18) 100%),
-            repeating-linear-gradient(
-              90deg,
-              var(--slat-dark) 0px,
-              var(--slat-base) 5px,
-              var(--slat-light) 10px,
-              var(--slat-base) 15px,
-              var(--slat-dark) 20px
-            );
+            repeating-linear-gradient(90deg, var(--slat-dark) 0px, var(--slat-base) 5px, var(--slat-light) 10px, var(--slat-base) 15px, var(--slat-dark) 20px);
         }
-
         .curtain-hem-edge {
-          width: 9px;
-          height: 100%;
+          width: 9px; height: 100%;
           background: linear-gradient(90deg, var(--slat-base), var(--slat-bar));
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          flex-shrink: 0;
+          display: flex; align-items: center; justify-content: center; flex-shrink: 0;
         }
-
-        .drag-pill-v {
-          width: 3px;
-          height: 26px;
-          border-radius: 99px;
-          background: rgba(255, 255, 255, 0.72);
-        }
+        .drag-pill-v { width: 3px; height: 26px; border-radius: 99px; background: rgba(255, 255, 255, 0.72); }
 
         /* ================= Badges & Overlays ================= */
         .pct-badge {
-          position: absolute;
-          bottom: 7px;
-          inset-inline-end: 7px;
-          z-index: 5;
-          font-size: 0.76rem;
-          font-weight: 700;
-          color: #ffffff;
-          background: rgba(15, 23, 42, 0.68);
-          backdrop-filter: blur(4px);
-          padding: 2px 7px;
-          border-radius: 999px;
-          pointer-events: none;
+          position: absolute; bottom: 7px; inset-inline-end: 7px; z-index: 5;
+          font-size: 0.76rem; font-weight: 700; color: #ffffff;
+          background: rgba(15, 23, 42, 0.68); backdrop-filter: blur(4px);
+          padding: 2px 7px; border-radius: 999px; pointer-events: none;
           font-variant-numeric: tabular-nums;
         }
-
         .motion-badge {
-          position: absolute;
-          top: 12px;
-          inset-inline-end: 7px;
-          z-index: 5;
-          width: 24px;
-          height: 24px;
-          border-radius: 50%;
-          background: var(--msc-primary);
-          color: #ffffff;
-          display: none;
-          align-items: center;
-          justify-content: center;
-          box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
-          pointer-events: none;
+          position: absolute; top: 12px; inset-inline-end: 7px; z-index: 5;
+          width: 24px; height: 24px; border-radius: 50%;
+          background: var(--msc-primary); color: #ffffff;
+          display: none; align-items: center; justify-content: center;
+          box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25); pointer-events: none;
         }
-
-        .motion-badge.visible {
-          display: flex;
-          animation: msc-pulse 1.1s infinite ease-in-out;
-        }
-
-        .motion-badge svg {
-          width: 16px;
-          height: 16px;
-          fill: currentColor;
-        }
+        .motion-badge.visible { display: flex; animation: msc-pulse 1.1s infinite ease-in-out; }
+        .motion-badge svg { width: 16px; height: 16px; fill: currentColor; }
 
         .window-sensor-badge {
-          position: absolute;
-          bottom: 7px;
-          inset-inline-start: 7px;
-          z-index: 5;
-          display: none;
-          align-items: center;
-          gap: 4px;
-          font-size: 0.72rem;
-          font-weight: 600;
-          color: #ffffff;
-          background: rgba(217, 119, 6, 0.92);
-          padding: 2px 8px;
-          border-radius: 999px;
-          box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
-          pointer-events: none;
+          position: absolute; bottom: 7px; inset-inline-start: 7px; z-index: 5;
+          display: none; align-items: center; gap: 4px;
+          font-size: 0.72rem; font-weight: 600; color: #ffffff;
+          background: rgba(217, 119, 6, 0.92); padding: 2px 8px; border-radius: 999px;
+          box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25); pointer-events: none;
         }
-
-        .window-sensor-badge.visible {
-          display: inline-flex;
-        }
-
-        .window-sensor-badge svg {
-          width: 13px;
-          height: 13px;
-          fill: currentColor;
-        }
+        .window-sensor-badge.visible { display: inline-flex; }
+        .window-sensor-badge svg { width: 13px; height: 13px; fill: currentColor; }
 
         .blocked-toast {
-          position: absolute;
-          inset-inline: 8px;
-          top: 50%;
-          transform: translateY(-50%) scale(0.95);
-          z-index: 6;
-          background: rgba(220, 38, 38, 0.94);
-          color: #ffffff;
-          font-size: 0.78rem;
-          font-weight: 600;
-          text-align: center;
-          padding: 6px 10px;
-          border-radius: 8px;
-          opacity: 0;
-          pointer-events: none;
+          position: absolute; inset-inline: 8px; top: 50%;
+          transform: translateY(-50%) scale(0.95); z-index: 6;
+          background: rgba(220, 38, 38, 0.94); color: #ffffff;
+          font-size: 0.78rem; font-weight: 600; text-align: center;
+          padding: 6px 10px; border-radius: 8px; opacity: 0; pointer-events: none;
           transition: opacity 0.2s ease, transform 0.2s ease;
         }
+        .blocked-toast.visible { opacity: 1; transform: translateY(-50%) scale(1); }
 
-        .blocked-toast.visible {
-          opacity: 1;
-          transform: translateY(-50%) scale(1);
-        }
-
-        .tilt-row {
-          display: flex;
-          align-items: center;
-          gap: 8px;
-          padding-top: 2px;
-        }
-
+        .tilt-row { display: flex; align-items: center; gap: 8px; padding-top: 2px; }
         .tilt-label {
-          display: inline-flex;
-          align-items: center;
-          gap: 4px;
-          font-size: 0.76rem;
-          color: var(--msc-subtext);
-          white-space: nowrap;
+          display: inline-flex; align-items: center; gap: 4px;
+          font-size: 0.76rem; color: var(--msc-subtext); white-space: nowrap;
         }
+        .tilt-label svg { width: 15px; height: 15px; fill: currentColor; }
+        .tilt-slider { flex: 1; accent-color: var(--msc-primary); cursor: pointer; margin: 0; }
+        .tilt-val { font-size: 0.74rem; color: var(--msc-subtext); min-width: 30px; text-align: end; font-variant-numeric: tabular-nums; }
 
-        .tilt-label svg {
-          width: 15px;
-          height: 15px;
-          fill: currentColor;
-        }
-
-        .tilt-slider {
-          flex: 1;
-          accent-color: var(--msc-primary);
-          cursor: pointer;
-          margin: 0;
-        }
-
-        .tilt-val {
-          font-size: 0.74rem;
-          color: var(--msc-subtext);
-          min-width: 30px;
-          text-align: end;
-          font-variant-numeric: tabular-nums;
-        }
-
-        .presets-row {
-          display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(46px, 1fr));
-          gap: 6px;
-        }
-
+        .presets-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(46px, 1fr)); gap: 6px; }
         .preset-btn {
-          border: 1px solid var(--msc-divider);
-          background: var(--msc-bg);
-          color: var(--msc-text);
-          border-radius: 8px;
-          padding: 5px 4px;
-          font: inherit;
-          font-size: 0.76rem;
-          font-weight: 500;
-          cursor: pointer;
-          transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
-          white-space: nowrap;
-          overflow: hidden;
-          text-overflow: ellipsis;
+          border: 1px solid var(--msc-divider); background: var(--msc-bg); color: var(--msc-text);
+          border-radius: 8px; padding: 5px 4px; font: inherit; font-size: 0.76rem; font-weight: 500;
+          cursor: pointer; transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+          white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
         }
+        .preset-btn:hover { border-color: var(--msc-primary); }
+        .preset-btn.active { background: var(--msc-primary); border-color: var(--msc-primary); color: #ffffff; font-weight: 600; }
 
-        .preset-btn:hover {
-          border-color: var(--msc-primary);
-        }
-
-        .preset-btn.active {
-          background: var(--msc-primary);
-          border-color: var(--msc-primary);
-          color: #ffffff;
-          font-weight: 600;
-        }
-
-        .window-frame.shake {
-          animation: msc-shake 0.35s ease;
-        }
-
-        @keyframes msc-pulse {
-          0%, 100% { transform: translateY(0); opacity: 0.95; }
-          50% { transform: translateY(-2px); opacity: 0.65; }
-        }
-
-        @keyframes msc-shake {
-          0%, 100% { transform: translateX(0); }
-          25% { transform: translateX(-5px); }
-          50% { transform: translateX(5px); }
-          75% { transform: translateX(-4px); }
-        }
+        .window-frame.shake { animation: msc-shake 0.35s ease; }
+        @keyframes msc-pulse { 0%, 100% { transform: translateY(0); opacity: 0.95; } 50% { transform: translateY(-2px); opacity: 0.65; } }
+        @keyframes msc-shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-5px); } 50% { transform: translateX(5px); } 75% { transform: translateX(-4px); } }
       </style>
 
       <ha-card dir="${isRtl ? 'rtl' : 'ltr'}" class="${animateBg ? '' : 'no-anim'}">
@@ -2739,29 +2190,22 @@ class ModernShutterCard extends HTMLElement {
 
   _bindEvents() {
     this.shadowRoot.querySelectorAll('.group-btn').forEach((btn) => {
-      btn.addEventListener('click', () => {
-        this._callGroupAction(btn.dataset.groupAction);
-      });
+      btn.addEventListener('click', () => this._callGroupAction(btn.dataset.groupAction));
     });
 
     this.shadowRoot.querySelectorAll('.entity-title').forEach((btn) => {
-      btn.addEventListener('click', () => {
-        this._openMoreInfo(btn.dataset.moreInfo);
-      });
+      btn.addEventListener('click', () => this._openMoreInfo(btn.dataset.moreInfo));
     });
 
     this.shadowRoot.querySelectorAll('.ctrl-btn').forEach((btn) => {
       btn.addEventListener('click', () => {
-        const index = Number(btn.dataset.index);
-        this._callCoverAction(index, btn.dataset.action);
+        this._callCoverAction(Number(btn.dataset.index), btn.dataset.action);
       });
     });
 
     this.shadowRoot.querySelectorAll('.preset-btn').forEach((btn) => {
       btn.addEventListener('click', () => {
-        const index = Number(btn.dataset.index);
-        const pos = Number(btn.dataset.pos);
-        this._setPosition(index, pos);
+        this._setPosition(Number(btn.dataset.index), Number(btn.dataset.pos));
       });
     });
 
@@ -2770,12 +2214,10 @@ class ModernShutterCard extends HTMLElement {
         const row = e.target.closest('.tilt-row');
         const valEl = row?.querySelector('.tilt-val');
         if (valEl) valEl.textContent = `${e.target.value}%`;
-        const tile = e.target.closest('.shutter-tile');
-        this._applyVisualTilt(tile, Number(e.target.value));
+        this._applyVisualTilt(e.target.closest('.shutter-tile'), Number(e.target.value));
       });
       slider.addEventListener('change', (e) => {
-        const index = Number(e.target.dataset.index);
-        this._setTilt(index, Number(e.target.value));
+        this._setTilt(Number(e.target.dataset.index), Number(e.target.value));
       });
     });
 
@@ -2839,12 +2281,8 @@ class ModernShutterCard extends HTMLElement {
         this._dragging = null;
         setDraggingClass(false);
         try {
-          if (frame.hasPointerCapture(e.pointerId)) {
-            frame.releasePointerCapture(e.pointerId);
-          }
-        } catch (_) {
-          // Ignore
-        }
+          if (frame.hasPointerCapture(e.pointerId)) frame.releasePointerCapture(e.pointerId);
+        } catch (_) {}
         this._setPosition(index, targetOpenness);
         this._updateSingleState(index);
       };
@@ -2868,10 +2306,8 @@ class ModernShutterCard extends HTMLElement {
 
   _applyVisualTilt(tile, tiltPos) {
     if (!tile) return;
-    // At 50% tilt, venetian slats are horizontal (letting light through); at 0% or 100%, closed/opaque
     const opennessFactor = 1 - Math.abs(clamp(tiltPos, 0, 100) - 50) / 50;
-    const opacity = (1 - opennessFactor * 0.42).toFixed(2);
-    tile.style.setProperty('--tilt-opacity', opacity);
+    tile.style.setProperty('--tilt-opacity', (1 - opennessFactor * 0.42).toFixed(2));
   }
 
   _applyVisualOpenness(index, openness, coverTypeOverride) {
@@ -2881,13 +2317,13 @@ class ModernShutterCard extends HTMLElement {
     const coveredPct = clamp(100 - openness, 0, 100);
 
     if (coverType === 'curtain') {
-      const panelWidth = 10 + (coveredPct / 100) * 40; // 10% gathered -> 50% closed
+      const panelWidth = 10 + (coveredPct / 100) * 40;
       const leftPanel = tile.querySelector('.curtain-panel-left');
       const rightPanel = tile.querySelector('.curtain-panel-right');
       if (leftPanel) leftPanel.style.width = `${panelWidth}%`;
       if (rightPanel) rightPanel.style.width = `${panelWidth}%`;
     } else if (coverType === 'curtain_left') {
-      const panelWidth = 12 + (coveredPct / 100) * 88; // 12% gathered -> 100% closed
+      const panelWidth = 12 + (coveredPct / 100) * 88;
       const leftPanel = tile.querySelector('.curtain-panel-left');
       if (leftPanel) leftPanel.style.width = `${panelWidth}%`;
     } else if (coverType === 'curtain_right') {
@@ -2896,19 +2332,13 @@ class ModernShutterCard extends HTMLElement {
       if (rightPanel) rightPanel.style.width = `${panelWidth}%`;
     } else {
       const curtain = tile.querySelector('.shutter-curtain');
-      if (curtain) {
-        curtain.style.height = `${coveredPct}%`;
-      }
+      if (curtain) curtain.style.height = `${coveredPct}%`;
     }
 
     const pctBadge = tile.querySelector('.pct-badge');
-    if (pctBadge) {
-      pctBadge.textContent = `${openness}%`;
-    }
+    if (pctBadge) pctBadge.textContent = `${openness}%`;
     const frame = tile.querySelector('.window-frame');
-    if (frame) {
-      frame.setAttribute('aria-valuenow', String(openness));
-    }
+    if (frame) frame.setAttribute('aria-valuenow', String(openness));
   }
 
   _updateAllStates() {
@@ -2932,13 +2362,11 @@ class ModernShutterCard extends HTMLElement {
     }
 
     this._applyWindowBackground(tile, item);
-
     tile.classList.toggle('unavailable', !info.available);
 
     const nameEl = tile.querySelector('.name-text');
     if (nameEl) {
-      const displayName = item.name || stateObj?.attributes?.friendly_name || item.entity;
-      nameEl.textContent = displayName;
+      nameEl.textContent = item.name || stateObj?.attributes?.friendly_name || item.entity;
     }
 
     if (!this._dragging || this._dragging.index !== index) {
@@ -2953,30 +2381,21 @@ class ModernShutterCard extends HTMLElement {
 
     if (statePill) {
       statePill.classList.toggle('moving', isOpening || isClosing);
-      if (!info.available) {
-        statePill.textContent = this._text('unavailable');
-      } else if (isOpening) {
-        statePill.textContent = this._text('opening');
-      } else if (isClosing) {
-        statePill.textContent = this._text('closing');
-      } else if (info.openness === 0) {
-        statePill.textContent = this._text('closed');
-      } else if (info.openness === 100) {
-        statePill.textContent = this._text('open');
-      } else {
-        statePill.textContent = `${info.openness}%`;
-      }
+      if (!info.available) statePill.textContent = this._text('unavailable');
+      else if (isOpening) statePill.textContent = this._text('opening');
+      else if (isClosing) statePill.textContent = this._text('closing');
+      else if (info.openness === 0) statePill.textContent = this._text('closed');
+      else if (info.openness === 100) statePill.textContent = this._text('open');
+      else statePill.textContent = `${info.openness}%`;
     }
 
     if (motionBadge) {
       if (isOpening || isClosing) {
         motionBadge.classList.add('visible');
         const movingToOpen = info.invert ? isClosing : isOpening;
-        if (isHoriz) {
-          motionBadge.innerHTML = movingToOpen ? ICONS.openHoriz : ICONS.closeHoriz;
-        } else {
-          motionBadge.innerHTML = movingToOpen ? ICONS.up : ICONS.down;
-        }
+        motionBadge.innerHTML = isHoriz
+          ? movingToOpen ? ICONS.openHoriz : ICONS.closeHoriz
+          : movingToOpen ? ICONS.up : ICONS.down;
       } else {
         motionBadge.classList.remove('visible');
       }
@@ -2989,8 +2408,7 @@ class ModernShutterCard extends HTMLElement {
 
     const sensorBadge = tile.querySelector('.window-sensor-badge');
     if (sensorBadge) {
-      const winOpen = this._isWindowOpen(item);
-      sensorBadge.classList.toggle('visible', winOpen);
+      sensorBadge.classList.toggle('visible', this._isWindowOpen(item));
       const label = sensorBadge.querySelector('.sensor-label');
       if (label) label.textContent = this._text('windowOpen');
     }
@@ -3005,16 +2423,10 @@ class ModernShutterCard extends HTMLElement {
 
       tiltRow.style.display = shouldShowTilt ? 'flex' : 'none';
       if (shouldShowTilt) {
-        const tiltPos = clamp(
-          Math.round(Number(stateObj.attributes?.current_tilt_position ?? 50)),
-          0,
-          100
-        );
+        const tiltPos = clamp(Math.round(Number(stateObj.attributes?.current_tilt_position ?? 50)), 0, 100);
         const slider = tiltRow.querySelector('.tilt-slider');
         const valEl = tiltRow.querySelector('.tilt-val');
-        if (slider && document.activeElement !== slider) {
-          slider.value = String(tiltPos);
-        }
+        if (slider && document.activeElement !== slider) slider.value = String(tiltPos);
         if (valEl) valEl.textContent = `${tiltPos}%`;
         this._applyVisualTilt(tile, tiltPos);
       }
@@ -3042,7 +2454,7 @@ class ModernShutterCardEditor extends HTMLElement {
       cover_type: 'auto',
       compact: false,
       slats_color: 'gray',
-      window_background: 'auto',
+      window_background: 'weather',
       weather_entity: '',
       animate_background: true,
       buttons_position: 'left',
@@ -3089,9 +2501,7 @@ class ModernShutterCardEditor extends HTMLElement {
   set hass(hass) {
     const firstHass = !this._hass;
     this._hass = hass;
-    if (firstHass) {
-      this._render();
-    }
+    if (firstHass) this._render();
   }
 
   _emitConfig() {
@@ -3166,7 +2576,7 @@ class ModernShutterCardEditor extends HTMLElement {
     };
 
     const usesWeather =
-      this._config.window_background === 'weather' ||
+      (this._config.window_background || 'weather') === 'weather' ||
       (this._config.entities || []).some((e) => e.window_background === 'weather');
 
     const weatherOptionsHtml = [
@@ -3295,175 +2705,45 @@ class ModernShutterCardEditor extends HTMLElement {
 
     this.shadowRoot.innerHTML = `
       <style>
-        :host {
-          display: block;
-          font-family: var(--paper-font-body1_-_font-family, inherit);
-          color: var(--primary-text-color);
-        }
-        .editor-wrap {
-          display: flex;
-          flex-direction: column;
-          gap: 14px;
-        }
-        .section-title {
-          font-size: 0.9rem;
-          font-weight: 600;
-          border-bottom: 1px solid var(--divider-color, rgba(128,128,128,0.2));
-          padding-bottom: 4px;
-          margin-top: 4px;
-        }
-        .grid-2 {
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 10px;
-        }
-        label {
-          display: flex;
-          flex-direction: column;
-          gap: 4px;
-          font-size: 0.82rem;
-          color: var(--secondary-text-color);
-        }
+        :host { display: block; font-family: var(--paper-font-body1_-_font-family, inherit); color: var(--primary-text-color); }
+        .editor-wrap { display: flex; flex-direction: column; gap: 14px; }
+        .section-title { font-size: 0.9rem; font-weight: 600; border-bottom: 1px solid var(--divider-color, rgba(128,128,128,0.2)); padding-bottom: 4px; margin-top: 4px; }
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        label { display: flex; flex-direction: column; gap: 4px; font-size: 0.82rem; color: var(--secondary-text-color); }
         input[type="text"], input[type="number"], select {
-          padding: 7px 9px;
-          border-radius: 6px;
-          border: 1px solid var(--divider-color, rgba(128,128,128,0.35));
-          background: var(--card-background-color, #fff);
-          color: var(--primary-text-color);
-          font: inherit;
-          font-size: 0.88rem;
-          box-sizing: border-box;
+          padding: 7px 9px; border-radius: 6px; border: 1px solid var(--divider-color, rgba(128,128,128,0.35));
+          background: var(--card-background-color, #fff); color: var(--primary-text-color);
+          font: inherit; font-size: 0.88rem; box-sizing: border-box;
         }
-        .checks-grid {
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 8px;
-        }
-        .check-label {
-          flex-direction: row;
-          align-items: center;
-          gap: 6px;
-          color: var(--primary-text-color);
-          cursor: pointer;
-        }
+        .checks-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+        .check-label { flex-direction: row; align-items: center; gap: 6px; color: var(--primary-text-color); cursor: pointer; }
         .presets-editor {
-          display: flex;
-          flex-direction: column;
-          gap: 6px;
-          padding: 10px;
-          border-radius: 10px;
-          border: 1px solid var(--divider-color, rgba(128,128,128,0.3));
-          background: rgba(127, 127, 127, 0.04);
+          display: flex; flex-direction: column; gap: 6px; padding: 10px; border-radius: 10px;
+          border: 1px solid var(--divider-color, rgba(128,128,128,0.3)); background: rgba(127, 127, 127, 0.04);
         }
-        .preset-edit-header,
-        .preset-edit-row {
-          display: grid;
-          grid-template-columns: 24px 1fr 86px 30px;
-          gap: 8px;
-          align-items: center;
-        }
-        .preset-edit-header {
-          font-size: 0.78rem;
-          color: var(--secondary-text-color);
-          padding-bottom: 2px;
-        }
-        .preset-edit-row {
-          padding: 3px 2px;
-          border-radius: 8px;
-          border: 1px dashed transparent;
-          transition: background 0.15s ease, border-color 0.15s ease, opacity 0.15s ease;
-        }
-        .preset-edit-row.dragging {
-          opacity: 0.5;
-          border-color: var(--primary-color, #03a9f4);
-          background: rgba(3, 169, 244, 0.06);
-        }
-        .preset-edit-row.drag-over {
-          border-color: var(--primary-color, #03a9f4);
-          background: rgba(3, 169, 244, 0.12);
-        }
-        .preset-drag-handle {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          cursor: grab;
-          color: var(--secondary-text-color);
-          height: 30px;
-          user-select: none;
-        }
-        .preset-drag-handle:active {
-          cursor: grabbing;
-        }
-        .preset-drag-handle svg {
-          width: 18px;
-          height: 18px;
-          fill: currentColor;
-        }
-        .preset-edit-row input {
-          width: 100%;
-        }
-        .remove-preset-btn {
-          border: none;
-          border-radius: 6px;
-          height: 32px;
-          background: rgba(220, 38, 38, 0.14);
-          color: #dc2626;
-          cursor: pointer;
-          font-weight: 700;
-          padding: 0;
-        }
+        .preset-edit-header, .preset-edit-row { display: grid; grid-template-columns: 24px 1fr 86px 30px; gap: 8px; align-items: center; }
+        .preset-edit-header { font-size: 0.78rem; color: var(--secondary-text-color); padding-bottom: 2px; }
+        .preset-edit-row { padding: 3px 2px; border-radius: 8px; border: 1px dashed transparent; transition: background 0.15s ease, border-color 0.15s ease, opacity 0.15s ease; }
+        .preset-edit-row.dragging { opacity: 0.5; border-color: var(--primary-color, #03a9f4); background: rgba(3, 169, 244, 0.06); }
+        .preset-edit-row.drag-over { border-color: var(--primary-color, #03a9f4); background: rgba(3, 169, 244, 0.12); }
+        .preset-drag-handle { display: flex; align-items: center; justify-content: center; cursor: grab; color: var(--secondary-text-color); height: 30px; user-select: none; }
+        .preset-drag-handle:active { cursor: grabbing; }
+        .preset-drag-handle svg { width: 18px; height: 18px; fill: currentColor; }
+        .preset-edit-row input { width: 100%; }
+        .remove-preset-btn { border: none; border-radius: 6px; height: 32px; background: rgba(220, 38, 38, 0.14); color: #dc2626; cursor: pointer; font-weight: 700; padding: 0; }
         .add-preset-btn {
-          border: 1px dashed var(--primary-color, #03a9f4);
-          background: transparent;
-          color: var(--primary-color, #03a9f4);
-          border-radius: 6px;
-          padding: 5px 10px;
-          cursor: pointer;
-          font: inherit;
-          font-size: 0.8rem;
-          font-weight: 600;
-          align-self: flex-start;
-          margin-top: 2px;
+          border: 1px dashed var(--primary-color, #03a9f4); background: transparent; color: var(--primary-color, #03a9f4);
+          border-radius: 6px; padding: 5px 10px; cursor: pointer; font: inherit; font-size: 0.8rem; font-weight: 600; align-self: flex-start; margin-top: 2px;
         }
         .entity-box {
-          border: 1px solid var(--divider-color, rgba(128,128,128,0.3));
-          border-radius: 10px;
-          padding: 10px;
-          display: flex;
-          flex-direction: column;
-          gap: 8px;
-          background: rgba(127, 127, 127, 0.04);
+          border: 1px solid var(--divider-color, rgba(128,128,128,0.3)); border-radius: 10px; padding: 10px;
+          display: flex; flex-direction: column; gap: 8px; background: rgba(127, 127, 127, 0.04);
         }
-        .entity-box-header {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-        }
-        .inline-checks {
-          display: flex;
-          flex-wrap: wrap;
-          gap: 12px;
-          margin-top: 2px;
-        }
-        .add-btn, .remove-btn {
-          border: none;
-          border-radius: 6px;
-          padding: 6px 12px;
-          cursor: pointer;
-          font: inherit;
-          font-size: 0.82rem;
-          font-weight: 600;
-        }
-        .add-btn {
-          background: var(--primary-color, #03a9f4);
-          color: #fff;
-          align-self: flex-start;
-        }
-        .remove-btn {
-          background: rgba(220, 38, 38, 0.14);
-          color: #dc2626;
-          padding: 4px 8px;
-        }
+        .entity-box-header { display: flex; justify-content: space-between; align-items: center; }
+        .inline-checks { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 2px; }
+        .add-btn, .remove-btn { border: none; border-radius: 6px; padding: 6px 12px; cursor: pointer; font: inherit; font-size: 0.82rem; font-weight: 600; }
+        .add-btn { background: var(--primary-color, #03a9f4); color: #fff; align-self: flex-start; }
+        .remove-btn { background: rgba(220, 38, 38, 0.14); color: #dc2626; padding: 4px 8px; }
       </style>
 
       <div class="editor-wrap" dir="${isRtl ? 'rtl' : 'ltr'}">
@@ -3475,33 +2755,25 @@ class ModernShutterCardEditor extends HTMLElement {
           </label>
           <label>
             ${escapeHtml(tr('edLanguage'))}
-            <select id="cfg-lang">
-              ${langOptionsHtml}
-            </select>
+            <select id="cfg-lang">${langOptionsHtml}</select>
           </label>
         </div>
 
         <div class="grid-2">
           <label>
             ${escapeHtml(tr('edCoverType'))}
-            <select id="cfg-type">
-              ${renderTypeOptions(this._config.cover_type || 'auto', false)}
-            </select>
+            <select id="cfg-type">${renderTypeOptions(this._config.cover_type || 'auto', false)}</select>
           </label>
           <label>
             ${escapeHtml(tr('edSlatsColor'))}
-            <select id="cfg-color">
-              ${renderColorOptions(this._config.slats_color || 'gray', false)}
-            </select>
+            <select id="cfg-color">${renderColorOptions(this._config.slats_color || 'gray', false)}</select>
           </label>
         </div>
 
         <div class="grid-2">
           <label>
             ${escapeHtml(tr('edWindowBg'))}
-            <select id="cfg-bg">
-              ${renderBgOptions(this._config.window_background || 'auto', false)}
-            </select>
+            <select id="cfg-bg">${renderBgOptions(this._config.window_background || 'weather', false)}</select>
           </label>
           <label>
             ${escapeHtml(tr('edButtonsPos'))}
@@ -3516,50 +2788,21 @@ class ModernShutterCardEditor extends HTMLElement {
           usesWeather
             ? `<label>
                 ${escapeHtml(tr('edWeatherEntity'))}
-                <select id="cfg-weather">
-                  ${weatherOptionsHtml}
-                </select>
+                <select id="cfg-weather">${weatherOptionsHtml}</select>
               </label>`
             : ''
         }
 
         <div class="checks-grid">
-          <label class="check-label">
-            <input type="checkbox" id="cfg-compact" ${this._config.compact ? 'checked' : ''} />
-            ${escapeHtml(tr('edCompact'))}
-          </label>
-          <label class="check-label">
-            <input type="checkbox" id="cfg-group-controls" ${this._config.show_group_controls !== false ? 'checked' : ''} />
-            ${escapeHtml(tr('edShowGroupControls'))}
-          </label>
-          <label class="check-label">
-            <input type="checkbox" id="cfg-presets" ${this._config.show_presets !== false ? 'checked' : ''} />
-            ${escapeHtml(tr('edShowPresets'))}
-          </label>
-          <label class="check-label">
-            <input type="checkbox" id="cfg-buttons" ${this._config.show_buttons !== false ? 'checked' : ''} />
-            ${escapeHtml(tr('edShowButtons'))}
-          </label>
-          <label class="check-label">
-            <input type="checkbox" id="cfg-pct" ${this._config.show_percentage !== false ? 'checked' : ''} />
-            ${escapeHtml(tr('edShowPct'))}
-          </label>
-          <label class="check-label">
-            <input type="checkbox" id="cfg-window-grid" ${this._config.show_window_grid !== false ? 'checked' : ''} />
-            ${escapeHtml(tr('edShowWindowGrid'))}
-          </label>
-          <label class="check-label">
-            <input type="checkbox" id="cfg-animate-bg" ${this._config.animate_background !== false ? 'checked' : ''} />
-            ${escapeHtml(tr('edAnimateBg'))}
-          </label>
-          <label class="check-label">
-            <input type="checkbox" id="cfg-invert" ${this._config.invert_position ? 'checked' : ''} />
-            ${escapeHtml(tr('edInvertGlobal'))}
-          </label>
-          <label class="check-label">
-            <input type="checkbox" id="cfg-haptic" ${this._config.haptic !== false ? 'checked' : ''} />
-            ${escapeHtml(tr('edHaptic'))}
-          </label>
+          <label class="check-label"><input type="checkbox" id="cfg-compact" ${this._config.compact ? 'checked' : ''} />${escapeHtml(tr('edCompact'))}</label>
+          <label class="check-label"><input type="checkbox" id="cfg-group-controls" ${this._config.show_group_controls !== false ? 'checked' : ''} />${escapeHtml(tr('edShowGroupControls'))}</label>
+          <label class="check-label"><input type="checkbox" id="cfg-presets" ${this._config.show_presets !== false ? 'checked' : ''} />${escapeHtml(tr('edShowPresets'))}</label>
+          <label class="check-label"><input type="checkbox" id="cfg-buttons" ${this._config.show_buttons !== false ? 'checked' : ''} />${escapeHtml(tr('edShowButtons'))}</label>
+          <label class="check-label"><input type="checkbox" id="cfg-pct" ${this._config.show_percentage !== false ? 'checked' : ''} />${escapeHtml(tr('edShowPct'))}</label>
+          <label class="check-label"><input type="checkbox" id="cfg-window-grid" ${this._config.show_window_grid !== false ? 'checked' : ''} />${escapeHtml(tr('edShowWindowGrid'))}</label>
+          <label class="check-label"><input type="checkbox" id="cfg-animate-bg" ${this._config.animate_background !== false ? 'checked' : ''} />${escapeHtml(tr('edAnimateBg'))}</label>
+          <label class="check-label"><input type="checkbox" id="cfg-invert" ${this._config.invert_position ? 'checked' : ''} />${escapeHtml(tr('edInvertGlobal'))}</label>
+          <label class="check-label"><input type="checkbox" id="cfg-haptic" ${this._config.haptic !== false ? 'checked' : ''} />${escapeHtml(tr('edHaptic'))}</label>
         </div>
 
         ${presetsEditorHtml}
@@ -3579,10 +2822,7 @@ class ModernShutterCardEditor extends HTMLElement {
       const el = this.shadowRoot.getElementById(id);
       if (!el) return;
       el.addEventListener(isCheckbox || el.tagName === 'SELECT' ? 'change' : 'input', (e) => {
-        this._config = {
-          ...this._config,
-          [key]: isCheckbox ? e.target.checked : e.target.value,
-        };
+        this._config = { ...this._config, [key]: isCheckbox ? e.target.checked : e.target.value };
         this._emitConfig();
         if (rerender) this._render();
       });
@@ -3644,20 +2884,13 @@ class ModernShutterCardEditor extends HTMLElement {
           e.dataTransfer.setData('text/plain', String(this._dragPresetIdx));
         }
       });
-
       row.addEventListener('dragover', (e) => {
         e.preventDefault();
         if (e.dataTransfer) e.dataTransfer.dropEffect = 'move';
         const targetIdx = Number(row.dataset.pidx);
-        if (this._dragPresetIdx !== null && targetIdx !== this._dragPresetIdx) {
-          row.classList.add('drag-over');
-        }
+        if (this._dragPresetIdx !== null && targetIdx !== this._dragPresetIdx) row.classList.add('drag-over');
       });
-
-      row.addEventListener('dragleave', () => {
-        row.classList.remove('drag-over');
-      });
-
+      row.addEventListener('dragleave', () => row.classList.remove('drag-over'));
       row.addEventListener('drop', (e) => {
         e.preventDefault();
         row.classList.remove('drag-over');
@@ -3671,12 +2904,9 @@ class ModernShutterCardEditor extends HTMLElement {
         this._emitConfig();
         this._render();
       });
-
       row.addEventListener('dragend', () => {
         this._dragPresetIdx = null;
-        this.shadowRoot
-          .querySelectorAll('.preset-edit-row')
-          .forEach((r) => r.classList.remove('dragging', 'drag-over'));
+        this.shadowRoot.querySelectorAll('.preset-edit-row').forEach((r) => r.classList.remove('dragging', 'drag-over'));
       });
     });
 
@@ -3713,9 +2943,7 @@ class ModernShutterCardEditor extends HTMLElement {
         const val = e.target.type === 'checkbox' ? e.target.checked : e.target.value;
         const updated = [...this._config.entities];
         updated[idx] = { ...updated[idx], [field]: val };
-        if (val === '' && field !== 'entity') {
-          delete updated[idx][field];
-        }
+        if (val === '' && field !== 'entity') delete updated[idx][field];
         this._config = { ...this._config, entities: updated };
         this._emitConfig();
         if (field === 'window_background') this._render();
@@ -3725,8 +2953,7 @@ class ModernShutterCardEditor extends HTMLElement {
     this.shadowRoot.querySelectorAll('.remove-btn').forEach((btn) => {
       btn.addEventListener('click', () => {
         const idx = Number(btn.dataset.remove);
-        const updated = this._config.entities.filter((_, i) => i !== idx);
-        this._config = { ...this._config, entities: updated };
+        this._config = { ...this._config, entities: this._config.entities.filter((_, i) => i !== idx) };
         this._emitConfig();
         this._render();
       });
@@ -3760,7 +2987,7 @@ window.customCards.push({
   type: 'modern-shutter-card',
   name: 'Modern Shutter Card',
   description:
-    'A modern multi-language visual shutter, blinds & sliding curtain card with live animated weather scenes, group controls, presets, touch-lock, tilt, window sensor protection, RTL, and Sections View support.',
+    'A modern multi-language visual shutter, blinds & sliding curtain card with live animated weather + sunrise/sunset/day/night scenes, group controls, presets, touch-lock, tilt, window sensor protection, RTL, and Sections View support.',
   preview: true,
   documentationURL: 'https://github.com/sharonoren1/modern-shutter-card',
 });
