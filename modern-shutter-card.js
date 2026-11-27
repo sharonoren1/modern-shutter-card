@@ -5,7 +5,7 @@
  * License: MIT
  */
 
-const CARD_VERSION = '1.9.2';
+const CARD_VERSION = '1.9.3';
 const SUPPORT_SET_TILT_POSITION = 128;
 
 const DEFAULT_PRESETS = [
@@ -847,6 +847,27 @@ const SNOW_FLAKES_SVG = `
   </g>
 `;
 
+const BIRDS_FLOCK_SVG = `
+  <g class="msc-bird-flight" style="--d:17s;--del:-4s">
+    <path class="msc-bird-wing" d="M0 44 Q4 39 8 43 Q12 39 16 44" fill="none" stroke="#1e293b" stroke-width="1.4" stroke-linecap="round" opacity="0.58" style="transform-origin:8px 43px;--d:0.75s;--del:0s"/>
+    <path class="msc-bird-wing" d="M18 35 Q21 31 24 34 Q27 31 30 35" fill="none" stroke="#1e293b" stroke-width="1.2" stroke-linecap="round" opacity="0.48" style="transform-origin:24px 34px;--d:0.85s;--del:-0.25s"/>
+    <path class="msc-bird-wing" d="M10 53 Q13 49 16 52 Q19 49 22 53" fill="none" stroke="#1e293b" stroke-width="1.1" stroke-linecap="round" opacity="0.42" style="transform-origin:16px 52px;--d:0.8s;--del:-0.45s"/>
+  </g>
+`;
+
+function buildSunRaysSvg(cx, cy, innerR, outerR, count = 12) {
+  const lines = [];
+  for (let i = 0; i < count; i++) {
+    const angle = (i * 2 * Math.PI) / count;
+    const x1 = (cx + Math.cos(angle) * innerR).toFixed(1);
+    const y1 = (cy + Math.sin(angle) * innerR).toFixed(1);
+    const x2 = (cx + Math.cos(angle) * outerR).toFixed(1);
+    const y2 = (cy + Math.sin(angle) * outerR).toFixed(1);
+    lines.push(`<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}"/>`);
+  }
+  return `<g class="msc-sun-rays" stroke="#fef08a" stroke-width="2.2" stroke-linecap="round" opacity="0.72" style="transform-origin:${cx}px ${cy}px">${lines.join('')}</g>`;
+}
+
 const STATIC_SCENES = {
   sea: `<svg viewBox="0 0 200 165" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
     <defs>
@@ -858,6 +879,7 @@ const STATIC_SCENES = {
       </linearGradient>
     </defs>
     <rect width="200" height="102" fill="url(#msc-sea-sky)"/>
+    ${buildSunRaysSvg(148, 36, 19, 27, 10)}
     <circle cx="148" cy="36" r="15" fill="#fef08a" opacity="0.95"/>
     <circle class="msc-sun-pulse" cx="148" cy="36" r="26" fill="#fef08a" opacity="0.25"/>
     <g class="msc-cloud-sway" fill="#ffffff" opacity="0.75" style="--d:18s;--del:-4s">
@@ -904,6 +926,9 @@ function buildDynamicSceneSvg(phase, weather) {
   const blurStd = weather === 'fog' ? 3.2 : isHazy ? 1.6 : 0;
   const celestialOpacity = weather === 'fog' ? 0.45 : isHazy ? 0.58 : 1;
   const filterAttr = blurStd > 0 ? `filter="url(#${blurId})"` : '';
+  const showBirds =
+    (phase === 'day' || phase === 'sunrise') &&
+    (weather === 'clear' || weather === 'partlycloudy');
 
   const skyStops = {
     day: `<stop offset="0%" stop-color="#38bdf8"/><stop offset="65%" stop-color="#bae6fd"/><stop offset="100%" stop-color="#fef9c3"/>`,
@@ -947,6 +972,7 @@ function buildDynamicSceneSvg(phase, weather) {
           ? ''
           : `<g class="msc-sun-rise" opacity="${celestialOpacity}" ${filterAttr}>
               <circle class="msc-sun-pulse" cx="68" cy="116" r="42" fill="url(#${glowId})"/>
+              ${buildSunRaysSvg(68, 116, 24, 34, 12)}
               <circle cx="68" cy="116" r="20" fill="#fef08a" opacity="0.95"/>
             </g>`
       }
@@ -959,6 +985,7 @@ function buildDynamicSceneSvg(phase, weather) {
           ? ''
           : `<g class="msc-sun-set" opacity="${celestialOpacity}" ${filterAttr}>
               <circle class="msc-sun-pulse" cx="100" cy="112" r="42" fill="url(#${glowId})"/>
+              ${buildSunRaysSvg(100, 112, 26, 36, 12)}
               <circle cx="100" cy="112" r="22" fill="#fef08a" opacity="0.94"/>
             </g>`
       }
@@ -971,6 +998,7 @@ function buildDynamicSceneSvg(phase, weather) {
       ? ''
       : `<g opacity="${celestialOpacity}" ${filterAttr}>
           <circle class="msc-sun-pulse" cx="152" cy="40" r="38" fill="url(#${glowId})"/>
+          ${buildSunRaysSvg(152, 40, 21, 30, 12)}
           <circle cx="152" cy="40" r="17" fill="#fef08a"/>
         </g>`;
   }
@@ -1100,6 +1128,7 @@ function buildDynamicSceneSvg(phase, weather) {
     <rect width="200" height="165" fill="url(#${gradId})"/>
     ${celestialSvg}
     ${weatherSvg}
+    ${showBirds ? BIRDS_FLOCK_SVG : ''}
   </svg>`;
 }
 
@@ -1942,8 +1971,11 @@ class ModernShutterCard extends HTMLElement {
           transform-origin: center;
           animation: msc-sun-glow 5s ease-in-out infinite;
         }
+        .msc-sun-rays { animation: msc-sun-spin 28s linear infinite; }
         .msc-sun-rise { animation: msc-sun-bob-up 8s ease-in-out infinite; }
         .msc-sun-set { animation: msc-sun-bob-down 8s ease-in-out infinite; }
+        .msc-bird-flight { animation: msc-bird-fly var(--d, 17s) linear var(--del, 0s) infinite; }
+        .msc-bird-wing { animation: msc-wing-flap var(--d, 0.8s) ease-in-out var(--del, 0s) infinite; }
         .msc-star-twinkle { animation: msc-twinkle var(--d, 3.5s) ease-in-out var(--del, 0s) infinite; }
         .msc-cloud-sway { animation: msc-sway var(--d, 18s) ease-in-out var(--del, 0s) infinite; }
         .msc-cloud-drift { animation: msc-drift var(--d, 28s) linear var(--del, 0s) infinite; }
@@ -1959,17 +1991,23 @@ class ModernShutterCard extends HTMLElement {
         ha-card.no-anim .msc-rain-drop { transform: translateY(72px); }
         ha-card.no-anim .msc-snow-flake { transform: translateY(78px); }
         ha-card.no-anim .msc-wind-streak { transform: translateX(65px); }
+        ha-card.no-anim .msc-bird-flight { transform: translate(62px, -4px); }
         ha-card.no-anim .msc-lightning-bolt { opacity: 0.9; }
 
         @media (prefers-reduced-motion: reduce) {
           .window-scene * { animation: none !important; }
           .msc-rain-drop { transform: translateY(72px); }
           .msc-snow-flake { transform: translateY(78px); }
+          .msc-bird-flight { transform: translate(62px, -4px); }
         }
 
         @keyframes msc-sun-glow {
           0%, 100% { transform: scale(1); opacity: 0.9; }
           50% { transform: scale(1.08); opacity: 0.65; }
+        }
+        @keyframes msc-sun-spin {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
         }
         @keyframes msc-sun-bob-up {
           0%, 100% { transform: translateY(4px); }
@@ -1978,6 +2016,17 @@ class ModernShutterCard extends HTMLElement {
         @keyframes msc-sun-bob-down {
           0%, 100% { transform: translateY(-4px); }
           50% { transform: translateY(4px); }
+        }
+        @keyframes msc-bird-fly {
+          0% { transform: translate(-45px, 6px); opacity: 0; }
+          10% { opacity: 1; }
+          50% { transform: translate(95px, -8px); opacity: 1; }
+          90% { opacity: 1; }
+          100% { transform: translate(235px, 4px); opacity: 0; }
+        }
+        @keyframes msc-wing-flap {
+          0%, 100% { transform: scaleY(1); }
+          50% { transform: scaleY(-0.55); }
         }
         @keyframes msc-twinkle { 0%, 100% { opacity: 0.92; } 50% { opacity: 0.25; } }
         @keyframes msc-sway { 0%, 100% { transform: translateX(-8px); } 50% { transform: translateX(8px); } }
